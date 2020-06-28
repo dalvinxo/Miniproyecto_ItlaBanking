@@ -1,18 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "tSeDi8GpcDJfI2RAI/jjhf7YtmsIfi0UZVs8OKENvvQt9PfqnBl9yySt6CP2/VX7iKy6iH6mtHZ5Ee/SV8pE4Q==",
+  "dgSpecHash": "w/Kajx55N4nOjJFMMYxbqbrp+KXKE/tjZVPjiMLx4gMiNS2P559TdY4Z7uxwDvaJb/ZNRuFG5hJZqA99JJ77Qg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Pablo Molina\\source\\repos\\ItlaBanking\\ItlaBanking\\ItlaBanking.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Pablo Molina\\.nuget\\packages\\automapper\\9.0.0\\automapper.9.0.0.nupkg.sha512",
     "C:\\Users\\Pablo Molina\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\7.0.0\\automapper.extensions.microsoft.dependencyinjection.7.0.0.nupkg.sha512",
     "C:\\Users\\Pablo Molina\\.nuget\\packages\\bootstrap\\5.0.0-alpha1\\bootstrap.5.0.0-alpha1.nupkg.sha512",
-    "C:\\Users\\Pablo Molina\\.nuget\\packages\\email\\1.1.1\\email.1.1.1.nupkg.sha512",
     "C:\\Users\\Pablo Molina\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\Pablo Molina\\.nuget\\packages\\mail.dll\\3.0.20174.2011\\mail.dll.3.0.20174.2011.nupkg.sha512",
     "C:\\Users\\Pablo Molina\\.nuget\\packages\\mailkit\\2.7.0\\mailkit.2.7.0.nupkg.sha512",
-    "C:\\Users\\Pablo Molina\\.nuget\\packages\\microsoft.aspnet.identity.core\\2.2.3\\microsoft.aspnet.identity.core.2.2.3.nupkg.sha512",
-    "C:\\Users\\Pablo Molina\\.nuget\\packages\\microsoft.aspnet.identity.entityframework\\2.2.3\\microsoft.aspnet.identity.entityframework.2.2.3.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnet.webapi.client\\5.2.6\\microsoft.aspnet.webapi.client.5.2.6.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore\\2.1.1\\microsoft.aspnetcore.2.1.1.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.antiforgery\\2.1.1\\microsoft.aspnetcore.antiforgery.2.1.1.nupkg.sha512",
@@ -117,7 +114,7 @@
     "C:\\Users\\Pablo Molina\\.nuget\\packages\\microsoft.dotnet.platformabstractions\\2.1.0\\microsoft.dotnet.platformabstractions.2.1.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.entityframeworkcore\\2.1.1\\microsoft.entityframeworkcore.2.1.1.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.entityframeworkcore.abstractions\\2.1.1\\microsoft.entityframeworkcore.abstractions.2.1.1.nupkg.sha512",
-    "C:\\Users\\Pablo Molina\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\3.1.5\\microsoft.entityframeworkcore.analyzers.3.1.5.nupkg.sha512",
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.entityframeworkcore.analyzers\\2.1.1\\microsoft.entityframeworkcore.analyzers.2.1.1.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.entityframeworkcore.design\\2.1.1\\microsoft.entityframeworkcore.design.2.1.1.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.entityframeworkcore.inmemory\\2.1.1\\microsoft.entityframeworkcore.inmemory.2.1.1.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.entityframeworkcore.relational\\2.1.1\\microsoft.entityframeworkcore.relational.2.1.1.nupkg.sha512",
@@ -327,46 +324,5 @@
     "C:\\Users\\Pablo Molina\\.nuget\\packages\\system.xml.xpath\\4.3.0\\system.xml.xpath.4.3.0.nupkg.sha512",
     "C:\\Users\\Pablo Molina\\.nuget\\packages\\system.xml.xpath.xdocument\\4.3.0\\system.xml.xpath.xdocument.4.3.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1608",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Detected package version outside of dependency constraint: Microsoft.AspNetCore.App 2.1.1 requires Microsoft.EntityFrameworkCore.Analyzers (>= 2.1.1 && < 2.2.0) but version Microsoft.EntityFrameworkCore.Analyzers 3.1.5 was resolved.",
-      "libraryId": "Microsoft.EntityFrameworkCore.Analyzers",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.1"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'email 1.1.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
-      "libraryId": "email",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.1"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNet.Identity.Core 2.2.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.AspNet.Identity.Core",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.1"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNet.Identity.EntityFramework 2.2.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.AspNet.Identity.EntityFramework",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.1"
-      ]
-    }
-  ]
+  "logs": []
 }

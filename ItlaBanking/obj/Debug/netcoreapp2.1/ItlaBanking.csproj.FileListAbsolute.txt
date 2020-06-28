@@ -37,3 +37,10 @@ C:\Users\Pablo Molina\source\repos\ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2
 C:\Users\Pablo Molina\source\repos\ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\Razor\Views\_ViewStart.cshtml.g.cs
 C:\Users\Pablo Molina\source\repos\ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\ItlaBanking.genruntimeconfig.cache
 C:\Users\Pablo Molina\source\repos\ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\Razor\Views\Client\Index.cshtml.g.cs
+C:\Users\Pablo Molina\source\repos\ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\Razor\Views\Client\PagosExpreso.cshtml.g.cs
+C:\Users\Pablo Molina\source\repos\ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\Razor\Views\Client\AvanceEfectivo.cshtml.g.cs
+C:\Users\Pablo Molina\source\repos\ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\Razor\Views\Client\Beneficiario.cshtml.g.cs
+C:\Users\Pablo Molina\source\repos\ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\Razor\Views\Client\PagosBeneficiario.cshtml.g.cs
+C:\Users\Pablo Molina\source\repos\ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\Razor\Views\Client\PagosPrestamo.cshtml.g.cs
+C:\Users\Pablo Molina\source\repos\ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\Razor\Views\Client\PagosTarjeta.cshtml.g.cs
+C:\Users\Pablo Molina\source\repos\ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\Razor\Views\Client\Transferencia.cshtml.g.cs
