@@ -13,52 +13,49 @@
 </head>
 <body class="bg-light" id="CardViewFormulario">
 
-    <header class="container-fluid position-fixed shadow border-bottom bg-light  mb-4 rounded fixed-top">
+    <header class="container-fluid position-fixed shadow border-bottom bg-light  mb-4 rounded-bottom fixed-top">
         <nav class="navbar  navbar-dark">
-            <a asp-action="Index" class="navbar-brand align-items-center text-dark">User: </a>
-            <div class="form-inline">
-                <ul class="nav justify-content-end nav-pills">
-                    <li class="nav-item">
-                        <a asp-controller="" asp-action="" class="btn btn-danger btn-sm">Cerrar Sesión</a>
-                    </li>
-                </ul>
+
+            <div class="dropdown ">
+                <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="navbar-toggler-icon text-dark"></span>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <span class="dropdown-header" style="font-size:20px; color:#0071c5;">Inicio</span>
+                    <a class="dropdown-item active text-warning" asp-action="Index">Home</a>
+                    <div class="dropdown-divider"></div>
+                    <span class="dropdown-header" style="font-size:20px; color:#0071c5;">Pagos</span>
+                    <a class="dropdown-item text-info" asp-action="PagosExpreso">Expreso</a>
+                    <a class="dropdown-item" asp-action="PagosTarjeta">Tarjeta de Crédito</a>
+                    <a class="dropdown-item" asp-action="PagosPrestamo">Prestamo</a>
+                    <a class="dropdown-item" asp-action="PagosBeneficiario">Beneficiario</a>
+                    <div class="dropdown-divider"></div>
+                    <span class="dropdown-header" style="font-size:20px; color:#0071c5;">Tranferencias</span>
+                    <a class="dropdown-item text-info" asp-action="Beneficiario">Beneficiario</a>
+                    <a class="dropdown-item" asp-action="AvanceEfectivo">Avance Efectivo</a>
+                    <a class="dropdown-item" asp-action="Transferencia">Transferencia</a>
+                </div>
             </div>
+            <a asp-action="Index" class="navbar-brand align-items-center mr-auto text-dark pl-3 text-dark font-italic"><span class="text-primary font-weight-bold">User:</span> Eliam Solis de los Santos </a>
+            
+            <a asp-controller="" asp-action="" class="btn btn-danger ml-auto  btn-sm">Cerrar Sesión <img src="https://img.icons8.com/office/16/000000/exit.png" />   </a>
         </nav>
     </header>
 
     <div class="container bg-warning border border-white rounded shadow-sm p-1 mb-5 bg-white rounded">
 
-        <ul class="nav nav-tabs bg-light">
-            <li class="nav-item">
-                <a class="nav-link active " asp-action="Index">Home</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" asp-controller="Client" role="button" aria-haspopup="true" aria-expanded="false">Pagos</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" asp-action="PagosExpreso">Expreso</a>
-                    <a class="dropdown-item" asp-action="PagosTarjeta">Tarjeta de Crédito</a>
-                    <a class="dropdown-item" asp-action="PagosPrestamo">Prestamo</a>
-                    <a class="dropdown-item" asp-action="PagosBeneficiario">Beneficiario</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Beneficiario</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="#">Avance Efectivo</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Transferencia</a>
-            </li>
-        </ul>
-
         <div class="text-center overflow-auto">
 
             <div class="card rounded border-0">
-                <div class="card-header headNombre bg-white">
-                    Rafael Solis Matos
+                
+                <div class="card-header headNombre rounded border border-secondary shadow-sm p-1 bg-white rounded mb-2">
+                    <div class="d-flex justify-content-center letterPagos ">Home</div>
+                   
                 </div>
-                <div class="card-body p-1">
+                <div class="card-body p-1 mb-2">
+                    <div class=" headNombre">
+                        Rafael Solis Matos
+                    </div>
                     <h5 class="card-title titleCuenta"><span style="color:olivedrab" class="titleProducto">Cuenta Principal:</span> #203231231</h5>
                     <h6 class="card-subtitle mb-1 text-muted">Fecha de Adquisicion: 20/6/2020</h6>
                     <p class="card-text  dineroAhorro">Balance: <span class="simboloDinero">$</span> 201100.22</p>
@@ -67,7 +64,7 @@
 
 
             <!--Cuentas de Ahorro-->
-            <div class="card w-100 text-left shadow bg-white rounded mt-1">
+            <div class="card w-100 text-left shadow bg-white rounded mb-3">
                 <div class="card-body p-1">
 
                     <h5 class="card-title titleCuenta"><span style="color:olivedrab" class="titleProducto">Cuenta de Ahorro:</span> #203231231</h5>
@@ -77,7 +74,7 @@
             </div>
 
             <!--Tarjeta de Credito-->
-            <div class="card w-100 text-left shadow bg-white rounded mt-1">
+            <div class="card w-100 text-left shadow bg-white rounded  mb-3">
                 <div class="card-body p-1">
 
                     <h5 class="card-title titleCuenta"><span style="color:orange" class="titleProducto">Tarjeta de Credito:</span> #203231231</h5>
@@ -88,7 +85,7 @@
 
 
             <!--Prestamos-->
-            <div class="card w-100 text-left shadow bg-white rounded mt-1">
+            <div class="card w-100 text-left shadow bg-white rounded  mb-3">
                 <div class="card-body p-1">
 
                     <h5 class="card-title titleCuenta"><span style="color:darkred" class="titleProducto">Prestamo:</span> #203231231</h5>

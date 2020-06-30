@@ -12,7 +12,7 @@ body {
 }
 
 .container {
-    margin-top:68px;
+    margin-top: 68px;
 }
 
 .titleProducto {
@@ -60,4 +60,9 @@ color:#60be45
     font-family: 'Lobster', cursive;
     color: #5072A7;
     font-size: 20px;
+}
+
+.Headmenu {
+    font-size: 35px;
+    color: mediumvioletred;
 }
