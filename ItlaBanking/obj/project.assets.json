@@ -6627,19 +6627,20 @@
       ]
     },
     "Microsoft.CodeAnalysis.Analyzers/1.1.0": {
-      "sha512": "U+1YSJFxnBMpAcSqA8pbPaWqNbnyK/ft1RrlKw/iZknltmS+2CnOVnc1b6bfV3EgPJwYfAHNKkt75+yyJX8xAQ==",
+      "sha512": "HS3iRWZKcUw/8eZ/08GXKY2Bn7xNzQPzf8gRPHGSowX7u7XXu9i9YEaBeBNKUXWfI7qjvT2zXtLUvbN0hds8vg==",
       "type": "package",
       "path": "microsoft.codeanalysis.analyzers/1.1.0",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
-        "Microsoft.CodeAnalysis.Analyzers.1.1.0.nupkg.sha512",
-        "Microsoft.CodeAnalysis.Analyzers.nuspec",
+        ".signature.p7s",
         "ThirdPartyNotices.rtf",
         "analyzers/dotnet/cs/Microsoft.CodeAnalysis.Analyzers.dll",
         "analyzers/dotnet/cs/Microsoft.CodeAnalysis.CSharp.Analyzers.dll",
         "analyzers/dotnet/vb/Microsoft.CodeAnalysis.Analyzers.dll",
         "analyzers/dotnet/vb/Microsoft.CodeAnalysis.VisualBasic.Analyzers.dll",
+        "microsoft.codeanalysis.analyzers.1.1.0.nupkg.sha512",
+        "microsoft.codeanalysis.analyzers.nuspec",
         "tools/install.ps1",
         "tools/uninstall.ps1"
       ]
@@ -10944,13 +10945,11 @@
       ]
     },
     "System.Linq.Queryable/4.0.1": {
-      "sha512": "ETGCguMPc5f2zYoRKD9LPAJMQnDVL6UQYz7WxGtQ0Szr2nca7UFnl6+K7I4kmomj3xZE3ez0kU3NyRqO/10ylg==",
+      "sha512": "Yn/WfYe9RoRfmSLvUt2JerP0BTGGykCZkQPgojaxgzF2N0oPo+/AhB8TXOpdCcNlrG3VRtsamtK2uzsp3cqRVw==",
       "type": "package",
       "path": "system.linq.queryable/4.0.1",
       "files": [
         ".nupkg.metadata",
-        "System.Linq.Queryable.4.0.1.nupkg.sha512",
-        "System.Linq.Queryable.nuspec",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/monoandroid10/_._",
@@ -10998,7 +10997,9 @@
         "ref/xamarinios10/_._",
         "ref/xamarinmac20/_._",
         "ref/xamarintvos10/_._",
-        "ref/xamarinwatchos10/_._"
+        "ref/xamarinwatchos10/_._",
+        "system.linq.queryable.4.0.1.nupkg.sha512",
+        "system.linq.queryable.nuspec"
       ]
     },
     "System.Memory/4.5.1": {
@@ -14086,24 +14087,27 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Liam\\.nuget\\packages\\": {},
+    "C:\\Users\\Pablo Molina\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Liam\\Desktop\\ShitBull\\Programacion 3\\Miniproyecto_ItlaBanking\\ItlaBanking\\ItlaBanking.csproj",
+      "projectUniqueName": "C:\\Users\\Pablo Molina\\source\\repos\\ItlaBanking\\ItlaBanking\\ItlaBanking.csproj",
       "projectName": "ItlaBanking",
-      "projectPath": "C:\\Users\\Liam\\Desktop\\ShitBull\\Programacion 3\\Miniproyecto_ItlaBanking\\ItlaBanking\\ItlaBanking.csproj",
-      "packagesPath": "C:\\Users\\Liam\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Liam\\Desktop\\ShitBull\\Programacion 3\\Miniproyecto_ItlaBanking\\ItlaBanking\\obj\\",
+      "projectPath": "C:\\Users\\Pablo Molina\\source\\repos\\ItlaBanking\\ItlaBanking\\ItlaBanking.csproj",
+      "packagesPath": "C:\\Users\\Pablo Molina\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Pablo Molina\\source\\repos\\ItlaBanking\\ItlaBanking\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Liam\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Pablo Molina\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"
