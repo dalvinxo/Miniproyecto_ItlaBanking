@@ -1,56 +1,19 @@
-﻿
-
-@{
-    Layout = null;
+﻿@{
+    //Layout = null;
 }
-<html>
-<head>
-    <title>Client</title>
-    <!--Boostrap!-->
-    <link href="~/css/EstiloClient.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-</head>
 <body class="bg-light" id="CardViewFormulario">
-
-    <header class="container-fluid position-fixed shadow border-bottom bg-light  mb-4 rounded-bottom fixed-top">
-        <nav class="navbar  navbar-dark">
-
-            <div class="dropdown ">
-                <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="navbar-toggler-icon text-dark"></span>
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <span class="dropdown-header" style="font-size:20px; color:#0071c5;">Inicio</span>
-                    <a class="dropdown-item active text-warning" asp-action="Index">Home</a>
-                    <div class="dropdown-divider"></div>
-                    <span class="dropdown-header" style="font-size:20px; color:#0071c5;">Pagos</span>
-                    <a class="dropdown-item text-info" asp-action="PagosExpreso">Expreso</a>
-                    <a class="dropdown-item" asp-action="PagosTarjeta">Tarjeta de Crédito</a>
-                    <a class="dropdown-item" asp-action="PagosPrestamo">Prestamo</a>
-                    <a class="dropdown-item" asp-action="PagosBeneficiario">Beneficiario</a>
-                    <div class="dropdown-divider"></div>
-                    <span class="dropdown-header" style="font-size:20px; color:#0071c5;">Tranferencias</span>
-                    <a class="dropdown-item text-info" asp-action="Beneficiario">Beneficiario</a>
-                    <a class="dropdown-item" asp-action="AvanceEfectivo">Avance Efectivo</a>
-                    <a class="dropdown-item" asp-action="Transferencia">Transferencia</a>
-                </div>
-            </div>
-            <a asp-action="Index" class="navbar-brand align-items-center mr-auto text-dark pl-3 text-dark font-italic"><span class="text-primary font-weight-bold">User:</span> Eliam Solis de los Santos </a>
-            
-            <a asp-controller="" asp-action="" class="btn btn-danger ml-auto  btn-sm">Cerrar Sesión <img src="https://img.icons8.com/office/16/000000/exit.png" />   </a>
-        </nav>
-    </header>
 
     <div class="container bg-warning border border-white rounded shadow-sm p-1 mb-5 bg-white rounded">
 
         <div class="text-center overflow-auto">
 
             <div class="card rounded border-0">
-                
+
+
                 <div class="card-header headNombre rounded border border-secondary shadow-sm p-1 bg-white rounded mb-2">
                     <div class="d-flex justify-content-center letterPagos ">Home</div>
-                   
+
+
                 </div>
                 <div class="card-body p-1 mb-2">
                     <div class=" headNombre">
@@ -98,18 +61,6 @@
 
         </div>
     </div>
-
-
-
-
-
-
-
-
-    <!-- jQuery, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </body>
-</html>
+
 
