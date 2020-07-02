@@ -13,5 +13,10 @@ namespace ItlaBanking.Controllers
             return View();
         }
 
+        public IActionResult Usuario()
+        {
+            return View();
+        }
+
     }
 }
