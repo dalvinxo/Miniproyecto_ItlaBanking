@@ -1,4 +1,4 @@
-﻿
+﻿@model ItlaBanking.ViewModels.LoginViewModels
 @{
     Layout = null;
 }
@@ -18,20 +18,22 @@
             <div class="panel shadow-lg p-3 mb-4 bg-white rounded"  style="width: 25rem;">
                 <img src="~/images/Itlabank.png" class="card-img-top img-fluid rounded mx-auto d-block" alt="Responsive image">
                 <div class="panel-body">
-                    <form>
+                    <form asp-action="Index" asp-controller="Login">
+                        <div asp-validation-summary="All" class="text-danger"></div>
                         <div class="form-group">
-                            <label>User</label>
-                            <input class="form-control form-control-lg" placeholder="Username" autofocus>
-                            <span class="text-danger">Usuario Invalido</span>
+                            <label asp-for="Usuario1" class="control-label"></label>
+                            <input asp-for="Usuario1" class="form-control form-control-lg" placeholder="Ingresar Username" autofocus>
+                            <span asp-validation-for="Usuario1" class="text-danger"></span>
                         </div>
 
                         <div class="form-group">
-                            <label>Password</label>
-                            <input class="form-control form-control-lg" placeholder="Password">
+                            <label asp-for="Clave">Password</label>
+                            <input asp-for="Clave" class="form-control form-control-lg" placeholder="Ingresar Password">
+                            <span asp-validation-for="Clave" class="text-danger"></span>
                         </div>
 
                         <div class="d-flex justify-content-center">
-                            <input class="btn btn-outline-success btn-group-lg " type="submit" value="ACCESS">
+                            <input class="btn btn-outline-success btn-group-lg " type="submit" value="Ingresar">
                         </div>
                     </form>
 
