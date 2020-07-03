@@ -4,105 +4,13 @@
 
 <html>
 <body class="bg-light" id="FondoAdministrador">
-             <div class="card container bg-warning border border-white rounded shadow-lg p-1 mb-5 bg-white border border-primary">
-                 <div class="card-header p-1">
-
-                     <nav class="navbar navbar-light bg-light navbar-dark bg-dark rounded">
-                         <a   data-toggle="modal" data-target="#staticBackdrop" class="btn btn-success mr-auto  btn-sm text-white">Agregar Usuario</a>
-
-                         <form class="form-inline">
-                             <input class="form-control mr-sm-2" type="search" placeholder="Ingresar Usuario" aria-label="Search">
-                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-                         </form>
-                     </nav>
-
-                     @*Modal agregar*@
-                     <div class="modal fade top" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                         <div class="modal-dialog modal-frame modal-top modal-notify modal-success modal-lg">
-                             <div class="modal-content">
-                                 <div class="modal-header bg-success text-white">
-                                     <h5 class="modal-title " id="staticBackdropLabel">Agregar Usuario</h5>
-                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                         <span aria-hidden="true">&times;</span>
-                                     </button>
-                                 </div>
-                                 <div class="modal-body">
-                                     ...
-                                 </div>
-                                 <div class="modal-footer">
-                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                     <button type="button" class="btn btn-primary">Understood</button>
-                                 </div>
-                             </div>
-                         </div>
+             <div class="card container bg-dark border border-secondary rounded shadow-lg p-1 mb-5 border border-primary FondoCard">
+                 <div class="card-header p-1 bg-transparent">
+                     <h1 style="color:lawngreen">TOTAL DE TRANSACCIONES:</h1>
                      </div>
 
-
-                 </div>
                  <div class="card-body">
                      <h3 class="card-title font-weight-bold">Usuarios registrados</h3>
-
-                     <table class="table table-hover text-center table-responsive-lg table-borderless">
-                         <div class="d-flex align-items-center">
-                             <thead>
-                                 <tr class="table-info">
-                                     <th scope="col">ID</th>
-                                     <th scope="col">Nombre</th>
-                                     <th scope="col">Apellido</th>
-                                     <th scope="col">Usuario</th>
-                                     <th scope="col">Tipo de Usuario</th>
-                                     <th scope="col">Estado</th>
-                                     <th scope="col">Función</th>
-                                     <th scope="col">Activador</th>
-                                     <th></th>
-                                 </tr>
-                             </thead>
-                             <tbody>
-
-                                 @*CLIENTE*@
-                                 <tr>
-                                     <th scope="row">1</th>
-                                     <td>Leonardo</td>
-                                     <td>Tavarez Betance</td>
-                                     <td>LTofo</td>
-                                     <td>Cliente</td>
-                                     <td>Activo</td>
-                                     <td>
-                                         <a asp-controller="Administrador" asp-action="Eliminar" asp-route-id="" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                         &nbsp;|&nbsp; <a asp-controller="Administrador" asp-action="Eliminar" asp-route-id="" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash"></i></a>
-                                     </td>
-                                     <td>
-                                         <a asp-controller="Administrador" asp-action="Activador" asp-route-id="" class="btn btn-outline-info btn-sm"><i class="fa fa-thumbs-o-up" aria-hidden="true"> Activar</i></a>
-                                         <a asp-controller="Administrador" asp-action="Activador" asp-route-id="" class="btn btn-outline-secondary btn-sm"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> Desactivar</a>
-                                     </td>
-                                     <td>
-                                         <a asp-controller="Administrador" asp-action="producto" asp-route-id="" class="btn btn-outline-primary btn-sm"><i class="fa fa-plus-circle" aria-hidden="true"></i> Productos</i></a>
-                                     </td>
-                                 </tr>
-
-
-                                 @*ADMINISTRADOR*@
-                                 <tr>
-                                     <th scope="row">1</th>
-                                     <td>Dalvin David</td>
-                                     <td>Molina Ogando</td>
-                                     <td>Goku</td>
-                                     <td>Administrador</td>
-                                     <td>Activo</td>
-                                     <td>
-                                         <a asp-controller="Administrador" asp-action="Eliminar" asp-route-id="" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                         &nbsp;|&nbsp; <a asp-controller="Administrador" asp-action="Eliminar" asp-route-id="" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash"></i></a>
-                                     </td>
-                                     <td>
-                                         <a asp-controller="Administrador" asp-action="Activador" asp-route-id="" class="btn btn-outline-info btn-sm"><i class="fa fa-thumbs-o-up" aria-hidden="true"> Activar</i></a>
-                                         <a asp-controller="Administrador" asp-action="Activador" asp-route-id="" class="btn btn-outline-secondary btn-sm"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> Desactivar</a>
-                                     </td>
-                                     <td></td>
-                                 </tr>
-
-                             </tbody>
-                         </div>
-                     </table>
 
 
                  </div>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ItlaBanking.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -23,16 +24,16 @@ namespace ItlaBanking.ViewModels
         public string Apellido { get; set; }
 
         [Required(ErrorMessage = "Este campo debe ser llenado")]
+        [Display(Name = "Telefono:")]
+        [StringLength(11, ErrorMessage ="Haz llegado a la cantidad maxima de numeros")]
+        [DataType(DataType.CreditCard)]
+        public string Telefono { get; set; }
+
+        [Required(ErrorMessage = "Este campo debe ser llenado")]
         [Display(Name = "Correo:")]
         [StringLength(35)]
         [DataType(DataType.EmailAddress)]
         public string Correo { get; set; }
-
-        [Required(ErrorMessage = "Este campo debe ser llenado")]
-        [Display(Name = "Telefono:")]
-        [StringLength(40)]
-        [DataType(DataType.PhoneNumber)]
-        public string Telefono { get; set; }
 
         [Usuario(ErrorMessage = "Este usuario ya existe!")]
         [Required(ErrorMessage = "Este campo debe ser llenado")]
@@ -52,28 +53,32 @@ namespace ItlaBanking.ViewModels
         [Compare(nameof(Clave), ErrorMessage = "La confirmación no se parece a la contraseña!")]
         public string ConfirmClave { get; set; }
 
+        [Display(Name = "Balance:")]
+        [Required(ErrorMessage = "Este campo debe ser llenado")]
+        public int monto { get; set; }
+
+
         public string Estado { get; set; }
 
     }
 
     public class UsuarioAttribute : ValidationAttribute
     {
+        
+        public override bool IsValid(object value)
+        {
 
+            ItlaBankingContext _context = new ItlaBankingContext();
 
-      //  public override bool IsValid(object value)
-      //  {
+            var ListUsuario = _context.Usuario.Select(x => x.Usuario1).ToList();
 
-      ////   ItlaTwitter4Context context = new ItlaTwitter4Context();
+            if (ListUsuario.Contains(value))
+            {
+                return false;
+            }
 
-      ////var ListUsuario = context.Usuario.Select(x => x.Usuario1).ToList();
-
-      ////      if (ListUsuario.Contains(value))
-      ////      {
-      ////          return false;
-      ////      }
-
-      ////      return true;
-      // }
+            return true;
+        }
 
     }
 

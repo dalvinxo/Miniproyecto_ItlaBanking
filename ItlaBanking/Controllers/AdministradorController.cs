@@ -13,7 +13,7 @@ namespace ItlaBanking.Controllers
             return View();
         }
 
-        public IActionResult Usuario()
+        public IActionResult AdministrarUsuario()
         {
             return View();
         }

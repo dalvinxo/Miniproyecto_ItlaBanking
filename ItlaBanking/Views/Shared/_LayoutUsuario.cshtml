@@ -3,10 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Administrador</title>
+    <title>@ViewData["Title"] - Administrador</title>
 
-    <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/css/site.min.css" />
     <link href="~/css/EstiloAdministrador.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/EstilosLayout.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -24,37 +22,15 @@
 </head>
 <body>
 
-    <script>
-        function openNav() {
-            document.getElementById("mySidenav").style.width = "250px";
-            document.getElementById("main").style.marginLeft = "250px";
-            document.getElementById("main2").style.marginLeft = "250px";
-
-        }
-
-        /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
-        function closeNav() {
-            document.getElementById("mySidenav").style.width = "0";
-            document.getElementById("main").style.marginLeft = "0";
-            document.getElementById("main2").style.marginLeft = "0";
-
-        }
-    </script>
     <div id="main">
 
         <header class="container-fluid shadow border-bottom bg-light">
 
             <nav class="navbar  navbar-dark">
 
-                <div class="dropdown ">
-                    <button class="btn btn-dark dropdown-toggle" onclick="openNav()" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="navbar-toggler-icon text-dark"></span>
-                    </button>
+                <a asp-action="Index" class="navbar-brand align-items-center mr-auto text-dark pl-3 font-italic"><span class="text-info font-weight-bold"><i class="fa fa-user-plus" aria-hidden="true" style="font-size:20px"></i> Agregando nuevo</span> Pablo Molina </a>
 
-                </div>
-                <a asp-action="Index" class="navbar-brand align-items-center mr-auto text-dark pl-3 font-italic"><span class="text-info font-weight-bold">Administrador:</span> Pablo Molina </a>
-
-                <a asp-controller="Login" asp-action="Index" class="btn btn-danger ml-auto  btn-sm">Cerrar Sesión</a>
+                <a asp-controller="Administrador" asp-action="AdministrarUsuario" class="btn btn-danger ml-auto  btn-sm">Atras</a>
             </nav>
         </header>
     </div>
@@ -64,7 +40,7 @@
         <a class="dropdown-item" asp-action="Index" asp-controller="Administrador">Home</a>
         <div class="dropdown-divider"></div>
         <span class="dropdown-header" style="font-size:20px; color:#0071c5;">Administración Usuario</span>
-        <a class="dropdown-item" asp-controller="Administrador" asp-action="AdministrarUsuario">Usuarios</a>
+        <a class="dropdown-item" asp-controller="Administrador" asp-action="PagosExpreso">Usuarios</a>
     </div>
     <div id="main2">
         @RenderBody()
