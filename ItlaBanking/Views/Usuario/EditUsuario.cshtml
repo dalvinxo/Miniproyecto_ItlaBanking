@@ -1,22 +1,22 @@
 ﻿@model ItlaBanking.ViewModels.RegistroUsuarioViewModels
 @{
-    ViewData["Title"] = "CrearUsuario";
-    ViewData["banner"] = "Registro de usuario";
+    ViewData["Title"] = "Ediccion Usuario";
     Layout = "~/Views/Shared/_LayoutUsuario.cshtml";
+    ViewData["banner"] = "Ediccion de Usuario";
 }
 <body class="bg-light" id="FondoAdministrador">
 
-    <div class="card container border border-text rounded shadow-lg p-1 mb-5 border border-primary bg-success ">
+    <div class="card container border border-text rounded shadow-lg p-1 mb-5 border border-primary bg-warning ">
 
         <div class="card-header p-2 bg-transparent text-white">
 
-          <h2><i class="fa fa-user-plus" aria-hidden="true"></i> Agregar Usuario</h2>
+            <h2><i class="fa fa-pencil" aria-hidden="true"></i> Editar Usuario</h2>
 
         </div>
 
         <div class="card-body bg-light">
 
-            <form asp-action="CrearUsuario" asp-controller="Usuario" method="post">
+            <form asp-action="EditUsuario" asp-controller="Usuario" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
@@ -85,18 +85,9 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <div class="row col-lg-8">
-                        <label asp-for="TipoUsuario" class="labelPago ml-2"></label>
-                    </div>
-                    <select asp-for="TipoUsuario" id="tipo" onclick="mostrar();" class="custom-select custom-select-lg rounded-pill shadow-sm bg-white">
-                        <option value="Cliente" selected>Cliente</option>
-                        <option value="Administrador">Administrador</option>
-                    </select>
-                    <span asp-validation-for="TipoUsuario" class="text-danger"></span>
-                </div>
+                <input asp-for="TipoUsuario" type="hidden" value="">
 
-                <div class="form-group" id="mon">
+                <div class="form-group">
                     <div class="row col-lg-8">
                         <label asp-for="monto" class="labelPago ml-2"></label>
                     </div>
@@ -122,5 +113,4 @@
     </div>
 
 </body>
-
 

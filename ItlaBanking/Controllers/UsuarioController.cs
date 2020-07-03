@@ -56,9 +56,23 @@ namespace ItlaBanking.Controllers
             return View();
         }
 
+        public async Task<IActionResult> EditUsuario()
+        {
+
+
+            return View();
+        }
 
         [HttpPost]
+        public async Task<IActionResult> EditUsuario(RegistrosProductosViewModels uvmd)
+        {
 
+
+
+            return View();
+        }
+
+        [HttpPost]
         public async Task<IActionResult> CrearUsuario(RegistroUsuarioViewModels rvm) {
 
 

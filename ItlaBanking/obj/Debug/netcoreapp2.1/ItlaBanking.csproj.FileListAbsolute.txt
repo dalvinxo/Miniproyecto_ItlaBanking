@@ -42,3 +42,4 @@ C:\Users\Pablo Molina\source\repos\ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2
 C:\Users\Pablo Molina\source\repos\ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\ItlaBanking.csproj.CopyComplete
 C:\Users\Pablo Molina\source\repos\ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\ItlaBanking.csprojAssemblyReference.cache
 C:\Users\Pablo Molina\source\repos\ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\Razor\Views\Usuario\CrearUsuario.g.cshtml.cs
+C:\Users\Pablo Molina\source\repos\ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\Razor\Views\Usuario\EditUsuario.g.cshtml.cs

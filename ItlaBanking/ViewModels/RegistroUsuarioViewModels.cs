@@ -28,11 +28,11 @@ namespace ItlaBanking.ViewModels
         [StringLength(12, ErrorMessage = "Haz llegado a la cantidad maxima de numeros")]
         public string Cedula { get; set; }
 
-        /*[Required(ErrorMessage = "Este campo debe ser llenado")]
+        [Required(ErrorMessage = "Este campo debe ser llenado")]
         [Display(Name = "Correo:")]
         [StringLength(35)]
         [DataType(DataType.EmailAddress)]
-        public string Correo { get; set; }*/
+        public string Correo { get; set; }
 
         //[Usuario(ErrorMessage = "Este usuario ya existe!")]
         [Required(ErrorMessage = "Este campo debe ser llenado")]
