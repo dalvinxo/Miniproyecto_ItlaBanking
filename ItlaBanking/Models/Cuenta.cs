@@ -13,6 +13,7 @@ namespace ItlaBanking.Models
         public int NumeroCuenta { get; set; }
         public decimal? Balance { get; set; }
         public int? Categoria { get; set; }
+        public DateTime? FechaPago { get; set; }
         public DateTime? FechaAdquisicion { get; set; }
         public int IdUsuario { get; set; }
 

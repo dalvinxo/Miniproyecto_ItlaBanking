@@ -1,7 +1,28 @@
 ﻿@{
-    ViewData["Title"] = "Producto";
+    ViewData["Title"] = "VerProducto";
     Layout = "~/Views/Shared/_LayoutUsuario.cshtml";
 }
+<body class="bg-light" id="FondoAdministrador">
 
-<h2>Producto</h2>
+    <div class="card container border border-text rounded shadow-lg p-1 mb-5 border border-primary bg-dark ">
 
+        <div class="card-header p-1 bg-transparent text-white">
+
+            <ul class="nav nav-tabs w-100">
+                <li class="nav-item w-50">
+                    <a class="nav-link text-white  h2" asp-action="CrearProducto" asp-controller="Usuario"><i class="fa fa-plus-circle" aria-hidden="true"> Registrar Producto</i></a>
+                </li>
+                <li class="nav-item w-50 rounded-top">
+                    <a class="nav-link active h2" asp-action="Producto" asp-controller="Usuario"><i class="fa fa-eye" aria-hidden="true"></i> Ver Productos</i></a>
+                </li>
+            </ul>
+
+        </div>
+        <div class="card-body bg-light">
+            
+        </div>
+
+
+    </div>
+
+</body>

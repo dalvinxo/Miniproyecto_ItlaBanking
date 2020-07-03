@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using ItlaBanking.Models;
+using ItlaBanking.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ItlaBanking.Controllers
@@ -12,16 +13,38 @@ namespace ItlaBanking.Controllers
     {
 
         private readonly ItlaBankingContext _context;
-        private readonly IMapper _mapper;
 
-        public UsuarioController(ItlaBankingContext context, IMapper mapper)
+        public UsuarioController(ItlaBankingContext context)
         {
             _context = context;
-            _mapper = mapper;
+        }
+
+        public async Task<IActionResult> CrearProducto()
+        {
+
+
+            return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> CrearUsuario()
+        public async Task<IActionResult> CrearProducto(RegistrosProductosViewModels producto)
+        {
+
+
+            return View();
+        }
+
+        public async Task<IActionResult> Producto()
+        {
+
+
+            return View();
+        }
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> CrearUsuario(RegistroUsuarioViewModels usuario)
         {
 
             return RedirectToAction("AdministrarUsuario", "Administrador");
