@@ -76,6 +76,13 @@ namespace ItlaBanking.Controllers
 
         }
 
+        public async Task<IActionResult> TraerUsuarios() {
+
+
+
+            return View();
+        }
+
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
