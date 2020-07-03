@@ -28,13 +28,13 @@ namespace ItlaBanking.ViewModels
         [StringLength(12, ErrorMessage = "Haz llegado a la cantidad maxima de numeros")]
         public string Cedula { get; set; }
 
-        [Required(ErrorMessage = "Este campo debe ser llenado")]
+        /*[Required(ErrorMessage = "Este campo debe ser llenado")]
         [Display(Name = "Correo:")]
         [StringLength(35)]
         [DataType(DataType.EmailAddress)]
-        public string Correo { get; set; }
+        public string Correo { get; set; }*/
 
-        [Usuario(ErrorMessage = "Este usuario ya existe!")]
+        //[Usuario(ErrorMessage = "Este usuario ya existe!")]
         [Required(ErrorMessage = "Este campo debe ser llenado")]
         [Display(Name = "Usuario: ")]
         [StringLength(30)]
@@ -56,9 +56,9 @@ namespace ItlaBanking.ViewModels
         [Required(ErrorMessage = "Este campo debe ser llenado")]
         public string TipoUsuario { get; set; }
 
-        [Display(Name = "Balance:")]
+        /*[Display(Name = "Balance:")]
         [Required(ErrorMessage = "Este campo debe ser llenado")]
-        [StringLength(13, ErrorMessage = "Ha alcanzado el punto maximo de carácteres")]
+        [StringLength(13, ErrorMessage = "Ha alcanzado el punto maximo de carácteres")]*/
         public decimal monto { get; set; }
 
 
@@ -66,7 +66,7 @@ namespace ItlaBanking.ViewModels
 
 
     }
-
+    /*
     public class UsuarioAttribute : ValidationAttribute
     {
         
@@ -86,6 +86,6 @@ namespace ItlaBanking.ViewModels
         }
 
     }
-
+    */
 
 }
