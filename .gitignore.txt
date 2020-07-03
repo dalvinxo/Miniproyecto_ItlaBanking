@@ -359,4 +359,9 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
+*.storage.ide-shm
+*.storage.ide-wal
+*.storage.ide
+*.db.lock
+
 <<<<<<HEAD

@@ -36,7 +36,21 @@
             }
 
         }
-        
+
+        function mostrar() {
+
+            var element = document.getElementById('mon');
+            var tipo_usuario = document.getElementById('tipo').value;
+
+            if (tipo_usuario == "Cliente") {
+                element.style.display = 'block';
+            }
+            else {
+                element.style.display = 'none';
+            }
+
+        }
+
         function dinero() {
 
             var element = document.getElementById('balance');
@@ -78,15 +92,21 @@
             pagos.setDate(hoy.getDate() + 20);
             expiracion.setDate(hoy.getDate() + 30);
 
-            $("#fecha").val(hoy);
-            $("#fecha1").val(pagos);
-            $("#fecha2").val(expiracion);
-            //document.getElementById("").value = ;
+        //    $("#fecha").val(hoy);
+         //   $("#fecha1").val(pagos);
+        //    $("#fecha2").val(expiracion);
+            document.getElementById("fecha").value = hoy;
+            document.getElementById("fecha1").value = pagos;
+            document.getElementById("fecha2").value = expiracion;
+           
+
+           /// document.getElementById("text").value = hoy;
         };
 
         $(function () {
             dinero();
-            fechas();   
+            fechas();
+            mostrar();
         });
       
 
@@ -99,7 +119,7 @@
 
         <header class="container-fluid shadow border-bottom bg-light">
             <nav class="navbar  navbar-dark">
-                <a  class="navbar-brand align-items-center mr-auto text-dark pl-3 font-italic text-info font-weight-bold"><h3><i class="fa fa-money" aria-hidden="true" style="font-size:42px;"> Productos</i></h3></a>
+                <a  class="navbar-brand align-items-center mr-auto text-dark pl-3 font-italic text-info font-weight-bold"><h3>@ViewData["banner"]</h3></a>
 
                 <a asp-controller="Administrador" asp-action="AdministrarUsuario" class="btn btn-danger ml-auto  btn-sm">Atras</a>
             </nav>

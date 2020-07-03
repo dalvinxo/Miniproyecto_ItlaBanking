@@ -23,6 +23,15 @@
 <body>
 
     <script>
+        var num = 0;
+        function Nav() {
+            num = num + 1;
+            if (num % 2 == 0) {
+                closeNav();
+            } else {
+                openNav();
+            }
+        }
         function openNav() {
             document.getElementById("mySidenav").style.width = "250px";
             document.getElementById("main").style.marginLeft = "250px";
@@ -44,7 +53,7 @@
             <nav class="navbar  navbar-dark">
 
                 <div class="dropdown ">
-                    <button class="btn btn-dark dropdown-toggle" onclick="openNav()" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn btn-dark dropdown-toggle" onclick="Nav()" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="navbar-toggler-icon text-dark"></span>
                     </button>
 

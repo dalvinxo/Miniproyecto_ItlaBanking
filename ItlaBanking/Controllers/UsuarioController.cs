@@ -5,7 +5,10 @@ using System.Threading.Tasks;
 using AutoMapper;
 using ItlaBanking.Models;
 using ItlaBanking.ViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using ItlaBanking.ViewModels;
+
 
 namespace ItlaBanking.Controllers
 {
@@ -13,9 +16,14 @@ namespace ItlaBanking.Controllers
     {
 
         private readonly ItlaBankingContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signinManager;
 
-        public UsuarioController(ItlaBankingContext context)
+        public UsuarioController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager,
+            ItlaBankingContext context)
         {
+            _userManager = userManager;
+            _signinManager = signInManager;
             _context = context;
         }
 
@@ -42,12 +50,38 @@ namespace ItlaBanking.Controllers
         }
 
 
-
-        [HttpPost]
-        public async Task<IActionResult> CrearUsuario(RegistroUsuarioViewModels usuario)
+        public async Task<IActionResult> CrearUsuario()
         {
 
-            return RedirectToAction("AdministrarUsuario", "Administrador");
+            return View();
+        }
+
+
+        [HttpPost]
+
+        public async Task<IActionResult> CrearUsuario(RegistroUsuarioViewModels rvm) {
+
+
+            var user = new IdentityUser { UserName = rvm.Usuario1 };
+            var result = await _userManager.CreateAsync(user, rvm.Clave);
+
+            if (result.Succeeded)
+            {
+                await _signinManager.SignInAsync(user, isPersistent: false);
+                return RedirectToAction("Index", "Login");
+            }
+            AddErrors(result);
+            return RedirectToAction("Index", "Client");
+
+
+        }
+
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error.Description);
+            }
         }
     }
 }

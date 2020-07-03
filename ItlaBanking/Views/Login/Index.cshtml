@@ -1,4 +1,4 @@
-﻿@model ItlaBanking.ViewModels.LoginViewModels
+@model ItlaBanking.ViewModels.LoginViewModel
 @{
     Layout = null;
 }
@@ -18,18 +18,31 @@
             <div class="panel shadow-lg p-3 mb-4 bg-white rounded"  style="width: 25rem;">
                 <img src="~/images/Itlabank.png" class="card-img-top img-fluid rounded mx-auto d-block" alt="Responsive image">
                 <div class="panel-body">
-                    <form asp-action="Index" asp-controller="Login">
+
+                    <form asp-action="Index">
                         <div asp-validation-summary="All" class="text-danger"></div>
                         <div class="form-group">
-                            <label asp-for="Usuario1" class="control-label"></label>
-                            <input asp-for="Usuario1" class="form-control form-control-lg" placeholder="Ingresar Username" autofocus>
-                            <span asp-validation-for="Usuario1" class="text-danger"></span>
+                            <div class="row col-lg-3">
+                                <label asp-for="Usuario1" class="labelPago ml-2"></label>
+                            </div>
+                            <input asp-for="Usuario1" class="form-control shadow-sm p-3 bg-white rounded-pill form-control-lg" placeholder="Ingresar Usuario" />
+                            <div class="row col-lg-8">
+                                <span asp-validation-for="Usuario1" class="text-danger"></span>
+                            </div>
                         </div>
 
                         <div class="form-group">
-                            <label asp-for="Clave">Password</label>
-                            <input asp-for="Clave" class="form-control form-control-lg" placeholder="Ingresar Password">
-                            <span asp-validation-for="Clave" class="text-danger"></span>
+                            <div class="row col-lg-3">
+                                <label asp-for="Clave" class="labelPago ml-2"></label>
+                            </div>
+                            <input asp-for="Clave" class="form-control shadow-sm p-3 bg-white rounded-pill form-control-lg" id="Clave" placeholder="Ingresar Contraseña" />
+                            <div class="row col-lg-8">
+                                <span asp-validation-for="Clave" class="text-danger ml-2"></span>
+                                <div class="custom-control custom-switch ml-2">
+                                    <input type="checkbox" class="custom-control-input" id="customSwitch1" onclick="myFunction()">
+                                    <label class="custom-control-label" for="customSwitch1">Mostar Contraseña.</label>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="d-flex justify-content-center">

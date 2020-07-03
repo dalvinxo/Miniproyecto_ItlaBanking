@@ -1,10 +1,11 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace ItlaBanking.Models
 {
-    public partial class ItlaBankingContext : DbContext
+    public partial class ItlaBankingContext : IdentityDbContext
     {
         public ItlaBankingContext()
         {
@@ -33,6 +34,9 @@ namespace ItlaBanking.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
+
             modelBuilder.Entity<Beneficiario>(entity =>
             {
                 entity.HasKey(e => new { e.IdUsuarioCliente, e.IdUsuarioBeneficiario });
