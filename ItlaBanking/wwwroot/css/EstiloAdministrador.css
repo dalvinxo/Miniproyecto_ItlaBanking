@@ -1,0 +1,76 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Oswald&family=Playfair+Display&family=Roboto:ital,wght@0,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Oswald&display=swap');
+
+body {
+    margin: 0px;
+}
+
+.FondoCard {
+    background: #232526; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #414345, #232526); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+#FondoAdministrador {
+    background: #C9D6FF; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+
+
+.container {
+    margin-top: 68px;
+}
+
+.titleProducto {
+font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+font-size:19px;
+}
+
+.titleCuenta {
+    font-size: 20px;
+    color: Highlight;
+    font-family: 'Playfair Display', serif;
+    font-weight:bold;
+}
+
+.textProducto {
+
+color:#60be45
+}
+
+
+.dineroAhorro {
+    font-size: 20px;
+    font-family:cursive;
+}
+
+.headNombre {
+    font-size: 26px;
+    font-family: 'Oswald', sans-serif;
+    font-weight:bold;
+}
+
+.simboloDinero {
+    font-size: 21px;
+    font-family: 'Playfair Display', serif;
+    color: #006A4E;
+}
+
+.letterPagos {
+    color: #808080;
+    font-family: 'Oswald', sans-serif;
+    font-size:35px;
+}
+
+.labelPago {
+    font-family: 'Lobster', cursive;
+    color: #5072A7;
+    font-size: 20px;
+}
+
+.Headmenu {
+    font-size: 35px;
+    color: mediumvioletred;
+}

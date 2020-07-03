@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ItlaBanking.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -30,6 +33,24 @@ namespace ItlaBanking
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            //dataServices
+            services.AddDbContext<ItlaBankingContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("Default")));
+
+            services.AddIdentity<IdentityUser, IdentityRole>(options => {
+                options.Password = new PasswordOptions
+                {
+                    RequireDigit = true,
+                    RequiredLength = 8,
+                    RequireUppercase = false,
+                    RequireLowercase = false,
+                    RequireNonAlphanumeric = false
+                };
+                }
+                
+                
+                ).AddEntityFrameworkStores<ItlaBankingContext>().AddDefaultTokenProviders();
+
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -48,6 +69,7 @@ namespace ItlaBanking
 
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {

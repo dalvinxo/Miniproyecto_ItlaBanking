@@ -9,10 +9,17 @@ namespace ItlaBanking.Controllers
     public class ClientController : Controller
     {
 
+        //Vistas Gets home y beneficiario.
         public IActionResult Index()
         {
             return View();
         }
+
+        public IActionResult Beneficiario()
+        {
+            return View();
+        }
+
 
         //Pagos 
         public IActionResult PagosExpreso()
@@ -40,12 +47,7 @@ namespace ItlaBanking.Controllers
         {
             return View();
         }
-
-        public IActionResult Beneficiario()
-        {
-            return View();
-        }
-
+        
         public IActionResult Transferencia()
         {
             return View();
