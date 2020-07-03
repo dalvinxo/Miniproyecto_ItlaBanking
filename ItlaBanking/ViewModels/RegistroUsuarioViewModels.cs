@@ -24,10 +24,9 @@ namespace ItlaBanking.ViewModels
         public string Apellido { get; set; }
 
         [Required(ErrorMessage = "Este campo debe ser llenado")]
-        [Display(Name = "Telefono:")]
-        [StringLength(11, ErrorMessage ="Haz llegado a la cantidad maxima de numeros")]
-        [DataType(DataType.CreditCard)]
-        public string Telefono { get; set; }
+        [Display(Name = "Cédula:")]
+        [StringLength(12, ErrorMessage = "Haz llegado a la cantidad maxima de numeros")]
+        public string Cedula { get; set; }
 
         [Required(ErrorMessage = "Este campo debe ser llenado")]
         [Display(Name = "Correo:")]
@@ -44,7 +43,7 @@ namespace ItlaBanking.ViewModels
         [Required(ErrorMessage = "Este campo debe ser llenado")]
         [DataType(DataType.Password)]
         [Display(Name = "Contraseña:")]
-        [StringLength(25)]
+        [StringLength(25, ErrorMessage = "25 es la cantidad maxima de caracter de este campo")]
         public string Clave { get; set; }
 
         [Display(Name = "Confirmar Contraseña:")]
@@ -53,12 +52,18 @@ namespace ItlaBanking.ViewModels
         [Compare(nameof(Clave), ErrorMessage = "La confirmación no se parece a la contraseña!")]
         public string ConfirmClave { get; set; }
 
+        [Display(Name = "Seleccionar tipo de usuario:")]
+        [Required(ErrorMessage = "Este campo debe ser llenado")]
+        public string TipoUsuario { get; set; }
+
         [Display(Name = "Balance:")]
         [Required(ErrorMessage = "Este campo debe ser llenado")]
-        public int monto { get; set; }
+        [StringLength(13, ErrorMessage = "Ha alcanzado el punto maximo de carácteres")]
+        public decimal monto { get; set; }
 
 
         public string Estado { get; set; }
+
 
     }
 

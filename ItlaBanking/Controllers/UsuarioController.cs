@@ -20,10 +20,11 @@ namespace ItlaBanking.Controllers
             _mapper = mapper;
         }
 
-        public IActionResult CrearUsuario()
+        [HttpPost]
+        public async Task<IActionResult> CrearUsuario()
         {
 
-            return View();
+            return RedirectToAction("AdministrarUsuario", "Administrador");
         }
     }
 }

@@ -32,6 +32,31 @@
 
         }
 
+        function myFunction() {
+            var x = document.getElementById("Clave");
+
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+
+        }
+
+        function mostrar() {
+
+            var element = document.getElementById('balance');
+            var tipo_usuario= document.getElementById('opciones').value;
+
+            if (tipo_usuario == "Cliente") {
+                element.style.display = 'block';
+            }
+            else {
+                element.style.display = 'none';
+            }
+
+        }
+
         /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
         function closeNav() {
             document.getElementById("mySidenav").style.width = "0";
