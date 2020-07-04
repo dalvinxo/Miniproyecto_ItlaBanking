@@ -14,7 +14,14 @@ namespace ItlaBanking.Automapper
         public Automapping(){
             MapearRegistro();
             MapearCuenta();
+            MapearARegistro();
 
+
+        }
+
+        private void MapearARegistro()
+        {
+            CreateMap<Usuario, RegistroUsuarioViewModels>().ReverseMap();
         }
 
         private void MapearCuenta()

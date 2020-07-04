@@ -32,7 +32,7 @@ namespace ItlaBanking.ViewModels
         [DataType(DataType.EmailAddress)]
         public string Correo { get; set; }
 
-        [Usuario(ErrorMessage = "Este usuario ya existe!")]
+        //[Usuario(ErrorMessage = "Este usuario ya existe!")]
         [Required(ErrorMessage = "Este campo debe ser llenado")]
         [Display(Name = "Usuario: ")]
         [StringLength(30)]
@@ -51,7 +51,7 @@ namespace ItlaBanking.ViewModels
         public string ConfirmClave { get; set; }
 
         [Display(Name = "Seleccionar tipo de usuario:")]
-        [Required(ErrorMessage = "Este campo debe ser llenado")]
+        //[Required(ErrorMessage = "Este campo debe ser llenado")]
         public string TipoUsuario { get; set; }
 
         [Display(Name = "Balance:")]

@@ -7,6 +7,7 @@ using ItlaBanking.Models;
 using ItlaBanking.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ItlaBanking.Controllers
 {
@@ -96,18 +97,39 @@ namespace ItlaBanking.Controllers
             return View(rvm);
         }
 
-        public async Task<IActionResult> EditUsuario()
+        public async Task<IActionResult> EditUsuario(int? id)
         {
-            return View();
+            var UserEdit = await _context.Usuario.FirstOrDefaultAsync(x => x.IdUsuario== id);
+            if (UserEdit!=null) {
+                var Usu = _mapper.Map<RegistroUsuarioViewModels>(UserEdit);
+                return View(Usu);
+
+            }
+
+            return RedirectToAction("Index","Login");
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditUsuario(RegistrosProductosViewModels uvmd)
+        public async Task<IActionResult> EditUsuario(RegistroUsuarioViewModels uvmd)
         {
 
+           /* try
+            {*/
+                if (ModelState.IsValid) {
+                    var mapeador = _mapper.Map<Usuario>(uvmd);
+                    var user = _context.Usuario.Attach(mapeador);
+                    user.State = EntityState.Modified;
+                   await  _context.SaveChangesAsync();
 
+                    return RedirectToAction("AdministrarUsuario", "Administrador");
+                }
+                return View(uvmd);
 
-            return View();
+            /*}
+            catch
+            {
+                return RedirectToAction("Index", "Login");
+            }*/
         }
 
         

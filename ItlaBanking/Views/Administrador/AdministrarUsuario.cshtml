@@ -49,7 +49,7 @@
                             <td>@Html.DisplayFor(ModelItem => user.TipoUsuario)</td>
                             <td>@Html.DisplayFor(ModelItem => user.Estado)</td>
                             <td>
-                                <a asp-controller="Usuario" asp-action="EditUsuario" asp-route-id="" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                <a asp-controller="Usuario" asp-action="EditUsuario" asp-route-id="@user.IdUsuario" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                              </td>
 
                             <td>

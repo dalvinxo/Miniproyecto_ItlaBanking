@@ -69,7 +69,7 @@ using ItlaBanking.Models;
 #line default
 #line hidden
             BeginContext(140, 13375, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "74a3a333851a4bfdb77bd25eac9b091a", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e2802394ed8743b194d8b5d6fe8992c0", async() => {
                 BeginContext(187, 293, true);
                 WriteLiteral(@"
 
@@ -82,7 +82,7 @@ using ItlaBanking.Models;
                     ");
                 EndContext();
                 BeginContext(480, 162, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7249cec73faf4556acd99ca81e287b1c", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0ddb446f0b8c4875afc81ef770bebe7c", async() => {
                     BeginContext(567, 71, true);
                     WriteLiteral("<i class=\"fa fa-plus-circle\" aria-hidden=\"true\"> Registrar Producto</i>");
                     EndContext();
@@ -107,7 +107,7 @@ using ItlaBanking.Models;
                 WriteLiteral("\r\n                </li>\r\n                <li class=\"nav-item w-50 rounded-top\">\r\n                    ");
                 EndContext();
                 BeginContext(743, 143, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "50d1b1834f6c452fa31bc82ca3be5ef1", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b0644c14db814d57a8753f46eac34dc0", async() => {
                     BeginContext(820, 62, true);
                     WriteLiteral("<i class=\"fa fa-eye\" aria-hidden=\"true\"></i> Ver Productos</i>");
                     EndContext();
@@ -168,7 +168,7 @@ using ItlaBanking.Models;
                 WriteLiteral("l\" class=\"btn btn-outline-danger btn-block  shadow rounded\" />\r\n\r\n                                        </div>\r\n                                        <div class=\"form-group col-6\">\r\n                                            ");
                 EndContext();
                 BeginContext(3164, 142, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9ab94b87dae640f4bd2fb0f9b815c3ee", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2f47ff1ebfe94277975d06b153fe8a0e", async() => {
                     BeginContext(3300, 2, true);
                     WriteLiteral("Si");
                     EndContext();

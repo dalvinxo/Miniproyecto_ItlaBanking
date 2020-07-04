@@ -26,6 +26,8 @@
                         <input asp-for="Nombre" class="form-control shadow-sm p-3 bg-white rounded-pill form-control-lg" placeholder="Ingresar Nombre" />
                         <span asp-validation-for="Nombre" class="text-danger"></span>
                     </div>
+                    <input asp-for="IdUsuario" type="hidden" value="@Model.IdUsuario">
+
                     <div class="form-group col-md-6">
                         <div class="row col-lg-3">
                             <label asp-for="Apellido" class="labelPago ml-2"></label>
@@ -47,7 +49,7 @@
                     <div class="row col-lg-8">
                         <label asp-for="Correo" class="labelPago ml-2"></label>
                     </div>
-                    <input asp-for="Correo" maxlength="11" class="form-control shadow-sm p-3 bg-white rounded-pill form-control-lg" type="number" placeholder="Ingresar Cedula" />
+                    <input asp-for="Correo" class="form-control shadow-sm p-3 bg-white rounded-pill form-control-lg" placeholder="Ingresar Correo" />
                     <span asp-validation-for="Correo" class="text-danger"></span>
                 </div>
 
@@ -84,14 +86,28 @@
                         <span asp-validation-for="ConfirmClave" class="text-danger"></span>
                     </div>
                 </div>
-
-                <input asp-for="TipoUsuario" type="hidden" value="">
+                @if (Model.TipoUsuario == "Cliente")
+                {
+                    <div class="form-group">
+                        <div class="row col-lg-8">
+                            <label asp-for="TipoUsuario" class="labelPago ml-2"></label>
+                        </div>
+                        <select asp-for="TipoUsuario" id="tipo" onclick="mostrar();" class="custom-select custom-select-lg rounded-pill shadow-sm bg-white">
+                            <option value="Cliente" selected>Cliente</option>
+                            <option value="Administrador">Administrador</option>
+                        </select>
+                        <span asp-validation-for="TipoUsuario" class="text-danger"></span>
+                    </div>}
+                else
+                {
+                <input asp-for="TipoUsuario" type="hidden" value="Administrador">
+                }
 
                 <div class="form-group">
                     <div class="row col-lg-8">
                         <label asp-for="Balance" class="labelPago ml-2"></label>
                     </div>
-                    <input asp-for="Balance" min="0.01" step="0.01" class="form-control shadow-sm p-3 bg-white rounded-pill form-control-lg" placeholder="Ingresar Monto" />
+                    <input asp-for="Balance" min="0.01" step="0.01" type="number" class="form-control shadow-sm p-3 bg-white rounded-pill form-control-lg" placeholder="Ingresar Monto" />
                     <span asp-validation-for="Balance" class="text-danger"></span>
                 </div>
 
