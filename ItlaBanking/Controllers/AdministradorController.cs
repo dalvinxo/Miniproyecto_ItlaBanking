@@ -40,6 +40,32 @@ namespace ItlaBanking.Controllers
 
         }
 
-        
+        public async Task<IActionResult> Activador(int? id)
+        {
+            try
+            {
+                await _context.Database.ExecuteSqlCommandAsync("Procedur @Do={0}, @id ={1}", "act", id);
+            }
+            catch {
+                return RedirectToAction("Error", "Home");
+            }
+            return RedirectToAction("AdministrarUsuario","Administrador");
+
+        }
+
+        public async Task<IActionResult> DesActivador(int? id)
+        {
+            try
+            {
+                await _context.Database.ExecuteSqlCommandAsync("Procedur @Do={0}, @id ={1}", "des", id);
+            }
+            catch {
+                return RedirectToAction("Error", "Home");
+            }
+            return RedirectToAction("AdministrarUsuario", "Administrador");
+
+        }
+
+
     }
 }

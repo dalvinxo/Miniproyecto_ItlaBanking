@@ -55,12 +55,12 @@
                             <td>
                                 @if (user.Estado == "Activo")
                                 {
-                                    <a asp-controller="Administrador" asp-action="Activador" asp-route-id="" class="btn btn-outline-secondary btn-sm"><i class="fa fa-times-circle" style="font-size:14px; color:red" aria-hidden="true"></i> Desactivar</a>
+                                    <a asp-controller="Administrador" asp-action="DesActivador" asp-route-id="@user.IdUsuario" class="btn btn-outline-secondary btn-sm"><i class="fa fa-times-circle" style="font-size:14px; color:red" aria-hidden="true"></i> Desactivar</a>
 
                                 }
                                 else
                                 {
-                                <a asp-controller="Administrador" asp-action="Activador" asp-route-id="" class="btn btn-outline-info btn-sm"><i class="fa fa-check-circle" style="font-size:14px; color:greenyellow" aria-hidden="true"></i> Activar</a>
+                                <a asp-controller="Administrador" asp-action="Activador" asp-route-id="@user.IdUsuario" class="btn btn-outline-info btn-sm"><i class="fa fa-check-circle" style="font-size:14px; color:greenyellow" aria-hidden="true"></i> Activar</a>
                                 }
                             </td>
                             <td>
