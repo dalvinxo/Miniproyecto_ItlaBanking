@@ -42,6 +42,7 @@ namespace ItlaBanking
             services.AddDbContext<ItlaBankingContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("Default")));
 
+
             services.AddIdentity<IdentityUser, IdentityRole>(options => {
                 options.Password = new PasswordOptions
                 {
