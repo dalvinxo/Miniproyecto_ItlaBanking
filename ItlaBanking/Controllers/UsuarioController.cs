@@ -8,7 +8,7 @@ using ItlaBanking.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ItlaBanking.ViewModels;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace ItlaBanking.Controllers
 {
@@ -78,9 +78,9 @@ namespace ItlaBanking.Controllers
 
         public async Task<IActionResult> TraerUsuarios() {
 
+            var ListaUsuarios =  await _context.Usuario.ToListAsync();
 
-
-            return View();
+            return View(ListaUsuarios);
         }
 
         private void AddErrors(IdentityResult result)

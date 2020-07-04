@@ -1,4 +1,4 @@
-﻿@model ItlaBanking.ViewModels.AdministrarUsuariosViewModel
+﻿@model IEnumerable< ItlaBanking.Models.Usuario>
 @{
     Layout = "_LayoutAdministrador";
 }
@@ -25,7 +25,6 @@
                 <div class="d-flex align-items-center">
                     <thead>
                         <tr class="table-info">
-                            <th scope="col">ID</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Apellido</th>
                             <th scope="col">Usuario</th>
@@ -36,16 +35,19 @@
                             <th></th>
                         </tr>
                     </thead>
+                   
                     <tbody>
 
                         @*CLIENTE*@
+                        @foreach (var user in Model)
+                        {
                         <tr>
                             <th scope="row">1</th>
-                            <td>Leonardo</td>
-                            <td>Tavarez Betance</td>
-                            <td>LTofo</td>
-                            <td>Cliente</td>
-                            <td>Activo</td>
+                            <td>@Html.DisplayFor(ModelItem => user.Nombre)</td>
+                            <td>@Html.DisplayFor(ModelItem => user.Apellido)</td>
+                            <td>@Html.DisplayFor(ModelItem => user.Usuario1)</td>
+                            <td>@Html.DisplayFor(ModelItem => user.TipoUsuario)</td>
+                            <td>@Html.DisplayFor(ModelItem => user.Estado)</td>
                             <td>
                                 <a asp-controller="Administrador" asp-action="Eliminar" asp-route-id="" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                 &nbsp;|&nbsp; <a asp-controller="Administrador" asp-action="Eliminar" asp-route-id="" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash"></i></a>
@@ -55,31 +57,31 @@
                                 <a asp-controller="Administrador" asp-action="Activador" asp-route-id="" class="btn btn-outline-secondary btn-sm"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> Desactivar</a>
                             </td>
                             <td>
-                                <a asp-controller="Usuario" asp-action="CrearProducto" asp-route-id="" class="btn btn-outline-primary btn-sm"><i class="fa fa-plus-circle" aria-hidden="true"></i> Productos</i></a>
+                                <a asp-controller="Usuario" asp-action="CrearProducto" asp-route-id="" class="btn btn-outline-primary btn-sm"><i class="fa fa-plus-circle" aria-hidden="true"></i> Productos</a>
                             </td>
                         </tr>
 
-
-                        @*ADMINISTRADOR*@
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Dalvin David</td>
-                            <td>Molina Ogando</td>
-                            <td>Goku</td>
-                            <td>Administrador</td>
-                            <td>Activo</td>
-                            <td>
-                                <a asp-controller="Administrador" asp-action="Eliminar" asp-route-id="" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                &nbsp;|&nbsp; <a asp-controller="Administrador" asp-action="Eliminar" asp-route-id="" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash"></i></a>
-                            </td>
-                            <td>
-                                <a asp-controller="Administrador" asp-action="Activador" asp-route-id="" class="btn btn-outline-info btn-sm"><i class="fa fa-thumbs-o-up" aria-hidden="true"> Activar</i></a>
-                                <a asp-controller="Administrador" asp-action="Activador" asp-route-id="" class="btn btn-outline-secondary btn-sm"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> Desactivar</a>
-                            </td>
-                            <td></td>
-                        </tr>
-
-                    </tbody>
+                            @*ADMINISTRADOR
+            <tr>
+                <th scope="row">1</th>
+                <td>Dalvin David</td>
+                <td>Molina Ogando</td>
+                <td>Goku</td>
+                <td>Administrador</td>
+                <td>Activo</td>
+                <td>
+                    <a asp-controller="Administrador" asp-action="Eliminar" asp-route-id="" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    &nbsp;|&nbsp; <a asp-controller="Administrador" asp-action="Eliminar" asp-route-id="" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash"></i></a>
+                </td>
+                <td>
+                    <a asp-controller="Administrador" asp-action="Activador" asp-route-id="" class="btn btn-outline-info btn-sm"><i class="fa fa-thumbs-o-up" aria-hidden="true"> Activar</i></a>
+                    <a asp-controller="Administrador" asp-action="Activador" asp-route-id="" class="btn btn-outline-secondary btn-sm"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> Desactivar</a>
+                </td>
+                <td></td>
+            </tr>*@
+                        }
+                        </tbody>
+                    
                 </div>
             </table>
 

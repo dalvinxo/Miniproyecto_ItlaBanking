@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using ItlaBanking.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using ItlaBanking.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ItlaBanking.Controllers
 {
@@ -33,8 +34,10 @@ namespace ItlaBanking.Controllers
 
         public async Task<IActionResult> AdministrarUsuario()
         {
+            var ListaUsuarios = await _context.Usuario.ToListAsync();
+            
+            return View(ListaUsuarios);
 
-            return View();
         }
 
         

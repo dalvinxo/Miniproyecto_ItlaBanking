@@ -68,7 +68,7 @@ using ItlaBanking.Models;
 #line default
 #line hidden
             BeginContext(140, 4440, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ef4d29e976fe4d39bfba86926cda19fa", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "57a380cfd70946d9b093d4beb095f8fe", async() => {
                 BeginContext(187, 293, true);
                 WriteLiteral(@"
 
@@ -81,7 +81,7 @@ using ItlaBanking.Models;
                     ");
                 EndContext();
                 BeginContext(480, 162, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0284954e474d4eb2b48b7b6b51c1e426", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cd5006de59f24e44957beefdeaef064c", async() => {
                     BeginContext(567, 71, true);
                     WriteLiteral("<i class=\"fa fa-plus-circle\" aria-hidden=\"true\"> Registrar Producto</i>");
                     EndContext();
@@ -106,7 +106,7 @@ using ItlaBanking.Models;
                 WriteLiteral("\r\n                </li>\r\n                <li class=\"nav-item w-50 rounded-top\">\r\n                    ");
                 EndContext();
                 BeginContext(743, 143, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e347c6f0d8374c2ca97c38ebba9d3399", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2ac91d1a7e9343b5be00712c9c63a419", async() => {
                     BeginContext(820, 62, true);
                     WriteLiteral("<i class=\"fa fa-eye\" aria-hidden=\"true\"></i> Ver Productos</i>");
                     EndContext();
@@ -146,7 +146,7 @@ using ItlaBanking.Models;
                         ");
                 EndContext();
                 BeginContext(1464, 147, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "389e2ee2544948698ff1c5129a905330", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7ff368b7905843c1b0316245f17df470", async() => {
                     BeginContext(1561, 46, true);
                     WriteLiteral("<i class=\"fa fa-trash\" aria-hidden=\"true\"></i>");
                     EndContext();
@@ -191,7 +191,7 @@ using ItlaBanking.Models;
                 WriteLiteral("                      ");
                 EndContext();
                 BeginContext(2657, 147, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "66899aa35d3d446e9932acb6e554ca7b", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dbae6b469f31403eaee41df96cbe38ce", async() => {
                     BeginContext(2754, 46, true);
                     WriteLiteral("<i class=\"fa fa-trash\" aria-hidden=\"true\"></i>");
                     EndContext();
@@ -237,7 +237,7 @@ using ItlaBanking.Models;
                 WriteLiteral("text-dark mr-auto h5\">Deuda: <span class=\"simboloDinero\">RD$</span> 150000.21</a>\r\n                        ");
                 EndContext();
                 BeginContext(3935, 147, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b801bb31e61841d181dbe59db9214638", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f9fbce81d6cf440b9f1b076385077382", async() => {
                     BeginContext(4032, 46, true);
                     WriteLiteral("<i class=\"fa fa-trash\" aria-hidden=\"true\"></i>");
                     EndContext();
