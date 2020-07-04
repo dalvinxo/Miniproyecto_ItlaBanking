@@ -120,8 +120,10 @@ namespace ItlaBanking.Controllers
                     var user = _context.Usuario.Attach(mapeador);
                     user.State = EntityState.Modified;
                    await  _context.SaveChangesAsync();
+                var idCuenta = _context.Cuenta.FirstOrDefault(x => x.IdUsuario == mapeador.IdUsuario && x.Categoria == 1);
+                await _context.Database.ExecuteSqlCommandAsync("Procedur @Do={0}, @idCuenta={1}, @Balance={2}","SumBalance", idCuenta.NumeroCuenta, uvmd.Balance);
 
-                    return RedirectToAction("AdministrarUsuario", "Administrador");
+                return RedirectToAction("AdministrarUsuario", "Administrador");
                 }
                 return View(uvmd);
 
