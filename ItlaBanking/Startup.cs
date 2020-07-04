@@ -46,7 +46,7 @@ namespace ItlaBanking
                 options.Password = new PasswordOptions
                 {
                     RequireDigit = true,
-                    RequiredLength = 8,
+                    RequiredLength = 3,
                     RequireUppercase = false,
                     RequireLowercase = false,
                     RequireNonAlphanumeric = false

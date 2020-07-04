@@ -1,4 +1,6 @@
 ﻿
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using ItlaBanking.Models;
@@ -57,12 +59,34 @@ namespace ItlaBanking.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                if (rvm.Balance == null) {
+                    rvm.Balance = 0;
+                }
+               
                 var user = new IdentityUser { UserName = rvm.Usuario1 };
                 var result = await _userManager.CreateAsync(user, rvm.Clave);
-                
+                                               
                 if (result.Succeeded){
                     var newUsuario = _mapper.Map<Usuario>(rvm);
                     _context.Add(newUsuario);
+                A:
+                    Random r = new Random();
+                    int codigo = r.Next(100000000, 999999999);
+                    
+                    var code = _context.Cuenta.FirstOrDefault(x=> x.NumeroCuenta == codigo);
+                    if (code!=null )
+                    {
+                        goto A;
+                    }
+                    rvm.NumeroCuenta = codigo;
+
+                    rvm.Categoria = 1;
+                    rvm.IdUsuario = newUsuario.IdUsuario;
+
+                    var newCuenta = _mapper.Map<Cuenta>(rvm);
+                    _context.Add(newCuenta);
+
                     await _context.SaveChangesAsync();
                     await _signinManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Login");

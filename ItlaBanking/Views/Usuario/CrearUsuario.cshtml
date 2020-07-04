@@ -47,7 +47,7 @@
                     <div class="row col-lg-8">
                         <label asp-for="Correo" class="labelPago ml-2"></label>
                     </div>
-                    <input asp-for="Correo" maxlength="11" class="form-control shadow-sm p-3 bg-white rounded-pill form-control-lg"  placeholder="Ingresar Correo" />
+                    <input asp-for="Correo"  class="form-control shadow-sm p-3 bg-white rounded-pill form-control-lg"  placeholder="Ingresar Correo" />
                     <span asp-validation-for="Correo" class="text-danger"></span>
                 </div>
 
@@ -98,10 +98,10 @@
 
                 <div class="form-group" id="mon">
                     <div class="row col-lg-8">
-                        <label asp-for="monto" class="labelPago ml-2"></label>
+                        <label asp-for="Balance" class="labelPago ml-2"></label>
                     </div>
-                    <input asp-for="monto" min="0.01" step="0.01" class="form-control shadow-sm p-3 bg-white rounded-pill form-control-lg" placeholder="Ingresar Monto" />
-                    <span asp-validation-for="monto" class="text-danger"></span>
+                    <input asp-for="Balance" min="0.01" step="0.01" class="form-control shadow-sm p-3 bg-white rounded-pill form-control-lg" placeholder="Ingresar Monto" />
+                    <span asp-validation-for="Balance" class="text-danger"></span>
                 </div>
 
                 <input asp-for="Estado" type="hidden" value="Activo">

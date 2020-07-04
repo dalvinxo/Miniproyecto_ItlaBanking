@@ -32,7 +32,7 @@ namespace ItlaBanking.ViewModels
         [DataType(DataType.EmailAddress)]
         public string Correo { get; set; }
 
-        //[Usuario(ErrorMessage = "Este usuario ya existe!")]
+        [Usuario(ErrorMessage = "Este usuario ya existe!")]
         [Required(ErrorMessage = "Este campo debe ser llenado")]
         [Display(Name = "Usuario: ")]
         [StringLength(30)]
@@ -54,17 +54,23 @@ namespace ItlaBanking.ViewModels
         [Required(ErrorMessage = "Este campo debe ser llenado")]
         public string TipoUsuario { get; set; }
 
-        /*[Display(Name = "Balance:")]
-        [Required(ErrorMessage = "Este campo debe ser llenado")]
-        [StringLength(13, ErrorMessage = "Ha alcanzado el punto maximo de carácteres")]*/
-        public decimal? monto { get; set; }
+        [Display(Name = "Balance:")]
+        [DataType(DataType.Currency)]
+        public decimal? Balance { get; set; }
 
+
+        public int NumeroCuenta { get; set; }
+
+        public int? Categoria { get; set;  }
 
         public string Estado { get; set; }
 
+        public DateTime? FechaAdquisicion { get; set; }
+
+
 
     }
-    
+
     public class UsuarioAttribute : ValidationAttribute
     {
 
