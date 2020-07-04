@@ -42,6 +42,7 @@ C:\Users\Pablo Molina\source\repos\ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2
 C:\Users\Pablo Molina\source\repos\ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\ItlaBanking.csproj.CopyComplete
 C:\Users\Pablo Molina\source\repos\ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\ItlaBanking.csprojAssemblyReference.cache
 C:\Users\Pablo Molina\source\repos\ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\Razor\Views\Usuario\CrearUsuario.g.cshtml.cs
+<<<<<<< HEAD
 C:\Users\Liam\Desktop\ShitBull\Programacion 3\Miniproyecto_ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\ItlaBanking.csprojAssemblyReference.cache
 C:\Users\Liam\Desktop\ShitBull\Programacion 3\Miniproyecto_ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\ItlaBanking.csproj.CoreCompileInputs.cache
 C:\Users\Liam\Desktop\ShitBull\Programacion 3\Miniproyecto_ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\ItlaBanking.RazorAssemblyInfo.cache
@@ -86,3 +87,7 @@ C:\Users\Liam\Desktop\ShitBull\Programacion 3\Miniproyecto_ItlaBanking\ItlaBanki
 C:\Users\Liam\Desktop\ShitBull\Programacion 3\Miniproyecto_ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\ItlaBanking.RazorTargetAssemblyInfo.cs
 C:\Users\Liam\Desktop\ShitBull\Programacion 3\Miniproyecto_ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\ItlaBanking.Views.pdb
 C:\Users\Liam\Desktop\ShitBull\Programacion 3\Miniproyecto_ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\ItlaBanking.csproj.CopyComplete
+=======
+C:\Users\Pablo Molina\source\repos\ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\Razor\Views\Usuario\EditUsuario.g.cshtml.cs
+>>>>>>> b1fa007bac3acd89c0bb24a35ee48ee041fce9c2
+C:\Users\Liam\Desktop\ShitBull\Programacion 3\Miniproyecto_ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\Razor\Views\Usuario\EditUsuario.g.cshtml.cs

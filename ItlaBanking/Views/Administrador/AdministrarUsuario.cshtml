@@ -9,13 +9,14 @@
         <div class="card-header p-1">
 
             <nav class="navbar navbar-light bg-light navbar-dark bg-dark rounded">
-                <a data-toggle="modal" data-target="#staticBackdrop" class="btn btn-success mr-auto  btn-sm text-white">Agregar Usuario</a>
+                <a asp-controller="Usuario" asp-action="CrearUsuario" class="btn btn-success mr-auto  btn-sm text-white">Agregar Usuario</a>
 
                 <form class="form-inline">
                     <input class="form-control mr-sm-2" type="search" placeholder="Ingresar Usuario" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
                 </form>
             </nav>
+
 
         </div>
         <div class="card-body">
@@ -42,22 +43,28 @@
                         @foreach (var user in Model)
                         {
                         <tr>
-                            <th scope="row">1</th>
                             <td>@Html.DisplayFor(ModelItem => user.Nombre)</td>
                             <td>@Html.DisplayFor(ModelItem => user.Apellido)</td>
                             <td>@Html.DisplayFor(ModelItem => user.Usuario1)</td>
                             <td>@Html.DisplayFor(ModelItem => user.TipoUsuario)</td>
                             <td>@Html.DisplayFor(ModelItem => user.Estado)</td>
                             <td>
-                                <a asp-controller="Administrador" asp-action="Eliminar" asp-route-id="" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                &nbsp;|&nbsp; <a asp-controller="Administrador" asp-action="Eliminar" asp-route-id="" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                <a asp-controller="Usuario" asp-action="EditUsuario" asp-route-id="" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                             </td>
+
+                            <td>
+                                @if (user.Estado == "Activo")
+                                {
+                                    <a asp-controller="Administrador" asp-action="Activador" asp-route-id="" class="btn btn-outline-secondary btn-sm"><i class="fa fa-times-circle" style="font-size:14px; color:red" aria-hidden="true"></i> Desactivar</a>
+
+                                }
+                                else
+                                {
+                                <a asp-controller="Administrador" asp-action="Activador" asp-route-id="" class="btn btn-outline-info btn-sm"><i class="fa fa-check-circle" style="font-size:14px; color:greenyellow" aria-hidden="true"></i> Activar</a>
+                                }
                             </td>
                             <td>
-                                <a asp-controller="Administrador" asp-action="Activador" asp-route-id="" class="btn btn-outline-info btn-sm"><i class="fa fa-thumbs-o-up" aria-hidden="true"> Activar</i></a>
-                                <a asp-controller="Administrador" asp-action="Activador" asp-route-id="" class="btn btn-outline-secondary btn-sm"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> Desactivar</a>
-                            </td>
-                            <td>
-                                <a asp-controller="Usuario" asp-action="CrearProducto" asp-route-id="" class="btn btn-outline-primary btn-sm"><i class="fa fa-plus-circle" aria-hidden="true"></i> Productos</a>
+
                             </td>
                         </tr>
 

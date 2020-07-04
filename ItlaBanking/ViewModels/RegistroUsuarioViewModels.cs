@@ -1,9 +1,7 @@
 ﻿using ItlaBanking.Models;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace ItlaBanking.ViewModels
 {
@@ -28,11 +26,11 @@ namespace ItlaBanking.ViewModels
         [StringLength(12, ErrorMessage = "Haz llegado a la cantidad maxima de numeros")]
         public string Cedula { get; set; }
 
-        /*[Required(ErrorMessage = "Este campo debe ser llenado")]
+        [Required(ErrorMessage = "Este campo debe ser llenado")]
         [Display(Name = "Correo:")]
         [StringLength(35)]
         [DataType(DataType.EmailAddress)]
-        public string Correo { get; set; }*/
+        public string Correo { get; set; }
 
         //[Usuario(ErrorMessage = "Este usuario ya existe!")]
         [Required(ErrorMessage = "Este campo debe ser llenado")]
@@ -59,33 +57,36 @@ namespace ItlaBanking.ViewModels
         /*[Display(Name = "Balance:")]
         [Required(ErrorMessage = "Este campo debe ser llenado")]
         [StringLength(13, ErrorMessage = "Ha alcanzado el punto maximo de carácteres")]*/
-        public decimal monto { get; set; }
+        public decimal? monto { get; set; }
 
 
         public string Estado { get; set; }
 
 
     }
-    /*
+    
     public class UsuarioAttribute : ValidationAttribute
     {
-        
+
         public override bool IsValid(object value)
         {
+            if (value != null) {
+                ItlaBankingContext _context = new ItlaBankingContext();
+                var ListUsuario = _context.Usuario.Select(x => x.Usuario1).ToList();
 
-            ItlaBankingContext _context = new ItlaBankingContext();
+                    if (ListUsuario.Contains(value))
+                    {
+                        return false;
+                    }
+                
+                    return true;
+                }
 
-            var ListUsuario = _context.Usuario.Select(x => x.Usuario1).ToList();
+            return false;
+            
 
-            if (ListUsuario.Contains(value))
-            {
-                return false;
-            }
-
-            return true;
         }
-
     }
-    */
+    
 
 }
