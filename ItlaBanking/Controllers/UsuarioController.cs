@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using ItlaBanking.Models;
+using ItlaBanking.Repository;
 using ItlaBanking.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -19,12 +20,24 @@ namespace ItlaBanking.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signinManager;
 
+
+        //repository
+        private readonly UsuarioRepository _usuarioRepository;
+        private readonly CuentaRepository _cuentaRepository;
+
         public UsuarioController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager,
-            ItlaBankingContext context, IMapper mapper){
+            ItlaBankingContext context, IMapper mapper, UsuarioRepository usuarioRepository, CuentaRepository cuentaRepository){
             _userManager = userManager;
             _signinManager = signInManager;
             _context = context;
             _mapper = mapper;
+
+
+            ///repositorios
+            _usuarioRepository = usuarioRepository;
+            _cuentaRepository = cuentaRepository;
+
+
         }
 
         public async Task<IActionResult> CrearProducto()
@@ -70,7 +83,8 @@ namespace ItlaBanking.Controllers
                                                
                 if (result.Succeeded){
                     var newUsuario = _mapper.Map<Usuario>(rvm);
-                    _context.Add(newUsuario);
+                    await _usuarioRepository.AddAsync(newUsuario);
+
                 A:
                     Random r = new Random();
                     int codigo = r.Next(100000000, 999999999);
@@ -86,11 +100,10 @@ namespace ItlaBanking.Controllers
                     rvm.IdUsuario = newUsuario.IdUsuario;
 
                     var newCuenta = _mapper.Map<Cuenta>(rvm);
-                    _context.Add(newCuenta);
+                    await _cuentaRepository.AddAsync(newCuenta);
 
-                    await _context.SaveChangesAsync();
                     await _signinManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index", "Login");
+                    return RedirectToAction("AdministradorUsuario", "Administrador");
                 }
                 AddErrors(result);
             }
@@ -99,14 +112,16 @@ namespace ItlaBanking.Controllers
 
         public async Task<IActionResult> EditUsuario(int? id)
         {
-            var UserEdit = await _context.Usuario.FirstOrDefaultAsync(x => x.IdUsuario== id);
+            //var UserEdit = await _context.Usuario.FirstOrDefaultAsync(x => x.IdUsuario== id);
+            var UserEdit = await _usuarioRepository.GetByIdAsync(id.Value);
             if (UserEdit!=null) {
                 var Usu = _mapper.Map<RegistroUsuarioViewModels>(UserEdit);
+
                 return View(Usu);
 
             }
 
-            return RedirectToAction("Index","Login");
+            return RedirectToAction("AdministradorUsuario","Administrador");
         }
 
         [HttpPost]
@@ -115,13 +130,21 @@ namespace ItlaBanking.Controllers
 
            /* try
             {*/
+
+
                 if (ModelState.IsValid) {
                     var mapeador = _mapper.Map<Usuario>(uvmd);
-                    var user = _context.Usuario.Attach(mapeador);
-                    user.State = EntityState.Modified;
-                   await  _context.SaveChangesAsync();
-                var idCuenta = _context.Cuenta.FirstOrDefault(x => x.IdUsuario == mapeador.IdUsuario && x.Categoria == 1);
-                await _context.Database.ExecuteSqlCommandAsync("Procedur @Do={0}, @idCuenta={1}, @Balance={2}","SumBalance", idCuenta.NumeroCuenta, uvmd.Balance);
+                //    var user = _context.Usuario.Attach(mapeador);
+                //// user.State = EntityState.Modified;
+                ////await  _context.SaveChangesAsync();
+                await _usuarioRepository.Update(mapeador);
+                var cuentaPrincipal = _cuentaRepository.GetCuentaAt(mapeador.IdUsuario);
+                cuentaPrincipal.Balance = cuentaPrincipal.Balance+ uvmd.Balance;
+
+                await _cuentaRepository.Update(cuentaPrincipal);
+                
+                //var idCuenta = _context.Cuenta.FirstOrDefault(x => x.IdUsuario == mapeador.IdUsuario && x.Categoria == 1);
+                //await _context.Database.ExecuteSqlCommandAsync("Procedur @Do={0}, @idCuenta={1}, @Balance={2}","SumBalance", idCuenta.NumeroCuenta, uvmd.Balance);
 
                 return RedirectToAction("AdministrarUsuario", "Administrador");
                 }

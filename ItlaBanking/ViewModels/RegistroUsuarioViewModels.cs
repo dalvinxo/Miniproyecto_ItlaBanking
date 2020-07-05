@@ -23,7 +23,7 @@ namespace ItlaBanking.ViewModels
 
         [Required(ErrorMessage = "Este campo debe ser llenado")]
         [Display(Name = "Cédula:")]
-        [StringLength(12, ErrorMessage = "Haz llegado a la cantidad maxima de numeros")]
+        [StringLength(11)]
         public string Cedula { get; set; }
 
         [Required(ErrorMessage = "Este campo debe ser llenado")]
@@ -49,6 +49,7 @@ namespace ItlaBanking.ViewModels
         [Required(ErrorMessage = "Confirmar La Contraseña")]
         [Compare(nameof(Clave), ErrorMessage = "La confirmación no se parece a la contraseña!")]
         public string ConfirmClave { get; set; }
+
 
         [Display(Name = "Seleccionar tipo de usuario:")]
         //[Required(ErrorMessage = "Este campo debe ser llenado")]
@@ -79,11 +80,12 @@ namespace ItlaBanking.ViewModels
             if (value != null) {
                 ItlaBankingContext _context = new ItlaBankingContext();
                 var ListUsuario = _context.Usuario.Select(x => x.Usuario1).ToList();
-
+               
                     if (ListUsuario.Contains(value))
                     {
                         return false;
                     }
+
                 
                     return true;
                 }

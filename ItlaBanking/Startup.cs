@@ -14,6 +14,7 @@ using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ItlaBanking.Repository;
 
 namespace ItlaBanking
 {
@@ -37,6 +38,11 @@ namespace ItlaBanking
             });
 
             services.AddAutoMapper(typeof(Automapping).GetTypeInfo().Assembly);
+
+            //repository service
+            services.AddScoped<UsuarioRepository>();
+            services.AddScoped<CuentaRepository>();
+
 
             //dataServices
             services.AddDbContext<ItlaBankingContext>(options =>
