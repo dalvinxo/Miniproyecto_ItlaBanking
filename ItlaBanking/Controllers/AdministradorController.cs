@@ -7,22 +7,30 @@ using ItlaBanking.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using ItlaBanking.Models;
 using Microsoft.EntityFrameworkCore;
+using ItlaBanking.Repository;
 
 namespace ItlaBanking.Controllers
 {
     public class AdministradorController : Controller
     {
+        //conection db
         private readonly ItlaBankingContext _context;
 
+        //repository
+        private readonly UsuarioRepository _usuarioRepository;
+
+        //identity
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signinManager;
 
+
         public AdministradorController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager,
-            ItlaBankingContext context)
+            ItlaBankingContext context, UsuarioRepository usuarioRepository)
         {
             _userManager = userManager;
             _signinManager = signInManager;
             _context = context;
+            _usuarioRepository = usuarioRepository;
 
 
         }
@@ -34,7 +42,8 @@ namespace ItlaBanking.Controllers
 
         public async Task<IActionResult> AdministrarUsuario()
         {
-            var ListaUsuarios = await _context.Usuario.ToListAsync();
+            var ListaUsuarios = await _usuarioRepository.GetAllAsync();
+            //var ListaUsuarios = await _usuarioRepository.GetUsuarioSpecific();
             
             return View(ListaUsuarios);
 
@@ -42,30 +51,37 @@ namespace ItlaBanking.Controllers
 
         public async Task<IActionResult> Activador(int? id)
         {
-            try
+
+              try
             {
-                await _context.Database.ExecuteSqlCommandAsync("Procedur @Do={0}, @id ={1}", "act", id);
+
+                var Usuario = await _usuarioRepository.GetByIdAsync(id.Value);
+
+                if (Usuario == null)
+                {
+                    return RedirectToAction("Error", "Home");
+                }
+                
+                    if (Usuario.Estado == "Activo") {
+                    Usuario.Estado = "Inactivo";
+                }
+                else {
+                    Usuario.Estado = "Activo";
+                }
+
+                await _usuarioRepository.Update(Usuario);
+
             }
-            catch {
+            catch
+            {
+
                 return RedirectToAction("Error", "Home");
             }
+
             return RedirectToAction("AdministrarUsuario","Administrador");
 
         }
 
-        public async Task<IActionResult> DesActivador(int? id)
-        {
-            try
-            {
-                await _context.Database.ExecuteSqlCommandAsync("Procedur @Do={0}, @id ={1}", "des", id);
-            }
-            catch {
-                return RedirectToAction("Error", "Home");
-            }
-            return RedirectToAction("AdministrarUsuario", "Administrador");
-
-        }
-
-
+     
     }
 }

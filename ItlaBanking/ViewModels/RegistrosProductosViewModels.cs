@@ -8,8 +8,6 @@ namespace ItlaBanking.ViewModels
 {
     public class RegistrosProductosViewModels
     {
-
-        
         
         public int NumeroCuenta { get; set; }
 

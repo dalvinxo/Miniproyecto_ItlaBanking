@@ -37,16 +37,16 @@
                             <th></th>
                         </tr>
                     </thead>
-                   
+
                     <tbody>
 
                         @*CLIENTE*@
                         @foreach (var user in Model)
                         {
-                            
-                            
-                                <tr >
-                                  
+
+                            if (user.Estado == "Activo")
+                            {
+                                <tr class="table-success">
                                     <td>@Html.DisplayFor(ModelItem => user.Nombre)</td>
                                     <td>@Html.DisplayFor(ModelItem => user.Apellido)</td>
                                     <td>@Html.DisplayFor(ModelItem => user.Usuario1)</td>
@@ -59,7 +59,8 @@
                                     <td>
                                         @if (user.Estado == "Activo")
                                         {
-                                            <a asp-controller="Administrador" asp-action="DesActivador" asp-route-id="@user.IdUsuario" class="btn btn-outline-secondary btn-sm"><i class="fa fa-times-circle" style="font-size:14px; color:red" aria-hidden="true"></i> Desactivar</a>
+
+                                            <a asp-controller="Administrador" asp-action="Activador" asp-route-id="@user.IdUsuario" class="btn btn-outline-secondary btn-sm"><i class="fa fa-times-circle" style="font-size:14px; color:red" aria-hidden="true"></i> Desactivar</a>
 
                                         }
                                         else
@@ -67,14 +68,68 @@
                                             <a asp-controller="Administrador" asp-action="Activador" asp-route-id="@user.IdUsuario" class="btn btn-outline-info btn-sm"><i class="fa fa-check-circle" style="font-size:14px; color:greenyellow" aria-hidden="true"></i> Activar</a>
                                         }
                                     </td>
+
+
+                                    @if (user.TipoUsuario == "Cliente")
+                                    {
+                                        <td>
+                                            <a asp-controller="Usuario" asp-action="CrearProducto" asp-route-id="" class="btn btn-outline-primary btn-sm"><i class="fa fa-credit-card-alt" aria-hidden="true" style="color:black"></i> Productos</a>
+                                        </td>
+
+                                    }
+                                    else
+                                    {
+                                        <td></td>
+                                    }
+
+
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr class="table-danger">
+                                    <td>@Html.DisplayFor(ModelItem => user.Nombre)</td>
+                                    <td>@Html.DisplayFor(ModelItem => user.Apellido)</td>
+                                    <td>@Html.DisplayFor(ModelItem => user.Usuario1)</td>
+                                    <td>@Html.DisplayFor(ModelItem => user.TipoUsuario)</td>
+                                    <td>@Html.DisplayFor(ModelItem => user.Estado)</td>
                                     <td>
-                                        <a asp-controller="Usuario" asp-action="CrearProducto" asp-route-id="" class="btn btn-outline-primary btn-sm"><i class="fa fa-plus-circle" aria-hidden="true"></i> Productos</a>
+                                        <a asp-controller="Usuario" asp-action="EditUsuario" asp-route-id="@user.IdUsuario" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                     </td>
+                                    @if (user.Estado == "Activo")
+                                    {
+                                        <td>
+                                            <a asp-controller="Administrador" asp-action="DesActivador" asp-route-id="@user.IdUsuario" class="btn btn-outline-secondary btn-sm"><i class="fa fa-times-circle" style="font-size:14px; color:red" aria-hidden="true"></i> Desactivar</a>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            <a asp-controller="Administrador" asp-action="Activador" asp-route-id="@user.IdUsuario" class="btn btn-outline-info btn-sm"><i class="fa fa-check-circle" style="font-size:14px; color:greenyellow" aria-hidden="true"></i> Activar</a>
+
+                                        </td>
+                                    }
+                                    @if (user.TipoUsuario == "Cliente")
+                                    {
+                                        <td>
+                                            <a asp-controller="Usuario" asp-action="CrearProducto" asp-route-id="" class="btn btn-outline-primary btn-sm"><i class="fa fa-credit-card-alt" aria-hidden="true" style="color:black"></i> Productos</a>
+                                        </td>
+
+                                    }
+                                    else
+                                    {
+                                        <td></td>
+                                    }
+
                                 </tr>
 
-                                }
-                            </tbody>
-                    
+
+                            }
+
+
+                        }
+                    </tbody>
+
                 </div>
             </table>
 

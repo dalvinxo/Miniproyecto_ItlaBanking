@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace ItlaBanking.ViewModels
 {
-    public class RegistroUsuarioViewModels
+    public class UpdateUsuarioViewModels
     {
 
         [Key]
@@ -70,30 +70,6 @@ namespace ItlaBanking.ViewModels
 
 
 
-    }
-
-    public class UsuarioAttribute : ValidationAttribute
-    {
-
-        public override bool IsValid(object value)
-        {
-            if (value != null) {
-                ItlaBankingContext _context = new ItlaBankingContext();
-                var ListUsuario = _context.Usuario.Select(x => x.Usuario1).ToList();
-               
-                    if (ListUsuario.Contains(value))
-                    {
-                        return false;
-                    }
-
-                
-                    return true;
-                }
-
-            return false;
-            
-
-        }
     }
     
 
