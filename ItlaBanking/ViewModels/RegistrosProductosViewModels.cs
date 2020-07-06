@@ -10,24 +10,24 @@ namespace ItlaBanking.ViewModels
     {
         
         public int NumeroCuenta { get; set; }
+        public int NumeroTarjeta { get; set; }
+        public int NumeroPrestamo { get; set; }
+
 
         [Display(Name = "Seleccionar producto:")]
         [Required(ErrorMessage = "Este campo debe ser llenado")]
         public string TipoCuenta { get; set; }
 
         [Display(Name = "Digitar monto del prestamo:")]
-        [StringLength(13, ErrorMessage = "Ha alcanzado el punto maximo de carácteres")]
-        [Required(ErrorMessage = "Este campo debe ser llenado")]
+        //[Required(ErrorMessage = "Este campo debe ser llenado")]
         public decimal? Monto { get; set; }
 
         [Display(Name = "Digitar monto limite de la tarjeta:")]
-        [StringLength(13, ErrorMessage = "Ha alcanzado el punto maximo de carácteres")]
-        [Required(ErrorMessage = "Este campo debe ser llenado")]
+        //[Required(ErrorMessage = "Este campo debe ser llenado")]
         public decimal? MontoLimite { get; set; }
 
         [Display(Name = "Digitar monto inicial:")]
-        [StringLength(13, ErrorMessage = "Ha alcanzado el punto maximo de carácteres")]
-        [Required(ErrorMessage = "Este campo debe ser llenado")]
+        //[Required(ErrorMessage = "Este campo debe ser llenado")]
         public decimal? Balance { get; set; }
 
         public DateTime? FechaExpiracion { get; set; }

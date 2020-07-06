@@ -73,7 +73,7 @@
                                     @if (user.TipoUsuario == "Cliente")
                                     {
                                         <td>
-                                            <a asp-controller="Usuario" asp-action="CrearProducto" asp-route-id="" class="btn btn-outline-primary btn-sm"><i class="fa fa-credit-card-alt" aria-hidden="true" style="color:black"></i> Productos</a>
+                                            <a asp-controller="Usuario" asp-action="CrearProducto" asp-route-id="@user.IdUsuario" class="btn btn-outline-primary btn-sm"><i class="fa fa-credit-card-alt" aria-hidden="true" style="color:black"></i> Productos</a>
                                         </td>
 
                                     }
