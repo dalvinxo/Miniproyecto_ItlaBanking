@@ -55,6 +55,7 @@ namespace ItlaBanking.Controllers
         [HttpPost]
         public async Task<IActionResult> CrearProducto(RegistrosProductosViewModels pdt)
         {
+            int? id = pdt.IdUsuario;
 
             if (pdt.TipoCuenta == "Ahorro")
             {
@@ -74,7 +75,7 @@ namespace ItlaBanking.Controllers
                 pdt.NumeroCuenta = codigo;
                 var newCuenta = _mapper.Map<Cuenta>(pdt);
                 await _cuentaRepository.AddAsync(newCuenta);
-                return RedirectToAction("Producto", "Usuario",newCuenta.IdUsuario);
+                return RedirectToAction("Producto", "Usuario",id);
 
             }
             else if (pdt.TipoCuenta == "Credito")
@@ -82,7 +83,9 @@ namespace ItlaBanking.Controllers
                 if (pdt.MontoLimite == null)
                 {
                     pdt.MontoLimite = 0;
-                    //Eliam esto esta mal, recuerda ponerle el error como si fuera un data annotation
+                    ModelState.AddModelError("","Necesita Ingresar el monto limite de esta tarjeta");
+                    return View(pdt);
+
                 }
 
             B:
@@ -101,7 +104,7 @@ namespace ItlaBanking.Controllers
 
                 //await _cuentaRepository.AddAsync(newCuenta);
 
-                return RedirectToAction("Producto", "Usuario", newTarjeta.IdUsuario);
+                return RedirectToAction("Producto", "Usuario", id);
 
 
             }
@@ -110,7 +113,9 @@ namespace ItlaBanking.Controllers
                 if (pdt.Monto == null)
                 {
                     pdt.Monto = 0;
-                    //Eliam esto esta mal, recuerda ponerle el error como si fuera un data annotation
+                    ModelState.AddModelError("", "Necesita Ingresar el monto del prestamo");
+                    return View(pdt);
+
                 }
 
             C:
@@ -128,12 +133,12 @@ namespace ItlaBanking.Controllers
 
                 //await _cuentaRepository.AddAsync(newCuenta);
 
-                return RedirectToAction("Producto", "Usuario", newPrestamo.IdUsuario);
+                return RedirectToAction("Producto", "Usuario", id);
 
 
             }
             else {
-                return RedirectToAction("Error", "Home");
+                return RedirectToAction("AdministrarUsuario", "Administrador");
 
             }
         }
@@ -157,7 +162,7 @@ namespace ItlaBanking.Controllers
 
             }
 
-            return RedirectToAction("Error","Home");
+            return RedirectToAction("AdministrarUsuario", "Administrador");
         }
 
 
