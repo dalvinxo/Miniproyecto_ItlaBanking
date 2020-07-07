@@ -72,11 +72,9 @@ namespace ItlaBanking.Controllers
                     goto A;
                 }
                 pdt.NumeroCuenta = codigo;
-
-                pdt.Categoria = 2;
                 var newCuenta = _mapper.Map<Cuenta>(pdt);
                 await _cuentaRepository.AddAsync(newCuenta);
-                return RedirectToAction("AdministrarUsuario", "Administrador");
+                return RedirectToAction("Producto", "Usuario",newCuenta.IdUsuario);
 
             }
             else if (pdt.TipoCuenta == "Credito")
@@ -100,10 +98,10 @@ namespace ItlaBanking.Controllers
                 var newTarjeta = _mapper.Map<TarjetaCredito>(pdt);
                 await _context.TarjetaCredito.AddAsync(newTarjeta);
                 await _context.SaveChangesAsync();
-                
+
                 //await _cuentaRepository.AddAsync(newCuenta);
 
-                return RedirectToAction("AdministrarUsuario", "Administrador");
+                return RedirectToAction("Producto", "Usuario", newTarjeta.IdUsuario);
 
 
             }
@@ -130,7 +128,7 @@ namespace ItlaBanking.Controllers
 
                 //await _cuentaRepository.AddAsync(newCuenta);
 
-                return RedirectToAction("AdministrarUsuario", "Administrador");
+                return RedirectToAction("Producto", "Usuario", newPrestamo.IdUsuario);
 
 
             }
@@ -140,11 +138,26 @@ namespace ItlaBanking.Controllers
             }
         }
 
-        public async Task<IActionResult> Producto()
-        {
+        public async Task<IActionResult> Producto(int? id) {
+            if (id != null)
+            {
+                TraerProductosViewModels tpvm = new TraerProductosViewModels();
+                var CuentaList = await _context.Cuenta.Where(x=>x.IdUsuario == id).ToListAsync();
+                var TarjetasList = await _context.TarjetaCredito.Where(x => x.IdUsuario == id).ToListAsync();
+                var PrestamosList = await _context.Prestamos.Where(x => x.IdUsuario == id).ToListAsync();
 
+                tpvm.Cuenta = CuentaList;
+                tpvm.Credito = TarjetasList;
+                tpvm.Prestamos = PrestamosList;
 
-            return View();
+                tpvm.IdUsuario = Convert.ToInt32(id);
+                
+
+                return View(tpvm);
+
+            }
+
+            return RedirectToAction("Error","Home");
         }
 
 
@@ -187,7 +200,7 @@ namespace ItlaBanking.Controllers
                     await _cuentaRepository.AddAsync(newCuenta);
 
                     await _signinManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("AdministradorUsuario", "Administrador");
+                    return RedirectToAction("AdministrarUsuario", "Administrador");
                 }
                 AddErrors(result);
             }
@@ -205,7 +218,7 @@ namespace ItlaBanking.Controllers
 
             }
 
-            return RedirectToAction("AdministradorUsuario","Administrador");
+            return RedirectToAction("AdministrarUsuario","Administrador");
         }
 
         [HttpPost]

@@ -1,4 +1,6 @@
-﻿@{
+﻿@model ItlaBanking.ViewModels.TraerProductosViewModels
+
+@{
     ViewData["Title"] = "VerProducto";
     ViewData["banner"] = "Productos";
     Layout = "~/Views/Shared/_LayoutUsuario.cshtml";
@@ -11,10 +13,10 @@
 
             <ul class="nav nav-tabs w-100">
                 <li class="nav-item w-50">
-                    <a class="nav-link text-white  h2" asp-action="CrearProducto" asp-controller="Usuario"><i class="fa fa-plus-circle" aria-hidden="true"> Registrar Producto</i></a>
+                    <a class="nav-link text-white  h2" asp-action="CrearProducto" asp-controller="Usuario" asp-route-id="@Model.IdUsuario"><i class="fa fa-plus-circle" aria-hidden="true"> Registrar Producto</i></a>
                 </li>
                 <li class="nav-item w-50 rounded-top">
-                    <a class="nav-link active h2" asp-action="Producto" asp-controller="Usuario"><i class="fa fa-eye" aria-hidden="true"></i> Ver Productos</i></a>
+                    <a class="nav-link active h2"><i class="fa fa-eye" aria-hidden="true"></i> Ver Productos</i></a>
                 </li>
             </ul>
 
@@ -24,14 +26,16 @@
 
             <h3 class="card-title text-info">Cuenta de ahorro</h3>
             <hr class="rounded text-dark border border-secondary">
+            @foreach (var cuenta in Model.Cuenta)
+            {
 
-            <div class="card w-75 p-1 rounded-0 shadow mb-1 bg-light">
-                <div class="card-header p-1 bg-transparent">
-                    <nav class="navbar  navbar-dark">
-                        <a class="text-dark mr-auto h5">Balance: <span class="simboloDinero">RD$</span> 150000.21</a>
-                        <a data-toggle="modal" data-target="#cuenta" class="text-white btn btn-danger ml-auto  btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                    </nav>
-
+                <div class="card w-75 p-1 rounded-0 shadow mb-1 bg-light">
+                    <div class="card-header p-1 bg-transparent">
+                        <nav class="navbar  navbar-dark">
+                            <a class="text-dark mr-auto h5">Balance: <span class="simboloDinero">RD$</span> @cuenta.Balance</a>
+                            <a data-toggle="modal" data-target="#cuenta" class="text-white btn btn-danger ml-auto  btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        </nav>
+                        @*
                     <div class="modal fade " id="cuenta" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog modal-sm">
                             <div class="modal-content bg-danger shadow-sm p-1 rounded">
@@ -60,113 +64,117 @@
 
                             </div>
                         </div>
+                    </div>*@
+
                     </div>
-                    
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title" style="color:black"> Número de cuenta: <span style="color:green">201536985</span></h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Cuenta: Secundaria</h6>
-                    <p class="card-text"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Fecha de adquisición:<span class=" font-weight-bolder text-primary"> 20/10/2020</span></p>
-                </div>
+                    <div class="card-body">
+                        <h3 class="card-title" style="color:black"> Número de cuenta: <span style="color:green">@cuenta.NumeroCuenta</span></h3>
+                        <h5 class="card-title" style="color:black"> Balance: <span style="color:green">@cuenta.Balance</span></h5>
 
-            </div>
+                        <h6 class="card-subtitle mb-2 text-muted">Cuenta: @cuenta.Categoria</h6>
+                        <p class="card-text"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Fecha de adquisición:<span class=" font-weight-bolder text-primary"> @cuenta.FechaAdquisicion</span></p>
+                    </div>
 
+                </div>
+            }
 
             <h3 class="card-title text-warning mt-3">Tarjetas de credito</h3>
             <hr class="rounded text-dark border border-secondary">
+            @foreach (var credito in Model.Credito)
+            {
+                <div class="card w-75 p-1 rounded-0 shadow mb-1 bg-light">
+                    <div class="card-header p-1 bg-transparent">
+                        <nav class="navbar  navbar-dark">
+                            <a class="text-dark mr-auto h5">Total Monto Limite: <span class="simboloDinero">RD$</span>@credito.MontoLimite </a>
+                            <a data-toggle="modal" data-target="#tarjeta" class="text-white btn btn-danger ml-auto  btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        </nav>
 
-            <div class="card w-75 p-1 rounded-0 shadow mb-1 bg-light">
-                <div class="card-header p-1 bg-transparent">
-                    <nav class="navbar  navbar-dark">
-                        <a class="text-dark mr-auto h5">Total Monto Limite: <span class="simboloDinero">RD$</span> 150000.21</a>
-                        <a data-toggle="modal" data-target="#tarjeta" class="text-white btn btn-danger ml-auto  btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                    </nav>
-
-                    @*Prestamo cuando se puede eliminar*@
-                @*    <div class="modal fade " id="tarjeta" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-              <div class="modal-dialog modal-dialog modal-sm">
-                <div class="modal-content bg-danger shadow-sm p-1 rounded">
-
-                    <div class="modal-header shadow p-1 rounded">
-                        <h5 class="modal-title text-white font-weight-bolder" id="staticBackdropLabel" style="font-size:30px;">Tarjeta!</h5>
-                        <button type="button" class=" btn btn-danger text-white font-weight-bolder" data-dismiss="modal" aria-label="Close"><i class="fa fa-times" aria-hidden="true" style="font-size:24px;"></i></button>
-                    </div>
-
-
-                    <div class="modal-body bg-light h6">
-                        ¿Usted esta seguro de que desea eliminar este Tarjeta de crédito?
-
-
-                        <div class="form-row mt-4">
-                            <div class="form-group col-6">
-                                <input type="button" value="No" style="font-size:20px;" data-dismiss="modal" class="btn btn-outline-danger btn-block  shadow rounded" />
-
-                            </div>
-                            <div class="form-group col-6">
-                                <a asp-controller="Usuario" asp-action="CrearUsuario" style="font-size:20px;" class="btn btn-outline-primary btn-block  shadow rounded">Si</a>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>*@
-
-                    @*modal prestamo cuando no se puede eliminar*@
-                    <div class="modal fade " id="tarjeta" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog modal-sm">
-                            <div class="modal-content bg-warning shadow-sm p-1 rounded">
+                        @*Prestamo cuando se puede eliminar*@
+                        @*    <div class="modal fade " id="tarjeta" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog modal-sm">
+                            <div class="modal-content bg-danger shadow-sm p-1 rounded">
 
                                 <div class="modal-header shadow p-1 rounded">
-                                    <h5 class="modal-title text-white font-weight-bolder" id="staticBackdropLabel" style="font-size:30px;">Advertencía!</h5>
-                                    <button type="button" class=" btn btn-danger btn-sm text-white font-weight-bolder" data-dismiss="modal" aria-label="Close"><i class="fa fa-times" aria-hidden="true" style="font-size:20px;"></i></button>
+                                    <h5 class="modal-title text-white font-weight-bolder" id="staticBackdropLabel" style="font-size:30px;">Tarjeta!</h5>
+                                    <button type="button" class=" btn btn-danger text-white font-weight-bolder" data-dismiss="modal" aria-label="Close"><i class="fa fa-times" aria-hidden="true" style="font-size:24px;"></i></button>
                                 </div>
 
 
-                                <div class="modal-body bg-light h6 text-justify">
-                                    Este Tarjeta de crédito no puede ser eliminada, Mientras su monto limite no sea cero.
+                                <div class="modal-body bg-light h6">
+                                    ¿Usted esta seguro de que desea eliminar este Tarjeta de crédito?
 
-                                    <div class="mt-2 d-flex justify-content-center">
-                                        <input type="button" value="ok" style="font-size:30px;" data-dismiss="modal" class="w-50 btn btn-outline-success btn-lg font-weight-bolder  shadow rounded " />
 
+                                    <div class="form-row mt-4">
+                                        <div class="form-group col-6">
+                                            <input type="button" value="No" style="font-size:20px;" data-dismiss="modal" class="btn btn-outline-danger btn-block  shadow rounded" />
+
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <a asp-controller="Usuario" asp-action="CrearUsuario" style="font-size:20px;" class="btn btn-outline-primary btn-block  shadow rounded">Si</a>
+                                        </div>
                                     </div>
 
                                 </div>
 
                             </div>
                         </div>
+                    </div>*@
+
+                        @*modal prestamo cuando no se puede eliminar*@
+                        <div class="modal fade " id="tarjeta" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog modal-sm">
+                                <div class="modal-content bg-warning shadow-sm p-1 rounded">
+
+                                    <div class="modal-header shadow p-1 rounded">
+                                        <h5 class="modal-title text-white font-weight-bolder" id="staticBackdropLabel" style="font-size:30px;">Advertencía!</h5>
+                                        <button type="button" class=" btn btn-danger btn-sm text-white font-weight-bolder" data-dismiss="modal" aria-label="Close"><i class="fa fa-times" aria-hidden="true" style="font-size:20px;"></i></button>
+                                    </div>
+
+
+                                    <div class="modal-body bg-light h6 text-justify">
+                                        Este Tarjeta de crédito no puede ser eliminada, Mientras su monto limite no sea cero.
+
+                                        <div class="mt-2 d-flex justify-content-center">
+                                            <input type="button" value="ok" style="font-size:30px;" data-dismiss="modal" class="w-50 btn btn-outline-success btn-lg font-weight-bolder  shadow rounded " />
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
 
+                    <div class="card-body">
+                        <h5 class="card-title" style="color:black"> Número Tarjeta de credito: <span style="color:green">@credito.NumeroTarjeta</span></h5>
+                        <p class="card-text"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Fecha de pago:<span class=" font-weight-bolder text-warning"> @credito.FechaPago</span></p>
+                        <p class="card-text"><i class="fa fa-clock-o" aria-hidden="true"></i> Fecha de expiración:<span class=" font-weight-bolder text-danger">@credito.FechaExpiracion</span></p>
+
+                    </div>
 
                 </div>
-
-                <div class="card-body">
-                    <h5 class="card-title" style="color:black"> Número Tarjeta de credito: <span style="color:green">201536985</span></h5>
-                    <p class="card-text"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Fecha de pago:<span class=" font-weight-bolder text-warning"> 20/10/2020</span></p>
-                    <p class="card-text"><i class="fa fa-clock-o" aria-hidden="true"></i> Fecha de expiración:<span class=" font-weight-bolder text-danger"> 20/10/2020</span></p>
-
-                </div>
-
-            </div>
-
+            }
 
 
 
             @*prestamo*@
             <h3 class="card-title mt-3" style="color:darkred">Préstamos</h3>
             <hr class="rounded text-dark border border-secondary">
+            @foreach (var prestamo in Model.Prestamos)
+            {
+                <div class="card w-75 p-1 rounded-0 shadow mb-1 bg-light">
+                    <div class="card-header p-1 bg-transparent">
+                        <nav class="navbar  navbar-dark">
+                            <a class="text-dark mr-auto h5">Deuda: <span class="simboloDinero">RD$</span> @prestamo.Monto</a>
 
-            <div class="card w-75 p-1 rounded-0 shadow mb-1 bg-light">
-                <div class="card-header p-1 bg-transparent">
-                    <nav class="navbar  navbar-dark">
-                        <a class="text-dark mr-auto h5">Deuda: <span class="simboloDinero">RD$</span> 150000.21</a>
+                            <a data-toggle="modal" data-target="#staticBackdrop" class="text-white btn btn-danger ml-auto  btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        </nav>
 
-                        <a data-toggle="modal" data-target="#staticBackdrop" class="text-white btn btn-danger ml-auto  btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                    </nav>
-
-                    @*Prestamo cuando se puede eliminar*@
-                    @*<div class="modal fade " id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        @*Prestamo cuando se puede eliminar*@
+                        @*<div class="modal fade " id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog modal-sm">
                             <div class="modal-content bg-danger shadow-sm p-1 rounded">
 
@@ -196,42 +204,42 @@
                         </div>
                     </div>*@
 
-                    @*modal prestamo cuando no se puede eliminar*@
-                    <div class="modal fade " id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog modal-sm">
-                            <div class="modal-content bg-warning shadow-sm p-1 rounded">
+                        @*modal prestamo cuando no se puede eliminar*@
+                        <div class="modal fade " id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog modal-sm">
+                                <div class="modal-content bg-warning shadow-sm p-1 rounded">
 
-                                <div class="modal-header shadow p-1 rounded">
-                                    <h5 class="modal-title text-white font-weight-bolder" id="staticBackdropLabel" style="font-size:30px;">Advertencía!</h5>
-                                    <button type="button" class=" btn btn-danger btn-sm text-white font-weight-bolder" data-dismiss="modal" aria-label="Close"><i class="fa fa-times" aria-hidden="true" style="font-size:20px;"></i></button>
-                                </div>
+                                    <div class="modal-header shadow p-1 rounded">
+                                        <h5 class="modal-title text-white font-weight-bolder" id="staticBackdropLabel" style="font-size:30px;">Advertencía!</h5>
+                                        <button type="button" class=" btn btn-danger btn-sm text-white font-weight-bolder" data-dismiss="modal" aria-label="Close"><i class="fa fa-times" aria-hidden="true" style="font-size:20px;"></i></button>
+                                    </div>
 
 
-                                <div class="modal-body bg-light h6 text-justify">
-                                    Este Prestamo no puede ser eliminada, mientras el usuario lo deba.
-                                  
-                                    <div class="mt-2 d-flex justify-content-center">
-                                        <input type="button" value="ok" style="font-size:30px;" data-dismiss="modal" class="w-50 btn btn-outline-success btn-lg font-weight-bolder  shadow rounded " />
+                                    <div class="modal-body bg-light h6 text-justify">
+                                        Este Prestamo no puede ser eliminada, mientras el usuario lo deba.
+
+                                        <div class="mt-2 d-flex justify-content-center">
+                                            <input type="button" value="ok" style="font-size:30px;" data-dismiss="modal" class="w-50 btn btn-outline-success btn-lg font-weight-bolder  shadow rounded " />
+
+                                        </div>
 
                                     </div>
 
                                 </div>
-
                             </div>
+                        </div>
+
+
+                        <div class="card-body">
+                            <h5 class="card-title" style="color:black"> Número de Préstamo: <span style="color:green">@prestamo.NumeroPrestamo</span></h5>
+                            <p class="card-text"><i class="fa fa-clock-o" aria-hidden="true"></i> Fecha de expiración:<span class=" font-weight-bolder text-danger"> @prestamo.FechaExpiracion</span></p>
                         </div>
                     </div>
 
 
-                    <div class="card-body">
-                        <h5 class="card-title" style="color:black"> Número de Préstamo: <span style="color:green">201536985</span></h5>
-                        <p class="card-text"><i class="fa fa-clock-o" aria-hidden="true"></i> Fecha de expiración:<span class=" font-weight-bolder text-danger"> 20/10/2020</span></p>
-                    </div>
                 </div>
-
+            }
 
         </div>
-
-
-    </div>
 
 </body>
