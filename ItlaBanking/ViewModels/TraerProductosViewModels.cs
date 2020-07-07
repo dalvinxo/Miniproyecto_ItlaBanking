@@ -16,5 +16,7 @@ namespace ItlaBanking.ViewModels
 
         public IEnumerable<Prestamos> Prestamos;
 
+        public Usuario user;
+
     }
 }
