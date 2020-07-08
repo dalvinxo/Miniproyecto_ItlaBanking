@@ -42,7 +42,9 @@ namespace ItlaBanking.Controllers
 
         public async Task<IActionResult> AdministrarUsuario()
         {
-            var ListaUsuarios = await _usuarioRepository.GetAllAsync();
+            //var ListaUsuarios = await _usuarioRepository.GetAllAsync();
+
+            var ListaUsuarios = await _usuarioRepository.GetUsuarioOrder();
             //var ListaUsuarios = await _usuarioRepository.GetUsuarioSpecific();
             
             return View(ListaUsuarios);

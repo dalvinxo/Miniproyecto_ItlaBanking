@@ -14,16 +14,21 @@ namespace ItlaBanking.Repository
         {
             _context = context;
         }
-        public async Task<List<Usuario>> GetUsuarioSpecific()
+
+        public async Task<List<Usuario>> GetUsuarioOrder()
         {
 
             //var unicousuario = await GetAllAsync();
 
             //var usuario = await unicousuario.AsQueryable().Where(s => s.IdUsuario == 4).ToListAsync();
             
-            return await _context.Usuario.Where(x => x.IdUsuario < 5).ToListAsync();
+            return await _context.Usuario.OrderByDescending(x=> x.TipoUsuario == "Administrador").ToListAsync();
         }
-        
+
+      
+
+
+
     }
 
 

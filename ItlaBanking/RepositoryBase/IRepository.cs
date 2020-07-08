@@ -14,7 +14,7 @@ namespace ItlaBanking.Repository
         Task<T> AddAsync(T entity);
         Task<T> Update(T entity);
         Task<T> Delete(int id);
-    
+        
     }
 
 

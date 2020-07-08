@@ -1,4 +1,5 @@
 ﻿using ItlaBanking.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace ItlaBanking.ViewModels
 
         [Required(ErrorMessage = "Este campo debe ser llenado")]
         [Display(Name = "Cédula:")]
-        [StringLength(11)]
+        [StringLength(11, ErrorMessage = "The {0} no puede exceder {1} de caracteres.", MinimumLength = 11)]
         public string Cedula { get; set; }
 
         [Required(ErrorMessage = "Este campo debe ser llenado")]
@@ -31,7 +32,7 @@ namespace ItlaBanking.ViewModels
         [StringLength(35)]
         [DataType(DataType.EmailAddress)]
         public string Correo { get; set; }
-
+        
         [Usuario(ErrorMessage = "Este usuario ya existe!")]
         [Required(ErrorMessage = "Este campo debe ser llenado")]
         [Display(Name = "Usuario: ")]
@@ -55,6 +56,7 @@ namespace ItlaBanking.ViewModels
         //[Required(ErrorMessage = "Este campo debe ser llenado")]
         public string TipoUsuario { get; set; }
 
+        [MaxLength(11)]
         [Display(Name = "Balance:")]
         [DataType(DataType.Currency)]
         public decimal? Balance { get; set; }

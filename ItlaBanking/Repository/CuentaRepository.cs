@@ -21,14 +21,15 @@ namespace ItlaBanking.Repository
             var code =  _context.Cuenta.FirstOrDefault(x => x.IdUsuario == idusuario && x.Categoria == 1);
             return code;
         }
+        
+        public  IEnumerable<Cuenta> GetCuentaUsuario(int id)
+        {
+            return _context.Cuenta.Where(x => x.IdUsuario == id).ToList();
+        }
 
-        //public async Task<List<Cuenta>> GetCuentaSpecific()
-        //{
-
-        //    //var unicousuario = await GetAllAsync();
-
-        //    //var usuario = await unicousuario.AsQueryable().Where(s => s.IdUsuario == 4).ToListAsync();
-
+        //public async Task<List<Cuenta>> GetCuentaSpecific(){
+        //var unicousuario = await GetAllAsync();
+        //var usuario = await unicousuario.AsQueryable().Where(s => s.IdUsuario == 4).ToListAsync();
         //    return await _context.Cuenta.Where(x => x.IdUsuario < 5).ToListAsync();
         //}
 

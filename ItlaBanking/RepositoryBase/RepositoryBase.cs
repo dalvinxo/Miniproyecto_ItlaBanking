@@ -41,8 +41,7 @@ namespace ItlaBanking.Repository
 
             return entity;
         }
-
-      
+        
         public async Task<List<TEntity>> GetAllAsync()
         {
 
@@ -51,7 +50,7 @@ namespace ItlaBanking.Repository
 
         public async Task<TEntity> GetByIdAsync(int id)
         {
-
+            
             return await _context.Set<TEntity>().FindAsync(id);
         }
 
@@ -62,6 +61,9 @@ namespace ItlaBanking.Repository
             return entity;
 
         }
+
+      
+
     }
 
 

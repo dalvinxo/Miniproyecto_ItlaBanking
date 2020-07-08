@@ -24,9 +24,12 @@ namespace ItlaBanking.Controllers
         //repository
         private readonly UsuarioRepository _usuarioRepository;
         private readonly CuentaRepository _cuentaRepository;
+        private readonly PrestamosRepository _repositoryPrestamos;
+        private readonly TarjetaCreditoRepository _tarjetaCreditoRepository;
+
 
         public UsuarioController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager,
-            ItlaBankingContext context, IMapper mapper, UsuarioRepository usuarioRepository, CuentaRepository cuentaRepository){
+            ItlaBankingContext context, IMapper mapper, UsuarioRepository usuarioRepository, PrestamosRepository prestamosRepository, CuentaRepository cuentaRepository, TarjetaCreditoRepository tarjetaCreditoRepository){
             _userManager = userManager;
             _signinManager = signInManager;
             _context = context;
@@ -36,8 +39,8 @@ namespace ItlaBanking.Controllers
             ///repositorios
             _usuarioRepository = usuarioRepository;
             _cuentaRepository = cuentaRepository;
-
-
+            _repositoryPrestamos = prestamosRepository;
+            _tarjetaCreditoRepository = tarjetaCreditoRepository;
         }
 
         public IActionResult CrearProducto(int? id)
@@ -51,6 +54,7 @@ namespace ItlaBanking.Controllers
 
             return RedirectToAction("AdministrarUsuario", "Administrador");
         }
+
 
         [HttpPost]
         public async Task<IActionResult> CrearProducto(RegistrosProductosViewModels pdt)
@@ -67,21 +71,29 @@ namespace ItlaBanking.Controllers
             A:
                 Random r = new Random();
                 int codigo = r.Next(100000000, 999999999);
-                
+
                 if (!ValidarCodigo(codigo))
                 {
                     goto A;
                 }
                 pdt.NumeroCuenta = codigo;
+                              
                 var newCuenta = _mapper.Map<Cuenta>(pdt);
                 await _cuentaRepository.AddAsync(newCuenta);
-                return RedirectToAction("Producto", "Usuario",id);
+                return RedirectToAction("Producto", "Usuario", new { @id = id });
 
             }
             else if (pdt.TipoCuenta == "Credito")
             {
+                DateTime fecha = DateTime.Now;
+                DateTime Pago = Convert.ToDateTime(fecha);
+                DateTime FechaExpiracion = Convert.ToDateTime(fecha);
+                Pago = Pago.AddDays(20);
+                FechaExpiracion = FechaExpiracion.AddDays(30);
+
                 if (pdt.MontoLimite == null)
                 {
+
                     pdt.MontoLimite = 0;
                     ModelState.AddModelError("","Necesita Ingresar el monto limite de esta tarjeta");
                     return View(pdt);
@@ -96,20 +108,29 @@ namespace ItlaBanking.Controllers
                 {
                     goto B;
                 }
+
                 pdt.NumeroTarjeta = codigo;
 
                 var newTarjeta = _mapper.Map<TarjetaCredito>(pdt);
-                await _context.TarjetaCredito.AddAsync(newTarjeta);
+                newTarjeta.FechaExpiracion = FechaExpiracion;
+                newTarjeta.FechaPago = Pago;
+
+               // await _context.TarjetaCredito.AddAsync(newTarjeta);
                 await _context.SaveChangesAsync();
 
+                await _tarjetaCreditoRepository.AddAsync(newTarjeta);
                 //await _cuentaRepository.AddAsync(newCuenta);
 
-                return RedirectToAction("Producto", "Usuario", id);
+                return RedirectToAction("Producto", "Usuario", new { @id = id });
 
 
             }
             else if (pdt.TipoCuenta == "Prestamo")
             {
+                DateTime fecha = DateTime.Now;
+                DateTime nuevaFecha = Convert.ToDateTime(fecha);
+                nuevaFecha = nuevaFecha.AddDays(30);
+
                 if (pdt.Monto == null)
                 {
                     pdt.Monto = 0;
@@ -126,15 +147,16 @@ namespace ItlaBanking.Controllers
                     goto C;
                 }
                 pdt.NumeroPrestamo = codigo;
-
                 var newPrestamo = _mapper.Map<Prestamos>(pdt);
-                await _context.Prestamos.AddAsync(newPrestamo);
-                await _context.SaveChangesAsync();
+                newPrestamo.FechaExpiracion = nuevaFecha;
 
-                //await _cuentaRepository.AddAsync(newCuenta);
+            
 
-                return RedirectToAction("Producto", "Usuario", id);
+                await _repositoryPrestamos.AddAsync(newPrestamo);
 
+
+                //  return RedirectToAction("Producto", "Usuario", id);
+                return RedirectToAction("Producto", "Usuario", new { @id = id });
 
             }
             else {
@@ -144,12 +166,14 @@ namespace ItlaBanking.Controllers
         }
 
         public async Task<IActionResult> Producto(int? id) {
-            if (id != null)
-            {
+
+                int idusuarioentero = Convert.ToInt32(id);
                 TraerProductosViewModels tpvm = new TraerProductosViewModels();
-                var CuentaList = await _context.Cuenta.Where(x=>x.IdUsuario == id).ToListAsync();
+                //var CuentaList = await _context.Cuenta.Where(x=>x.IdUsuario == id).ToListAsync();
                 var TarjetasList = await _context.TarjetaCredito.Where(x => x.IdUsuario == id).ToListAsync();
                 var PrestamosList = await _context.Prestamos.Where(x => x.IdUsuario == id).ToListAsync();
+                var CuentaList = _cuentaRepository.GetCuentaUsuario(idusuarioentero);
+
 
                 tpvm.Cuenta = CuentaList;
                 tpvm.Credito = TarjetasList;
@@ -159,10 +183,6 @@ namespace ItlaBanking.Controllers
                 
 
                 return View(tpvm);
-
-            }
-
-            return RedirectToAction("AdministrarUsuario", "Administrador");
         }
 
 
@@ -211,6 +231,7 @@ namespace ItlaBanking.Controllers
             }
             return View(rvm);
         }
+        
 
         public async Task<IActionResult> EditUsuario(int? id)
         {
@@ -218,7 +239,6 @@ namespace ItlaBanking.Controllers
             var UserEdit = await _usuarioRepository.GetByIdAsync(id.Value);
             if (UserEdit!=null) {
                 var Usu = _mapper.Map<RegistroUsuarioViewModels>(UserEdit);
-
                 return View(Usu);
 
             }
@@ -230,24 +250,19 @@ namespace ItlaBanking.Controllers
         public async Task<IActionResult> EditUsuario(RegistroUsuarioViewModels uvmd)
         {
 
-           /* try
+
+
+           /*try
             {*/
-
-
+                
                 if (ModelState.IsValid) {
-                    var mapeador = _mapper.Map<Usuario>(uvmd);
-                //    var user = _context.Usuario.Attach(mapeador);
-                //// user.State = EntityState.Modified;
-                ////await  _context.SaveChangesAsync();
+                var mapeador = _mapper.Map<Usuario>(uvmd);
                 await _usuarioRepository.Update(mapeador);
                 var cuentaPrincipal = _cuentaRepository.GetCuentaAt(mapeador.IdUsuario);
                 cuentaPrincipal.Balance = cuentaPrincipal.Balance+ uvmd.Balance;
-
                 await _cuentaRepository.Update(cuentaPrincipal);
                 
-                //var idCuenta = _context.Cuenta.FirstOrDefault(x => x.IdUsuario == mapeador.IdUsuario && x.Categoria == 1);
-                //await _context.Database.ExecuteSqlCommandAsync("Procedur @Do={0}, @idCuenta={1}, @Balance={2}","SumBalance", idCuenta.NumeroCuenta, uvmd.Balance);
-
+         
                 return RedirectToAction("AdministrarUsuario", "Administrador");
                 }
                 return View(uvmd);
@@ -269,15 +284,18 @@ namespace ItlaBanking.Controllers
             }
         }
 
-        private bool ValidarCodigo(int codigo) {
+        public bool ValidarCodigo(int codigo)
+        {
             var code = _context.Cuenta.FirstOrDefault(x => x.NumeroCuenta == codigo);
             var code2 = _context.Prestamos.FirstOrDefault(x => x.NumeroPrestamo == codigo);
             var code3 = _context.TarjetaCredito.FirstOrDefault(x => x.NumeroTarjeta == codigo);
 
+        
             if (code != null && code2 != null && code3 != null)
             {
                 return false;
             }
+
             return true;
         }
     }

@@ -23,7 +23,7 @@
         <div class="card-body bg-light">
 
             <form asp-action="CrearProducto" asp-controller="Usuario" method="post">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div asp-validation-summary="All" class="text-danger"></div>
 
                 <div class="form-group">
                     <div class="row col-lg-8">
@@ -41,7 +41,7 @@
                     <div class="row col-lg-8">
                         <label asp-for="Balance" class="labelPago ml-2"></label>
                     </div>
-                    <input asp-for="Balance" type="number" min="0.01" step="0.01" class="form-control shadow-sm p-3 bg-white rounded-pill form-control-lg" placeholder="Ingresar monto de la cuenta de ahorro" />
+                    <input asp-for="Balance" type="number" step="0.01" class="form-control shadow-sm p-3 bg-white rounded-pill form-control-lg" placeholder="Ingresar monto de la cuenta de ahorro" />
                     <span asp-validation-for="Balance" class="text-danger"></span>
                 </div>
 
@@ -49,7 +49,7 @@
                     <div class="row col-lg-8">
                         <label asp-for="MontoLimite" class="labelPago ml-2"></label>
                     </div>
-                    <input asp-for="MontoLimite" type="number" min="0.01" step="0.01" class="form-control shadow-sm p-3 bg-white rounded-pill form-control-lg" placeholder="Ingresar monto limite de la tarjeta de credito" />
+                    <input asp-for="MontoLimite" type="number"  step="0.01" class="form-control shadow-sm p-3 bg-white rounded-pill form-control-lg" placeholder="Ingresar monto limite de la tarjeta de credito" />
                     <span asp-validation-for="MontoLimite" class="text-danger"></span>
                 </div>
 
@@ -57,7 +57,7 @@
                     <div class="row col-lg-8">
                         <label asp-for="Monto" class="labelPago ml-2"></label>
                     </div>
-                    <input asp-for="Monto" type="number" min="0.01" step="0.01" class="form-control shadow-sm p-3 bg-white rounded-pill form-control-lg" placeholder="Ingresar deuda del préstamo" />
+                    <input asp-for="Monto" type="number" step="0.01" class="form-control shadow-sm p-3 bg-white rounded-pill form-control-lg" placeholder="Ingresar deuda del préstamo" />
                     <span asp-validation-for="Monto" class="text-danger"></span>
                 </div>
 
