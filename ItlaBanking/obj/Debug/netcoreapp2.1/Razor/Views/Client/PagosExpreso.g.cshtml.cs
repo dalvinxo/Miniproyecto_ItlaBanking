@@ -60,7 +60,7 @@ using ItlaBanking.Models;
             WriteLiteral("<html>\r\n\r\n");
             EndContext();
             BeginContext(21, 2022, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "37e48b849c5b4b3382321d62da7e6373", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d20a3c36699e424988df0db11f81e4bd", async() => {
                 BeginContext(68, 379, true);
                 WriteLiteral(@"
        
@@ -75,7 +75,7 @@ using ItlaBanking.Models;
             ");
                 EndContext();
                 BeginContext(447, 1551, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "04d18339b8334d489838942799ba3ad1", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d6bfd959a2304e4a87bb948c1ac1d20a", async() => {
                     BeginContext(453, 1538, true);
                     WriteLiteral(@"
 

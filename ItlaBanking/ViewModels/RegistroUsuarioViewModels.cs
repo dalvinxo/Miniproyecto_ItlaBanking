@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
 namespace ItlaBanking.ViewModels
@@ -56,8 +57,10 @@ namespace ItlaBanking.ViewModels
         //[Required(ErrorMessage = "Este campo debe ser llenado")]
         public string TipoUsuario { get; set; }
 
-        [MaxLength(11)]
+        //[RegularExpression(@"^\d+\.\d{0,2}$")]
         [Display(Name = "Balance:")]
+        [Range(0, 99999999999.99, ErrorMessage = "Balance invalido; numero maximo de digitos 13.")]
+        [Column(TypeName = "decimal(13, 2)")]
         [DataType(DataType.Currency)]
         public decimal? Balance { get; set; }
 

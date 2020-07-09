@@ -15,8 +15,11 @@ namespace ItlaBanking.Repository
         {
             _context = context;
         }
-        
-        
+
+        public IEnumerable<Prestamos> GetPrestamoUsuario(int id)
+        {
+            return _context.Prestamos.Where(x => x.IdUsuario == id).OrderByDescending(x => x.FechaExpiracion).ToList();
+        }
 
     }
 }

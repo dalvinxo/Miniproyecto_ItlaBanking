@@ -24,7 +24,7 @@ namespace ItlaBanking.Repository
         
         public  IEnumerable<Cuenta> GetCuentaUsuario(int id)
         {
-            return _context.Cuenta.Where(x => x.IdUsuario == id).ToList();
+            return _context.Cuenta.Where(x => x.IdUsuario == id).OrderByDescending(x => x.Categoria).ToList();
         }
 
         //public async Task<List<Cuenta>> GetCuentaSpecific(){
