@@ -29,10 +29,10 @@ namespace ItlaBanking.Controllers
         private readonly TarjetaCreditoRepository _tarjetasRepository;
 
 
-
         public ClientController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager,
             ItlaBankingContext context, IMapper mapper, UsuarioRepository usuarioRepository, CuentaRepository cuentaRepository,
             TarjetaCreditoRepository tarjetasRepository, PrestamosRepository prestamosRepository)
+
         {
             _userManager = userManager;
             _signinManager = signInManager;
@@ -47,6 +47,7 @@ namespace ItlaBanking.Controllers
             _tarjetasRepository = tarjetasRepository;
 
 
+
         }
 
         [HttpGet]
@@ -58,17 +59,21 @@ namespace ItlaBanking.Controllers
             usu = await _context.Usuario.FirstOrDefaultAsync(x => x.Usuario1 == User.Identity.Name);
             int? id = usu.IdUsuario;
             if (id != null)
+
             {
+                int idusuarioentero = Convert.ToInt32(id);
+
                 TraerProductosViewModels tpvm = new TraerProductosViewModels();
                 var CuentaList = await _context.Cuenta.Where(x => x.IdUsuario == id).ToListAsync();
                 var TarjetasList = await _context.TarjetaCredito.Where(x => x.IdUsuario == id).ToListAsync();
                 var PrestamosList = await _context.Prestamos.Where(x => x.IdUsuario == id).ToListAsync();
-                tpvm.user = await _context.Usuario.FirstOrDefaultAsync(x=>x.IdUsuario == id);
-                tpvm.Cuenta = CuentaList;
-                tpvm.Credito = TarjetasList;
-                tpvm.Prestamos = PrestamosList;
 
-                tpvm.IdUsuario = Convert.ToInt32(id);
+             
+                tpvm.user = await  _usuarioRepository.GetByIdAsync(idusuarioentero);
+                tpvm.Cuenta = await _cuentaRepository.GetCuentaUsuario(idusuarioentero);
+                tpvm.Credito = await _tarjetasRepository.GetCreditoUsuario(idusuarioentero);
+                tpvm.Prestamos = await _prestamosRepository.GetPrestamoUsuario(idusuarioentero);
+                tpvm.IdUsuario = idusuarioentero;
 
 
                 return View(tpvm);
@@ -114,6 +119,7 @@ namespace ItlaBanking.Controllers
 
         [HttpPost]
         public async Task<IActionResult> PagosTarjeta(PagosViewModel ptvm)
+
         {
             ViewData["Nombre"] = User.Identity.Name;
 

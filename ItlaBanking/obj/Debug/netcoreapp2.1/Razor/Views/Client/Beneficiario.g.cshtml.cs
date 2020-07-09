@@ -52,7 +52,11 @@ using ItlaBanking.Models;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
             BeginContext(0, 1682, false);
+<<<<<<< HEAD
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7724a6caca2549a3a5139dde81eb975c", async() => {
+=======
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6f39e48a661b421bab41090cd13924aa", async() => {
+>>>>>>> 659e30bb2e273ce2bb6fc612f369c3fbc3a611d0
                 BeginContext(47, 1628, true);
                 WriteLiteral(@"
 

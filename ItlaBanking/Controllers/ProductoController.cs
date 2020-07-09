@@ -43,17 +43,41 @@ namespace ItlaBanking.Controllers
             _tarjetaCreditoRepository = tarjetaCreditoRepository;
         }
 
-        public async Task<IActionResult> DeletePrestamo(int? id) {
+        public async Task<IActionResult> DeletePrestamo(int IdUsuario, int IdCuenta) {
 
-            if (id == null) {
-                RedirectToAction("Index", "Login");
-            }
+            await _repositoryPrestamos.Delete(IdCuenta);
 
-            await _repositoryPrestamos.Delete(id.Value);
-
-            return RedirectToAction("Producto", "Usuario", new { @id = id });
+            return RedirectToAction("Producto", "Usuario", new { @id = IdUsuario});
         }
-        
+
+        public async Task<IActionResult> DeleteTarjeta(int IdUsuario, int IdCuenta)
+        {
+            
+            await _tarjetaCreditoRepository.Delete(IdCuenta);
+
+            return RedirectToAction("Producto", "Usuario", new { @id = IdUsuario});
+        }
+
+
+        public async Task<IActionResult> DeleteCuentaAhorro(int IdUsuario, int IdCuenta)
+        {
+            
+            var cuenta = await _cuentaRepository.GetByIdAsync(IdCuenta);
+            decimal MontoCuentaEliminada = Convert.ToDecimal(cuenta.Balance);
+
+            var cuentaPrincipal =  _cuentaRepository.GetCuentaAt(IdUsuario);
+            decimal MontoCuentaPrincipal = Convert.ToDecimal(cuentaPrincipal.Balance);
+
+            decimal total = MontoCuentaPrincipal + MontoCuentaEliminada;
+            cuentaPrincipal.Balance = total;
+
+            await _cuentaRepository.Update(cuentaPrincipal);
+
+            await _cuentaRepository.Delete(IdCuenta);
+
+            return RedirectToAction("Producto", "Usuario", new { @id = IdUsuario });
+        }
+
 
     }
 

@@ -15,7 +15,7 @@
                     <a class="nav-link active h2"><i class="fa fa-plus-circle" aria-hidden="true"> Registrar Producto</i></a>
                 </li>
                 <li class="nav-item w-50 rounded-top">
-                    <a class="nav-link text-white h2" asp-action="Producto" asp-controller="Usuario" asp-route-id="@Model.IdUsuario"><i class="fa fa-eye" aria-hidden="true"></i> Ver Productos</i></a>
+                    <a class="nav-link text-white h2" asp-action="Producto" asp-controller="Usuario" asp-route-id="@Model.IdUsuario"><i class="fa fa-eye" aria-hidden="true"></i> Ver Productos</a>
                 </li>
             </ul>
 
@@ -23,7 +23,7 @@
         <div class="card-body bg-light">
 
             <form asp-action="CrearProducto" asp-controller="Usuario" method="post">
-                <div asp-validation-summary="All" class="text-danger"></div>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                 <div class="form-group">
                     <div class="row col-lg-8">

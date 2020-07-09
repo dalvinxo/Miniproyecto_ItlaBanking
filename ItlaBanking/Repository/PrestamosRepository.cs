@@ -15,8 +15,11 @@ namespace ItlaBanking.Repository
         {
             _context = context;
         }
-        
-        
+
+        public async Task<IEnumerable<Prestamos>> GetPrestamoUsuario(int id)
+        {
+            return await _context.Prestamos.Where(x => x.IdUsuario == id).OrderByDescending(x => x.FechaExpiracion).ToListAsync();
+        }
 
     }
 }

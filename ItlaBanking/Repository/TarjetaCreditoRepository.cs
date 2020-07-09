@@ -15,7 +15,12 @@ namespace ItlaBanking.Repository
         {
             _context = context;
         }
-        
+
+        public async Task<IEnumerable<TarjetaCredito>> GetCreditoUsuario(int id)
+        {
+            return await _context.TarjetaCredito.Where(x => x.IdUsuario == id).OrderByDescending(x => x.FechaExpiracion).ToListAsync();
+        }
+
 
     }
 }

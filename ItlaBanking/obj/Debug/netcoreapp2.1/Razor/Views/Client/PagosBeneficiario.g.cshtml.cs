@@ -62,7 +62,11 @@ using ItlaBanking.Models;
             WriteLiteral("<html>\r\n");
             EndContext();
             BeginContext(15, 2870, false);
+<<<<<<< HEAD
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "134839959e194ffb8dc4869196eca584", async() => {
+=======
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5eb7fdf82dbf413d9ed6b756d8454724", async() => {
+>>>>>>> 659e30bb2e273ce2bb6fc612f369c3fbc3a611d0
                 BeginContext(62, 373, true);
                 WriteLiteral(@"
     <div class=""container bg-warning border border-white rounded shadow-lg p-1 mb-5 bg-white rounded"">
@@ -75,7 +79,11 @@ using ItlaBanking.Models;
             ");
                 EndContext();
                 BeginContext(435, 2403, false);
+<<<<<<< HEAD
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "46785f74dd7d421bb37a182ba6e5d2e0", async() => {
+=======
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2576ffd82e4c4ad7b1b50067125786a6", async() => {
+>>>>>>> 659e30bb2e273ce2bb6fc612f369c3fbc3a611d0
                     BeginContext(441, 355, true);
                     WriteLiteral(@"
 
@@ -86,7 +94,11 @@ using ItlaBanking.Models;
                             ");
                     EndContext();
                     BeginContext(796, 51, false);
+<<<<<<< HEAD
                     __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1a0e3214d7b64eea920f00681f98333f", async() => {
+=======
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7100b5083f754849a9554145b2cd1aca", async() => {
+>>>>>>> 659e30bb2e273ce2bb6fc612f369c3fbc3a611d0
                         BeginContext(823, 15, true);
                         WriteLiteral("Beneficiarios..");
                         EndContext();
@@ -111,7 +123,11 @@ using ItlaBanking.Models;
                     WriteLiteral("\r\n                            ");
                     EndContext();
                     BeginContext(877, 40, false);
+<<<<<<< HEAD
                     __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1622d2fa23fc4583adbbfa519f297ac4", async() => {
+=======
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9066fb121e984769827d7332a030cdba", async() => {
+>>>>>>> 659e30bb2e273ce2bb6fc612f369c3fbc3a611d0
                         BeginContext(895, 13, true);
                         WriteLiteral(" Pablo Molina");
                         EndContext();
@@ -133,7 +149,11 @@ using ItlaBanking.Models;
                     WriteLiteral("\r\n                            ");
                     EndContext();
                     BeginContext(947, 30, false);
+<<<<<<< HEAD
                     __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4fdb61887d184e5ab426a074367c066e", async() => {
+=======
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d254526a80c54919a0fbc0569ace8cba", async() => {
+>>>>>>> 659e30bb2e273ce2bb6fc612f369c3fbc3a611d0
                         BeginContext(965, 3, true);
                         WriteLiteral("Two");
                         EndContext();
@@ -155,7 +175,11 @@ using ItlaBanking.Models;
                     WriteLiteral("\r\n                            ");
                     EndContext();
                     BeginContext(1007, 32, false);
+<<<<<<< HEAD
                     __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bfb9b06915c6437db955467ec1380f6a", async() => {
+=======
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c06c403ed3454d2cb0a7341ec70bfb8d", async() => {
+>>>>>>> 659e30bb2e273ce2bb6fc612f369c3fbc3a611d0
                         BeginContext(1025, 5, true);
                         WriteLiteral("Three");
                         EndContext();
@@ -192,7 +216,11 @@ using ItlaBanking.Models;
                             ");
                     EndContext();
                     BeginContext(1890, 51, false);
+<<<<<<< HEAD
                     __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cc1766adce444bf180220d8eba8056b6", async() => {
+=======
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "975391d0bb5c4ae99f18c74242107f78", async() => {
+>>>>>>> 659e30bb2e273ce2bb6fc612f369c3fbc3a611d0
                         BeginContext(1917, 15, true);
                         WriteLiteral("Beneficiarios..");
                         EndContext();
@@ -217,7 +245,11 @@ using ItlaBanking.Models;
                     WriteLiteral("\r\n                            ");
                     EndContext();
                     BeginContext(1971, 40, false);
+<<<<<<< HEAD
                     __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "52b53f799c9d4e3ead7695d91c2f22ba", async() => {
+=======
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ca23926ff1ac4670b8d36bd39bde9044", async() => {
+>>>>>>> 659e30bb2e273ce2bb6fc612f369c3fbc3a611d0
                         BeginContext(1989, 13, true);
                         WriteLiteral(" Pablo Molina");
                         EndContext();
@@ -239,7 +271,11 @@ using ItlaBanking.Models;
                     WriteLiteral("\r\n                            ");
                     EndContext();
                     BeginContext(2041, 30, false);
+<<<<<<< HEAD
                     __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dffe2fe0e3c34ab58b3d021db917aa95", async() => {
+=======
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e2ac88dfb84843e68f3a5fae42f0d5de", async() => {
+>>>>>>> 659e30bb2e273ce2bb6fc612f369c3fbc3a611d0
                         BeginContext(2059, 3, true);
                         WriteLiteral("Two");
                         EndContext();
@@ -261,7 +297,11 @@ using ItlaBanking.Models;
                     WriteLiteral("\r\n                            ");
                     EndContext();
                     BeginContext(2101, 32, false);
+<<<<<<< HEAD
                     __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "94f0b8c514b945a1a699d39ce50e88cf", async() => {
+=======
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e56b81a924204055833afaf23b73156f", async() => {
+>>>>>>> 659e30bb2e273ce2bb6fc612f369c3fbc3a611d0
                         BeginContext(2119, 5, true);
                         WriteLiteral("Three");
                         EndContext();

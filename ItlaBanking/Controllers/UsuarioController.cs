@@ -152,12 +152,21 @@ namespace ItlaBanking.Controllers
                 var newPrestamo = _mapper.Map<Prestamos>(pdt);
                 newPrestamo.FechaExpiracion = nuevaFecha;
 
-            
+
+                //Agrando monto prestamo a cuenta principal
+                decimal MontoPrestamo = Convert.ToDecimal(newPrestamo.Monto);
+
+                var cuentaPrincipal = _cuentaRepository.GetCuentaAt(id.Value);
+                decimal MontoCuentaPrincipal = Convert.ToDecimal(cuentaPrincipal.Balance);
+
+                decimal total = MontoCuentaPrincipal + MontoPrestamo;
+                cuentaPrincipal.Balance = total;
+
+                await _cuentaRepository.Update(cuentaPrincipal);
 
                 await _repositoryPrestamos.AddAsync(newPrestamo);
 
-
-                //  return RedirectToAction("Producto", "Usuario", id);
+                
                 return RedirectToAction("Producto", "Usuario", new { @id = id });
 
             }
@@ -172,9 +181,12 @@ namespace ItlaBanking.Controllers
                 int idusuarioentero = Convert.ToInt32(id);
                 TraerProductosViewModels tpvm = new TraerProductosViewModels();
                 //var CuentaList = await _context.Cuenta.Where(x=>x.IdUsuario == id).ToListAsync();
-                var TarjetasList = await _context.TarjetaCredito.Where(x => x.IdUsuario == id).ToListAsync();
-                var PrestamosList = await _context.Prestamos.Where(x => x.IdUsuario == id).ToListAsync();
-                var CuentaList = _cuentaRepository.GetCuentaUsuario(idusuarioentero);
+               // var TarjetasList = await _context.TarjetaCredito.Where(x => x.IdUsuario == id).ToListAsync();
+                //var PrestamosList = await _context.Prestamos.Where(x => x.IdUsuario == id).ToListAsync();
+                var CuentaList = await _cuentaRepository.GetCuentaUsuario(idusuarioentero);
+                var TarjetasList = await  _tarjetaCreditoRepository.GetCreditoUsuario(idusuarioentero);
+                var PrestamosList = await _repositoryPrestamos.GetPrestamoUsuario(idusuarioentero);
+
 
 
                 tpvm.Cuenta = CuentaList;
@@ -188,7 +200,7 @@ namespace ItlaBanking.Controllers
         }
 
 
-        public async Task<IActionResult> CrearUsuario()
+        public IActionResult CrearUsuario()
         {
             return View();
         }
@@ -237,11 +249,19 @@ namespace ItlaBanking.Controllers
 
         public async Task<IActionResult> EditUsuario(int? id)
         {
-            //var UserEdit = await _context.Usuario.FirstOrDefaultAsync(x => x.IdUsuario== id);
             var UserEdit = await _usuarioRepository.GetByIdAsync(id.Value);
             if (UserEdit!=null) {
                 var Usu = _mapper.Map<RegistroUsuarioViewModels>(UserEdit);
+                //var cuentaPrincipal = _cuentaRepository.GetCuentaAt(id.Value);
+
+                //if (cuentaPrincipal != null)
+                //{
+                //    Usu.Balance = cuentaPrincipal.Balance;
+                //}
+               
                 return View(Usu);
+
+
 
             }
 

@@ -1,71 +1,76 @@
 ﻿@model ItlaBanking.ViewModels.TraerProductosViewModels
 @{
-//Layout = null;
+    //Layout = null;
 }
 <body class="bg-light" id="CardViewFormulario">
     <div class="container bg-warning border border-white rounded shadow-lg p-1 mb-5 bg-white rounded">
 
         <div class="text-center overflow-auto">
-            @foreach (var cuenta in Model.Cuenta)
-            {
-                if (cuenta.Categoria == 1)
-                {
-                    <div class="card rounded border-0">
 
-                        <div class="card-header headNombre rounded border border-secondary shadow-sm p-1 bg-white rounded mb-2">
-                            <div class="d-flex justify-content-center letterPagos ">Home</div>
-                        </div>
+            <div class="card rounded border-0">
 
-                        <div class="card-body p-1 mb-2">
+                <div class="card-header headNombre rounded border border-secondary shadow-sm p-1 bg-white rounded mb-2">
+                    <div class="d-flex justify-content-center letterPagos ">Home</div>
+                </div>
+
+                <div class="card-body p-1 mb-2">
+                    @foreach (var cuenta in Model.Cuenta)
+                    {
+                        if (cuenta.Categoria == 1)
+                        {
+
                             <div class=" headNombre">
                                 @Model.user.Nombre  @Model.user.Apellido
                             </div>
                             <h5 class="card-title titleCuenta"><span style="color:olivedrab" class="titleProducto">Cuenta Principal:</span> #@cuenta.NumeroCuenta</h5>
                             <h6 class="card-subtitle mb-1 text-muted">Fecha de Adquisicion: @cuenta.FechaAdquisicion</h6>
                             <p class="card-text  dineroAhorro">Balance: <span class="simboloDinero">$</span> @cuenta.Balance</p>
+
+
+                        }
+                        else
+                        {
+
+                            <!--Cuentas de Ahorro-->
+                            <div class="card w-100 text-left shadow bg-white rounded mb-3">
+                                <div class="card-body p-1">
+
+                                    <h5 class="card-title titleCuenta"><span style="color:olivedrab" class="titleProducto">Cuenta de Ahorro:</span> #@cuenta.NumeroCuenta</h5>
+                                    <h6 class="card-subtitle mb-1 text-muted">Fecha de Adquisicion: @cuenta.FechaAdquisicion</h6>
+                                    <p class="card-text  dineroAhorro">Balance: <span class="simboloDinero">$</span> @cuenta.Balance</p>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                    @foreach (var credito in Model.Credito)
+                    {
+                        <!--Tarjeta de Credito-->
+                        <div class="card w-100 text-left shadow bg-white rounded  mb-3">
+                            <div class="card-body p-1">
+
+                                <h5 class="card-title titleCuenta"><span style="color:orange" class="titleProducto">Tarjeta de Credito:</span> #@credito.NumeroTarjeta</h5>
+                                <h6 class="card-subtitle mb-1 font-weight-bold font-italic text-info">Fecha de Expiración: <span class="text-dark">@credito.FechaExpiracion</span></h6>
+                                <p class="card-text  dineroAhorro">Monto Limite: <span class="simboloDinero">$</span> @credito.MontoLimite</p>
+                            </div>
                         </div>
-                    </div>
-                }
-                else
-                {
+                    }
 
-                <!--Cuentas de Ahorro-->
-                <div class="card w-100 text-left shadow bg-white rounded mb-3">
-                    <div class="card-body p-1">
+                    @foreach (var prestamo in Model.Prestamos)
+                    {
+                        <!--Prestamos-->
+                        <div class="card w-100 text-left shadow bg-white rounded  mb-3">
+                            <div class="card-body p-1">
 
-                        <h5 class="card-title titleCuenta"><span style="color:olivedrab" class="titleProducto">Cuenta de Ahorro:</span> #@cuenta.NumeroCuenta</h5>
-                        <h6 class="card-subtitle mb-1 text-muted">Fecha de Adquisicion: @cuenta.FechaAdquisicion</h6>
-                        <p class="card-text  dineroAhorro">Balance: <span class="simboloDinero">$</span> @cuenta.Balance</p>
-                    </div>
-                </div>
-                }
-            }
+                                <h5 class="card-title titleCuenta"><span style="color:darkred" class="titleProducto">Prestamo:</span> #@prestamo.NumeroPrestamo</h5>
+                                <h6 class="card-subtitle mb-1 font-weight-bold font-italic text-info">Fecha de Expiración: <span class="text-dark">@prestamo.FechaExpiracion</span></h6>
+                                <p class="card-text  dineroAhorro">Monto: <span class="simboloDinero">$</span> @prestamo.Monto</p>
+                            </div>
+                        </div>
+                    }
 
-            @foreach (var credito in Model.Credito) {
-            <!--Tarjeta de Credito-->
-            <div class="card w-100 text-left shadow bg-white rounded  mb-3">
-                <div class="card-body p-1">
-
-                    <h5 class="card-title titleCuenta"><span style="color:orange" class="titleProducto">Tarjeta de Credito:</span> #@credito.NumeroTarjeta</h5>
-                    <h6 class="card-subtitle mb-1 font-weight-bold font-italic text-info">Fecha de Expiración: <span class="text-dark">@credito.FechaExpiracion</span></h6>
-                    <p class="card-text  dineroAhorro">Monto Limite: <span class="simboloDinero">$</span> @credito.MontoLimite</p>
                 </div>
             </div>
-            }
-
-            @foreach (var prestamo in Model.Prestamos) {
-            <!--Prestamos-->
-            <div class="card w-100 text-left shadow bg-white rounded  mb-3">
-                <div class="card-body p-1">
-
-                    <h5 class="card-title titleCuenta"><span style="color:darkred" class="titleProducto">Prestamo:</span> #@prestamo.NumeroPrestamo</h5>
-                    <h6 class="card-subtitle mb-1 font-weight-bold font-italic text-info">Fecha de Expiración: <span class="text-dark">@prestamo.FechaExpiracion</span></h6>
-                    <p class="card-text  dineroAhorro">Monto: <span class="simboloDinero">$</span> @prestamo.Monto</p>
-                </div>
-            </div>
-            }
-
-
         </div>
     </div>
 </body>

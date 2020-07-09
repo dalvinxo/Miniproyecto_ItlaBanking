@@ -17,10 +17,13 @@ namespace ItlaBanking.Controllers
     public class AdministradorController : Controller
     {
         //conection db
-        private readonly ItlaBankingContext _context;
 
         //repository
         private readonly UsuarioRepository _usuarioRepository;
+        private readonly CuentaRepository _cuentaRepository;
+        private readonly PrestamosRepository _prestamosRepository;
+        private readonly TarjetaCreditoRepository _tarjetaCreditoRepository;
+        
 
         //identity
         private readonly UserManager<IdentityUser> _userManager;
@@ -28,19 +31,52 @@ namespace ItlaBanking.Controllers
 
 
         public AdministradorController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager,
-            ItlaBankingContext context, UsuarioRepository usuarioRepository)
+            ItlaBankingContext context, UsuarioRepository usuarioRepository, CuentaRepository cuentaRepository, PrestamosRepository prestamosRepository,
+            TarjetaCreditoRepository tarjetaCreditoRepository
+          )
         {
             _userManager = userManager;
             _signinManager = signInManager;
-            _context = context;
             _usuarioRepository = usuarioRepository;
+            _cuentaRepository = cuentaRepository;
+            _tarjetaCreditoRepository = tarjetaCreditoRepository;
+            _prestamosRepository = prestamosRepository;
 
 
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             ViewData["Nombre"] =User.Identity.Name;
-            return View();
+
+            //Total de clientes segun su estado.
+            var TotalCLientActivos = await _usuarioRepository.GetCountUsuario("Activo");
+            var TotalClientInactivos = await _usuarioRepository.GetCountUsuario("Inactivo");
+
+            //Total de Productos por tipos
+            var TotalCuenta = await _cuentaRepository.GetAllAsync();
+            var TotalPrestamo = await _prestamosRepository.GetAllAsync();
+            var TotalTarjeta = await _tarjetaCreditoRepository.GetAllAsync();
+            
+            //conversion client
+            int CountClientesActivos = Convert.ToInt32(TotalCLientActivos.Count());
+            int CountClientInactivos = Convert.ToInt32(TotalClientInactivos.Count());
+
+            //conversion producto
+            int CountProductCuenta = Convert.ToInt32(TotalCuenta.Count());
+            int CountProductTarjeta = Convert.ToInt32(TotalTarjeta.Count());
+            int CountProductoPrestamo = Convert.ToInt32(TotalPrestamo.Count());
+
+
+            EstadisticaAdministradorViewModel estadistica = new EstadisticaAdministradorViewModel() {
+
+                TotalClientActivos = CountClientesActivos,
+                TotalClienteInactivos = CountClientInactivos,
+                TotalCuenta = CountProductCuenta,
+                TotalPrestamo = CountProductoPrestamo,
+                TotalTarjeta = CountProductTarjeta
+
+            };
+            return View(estadistica);
         }
 
 
@@ -50,7 +86,6 @@ namespace ItlaBanking.Controllers
             //var ListaUsuarios = await _usuarioRepository.GetAllAsync();
 
             var ListaUsuarios = await _usuarioRepository.GetUsuarioOrder();
-            //var ListaUsuarios = await _usuarioRepository.GetUsuarioSpecific();
             
             return View(ListaUsuarios);
 
