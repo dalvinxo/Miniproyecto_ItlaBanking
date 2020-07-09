@@ -71,7 +71,7 @@ using ItlaBanking.Models;
 #line default
 #line hidden
             BeginContext(198, 15278, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b6ef2f71aa624aa7a3f5e360fa72c69f", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "468586c01555400c84ae53223dec0d75", async() => {
                 BeginContext(245, 293, true);
                 WriteLiteral(@"
 
@@ -84,7 +84,7 @@ using ItlaBanking.Models;
                     ");
                 EndContext();
                 BeginContext(538, 194, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f72168dcdb7d4596b880e4445e5e26c5", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "655109607a10400994e202061acfa99d", async() => {
                     BeginContext(657, 71, true);
                     WriteLiteral("<i class=\"fa fa-plus-circle\" aria-hidden=\"true\"> Registrar Producto</i>");
                     EndContext();
@@ -359,7 +359,7 @@ using ItlaBanking.Models;
                                                     ");
                 EndContext();
                 BeginContext(12187, 185, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "61e96fa2eb414e60a806ab77e2cca656", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bc50383743de4242a98e1798041a7ec2", async() => {
                     BeginContext(12366, 2, true);
                     WriteLiteral("Si");
                     EndContext();

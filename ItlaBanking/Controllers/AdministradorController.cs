@@ -39,13 +39,14 @@ namespace ItlaBanking.Controllers
         }
         public IActionResult Index()
         {
-
+            ViewData["Nombre"] =User.Identity.Name;
             return View();
         }
 
 
         public async Task<IActionResult> AdministrarUsuario()
         {
+            ViewData["Nombre"] = User.Identity.Name;
             //var ListaUsuarios = await _usuarioRepository.GetAllAsync();
 
             var ListaUsuarios = await _usuarioRepository.GetUsuarioOrder();

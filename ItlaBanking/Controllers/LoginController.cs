@@ -54,6 +54,7 @@ namespace ItlaBanking.Controllers
                 if (result.Succeeded)
                 {
                     var user = await _userManager.FindByNameAsync(lvm.Usuario1);
+                    
 
                     if (await _userManager.IsInRoleAsync(user, "Cliente")) {
                         return RedirectToAction("Index", "Client");
