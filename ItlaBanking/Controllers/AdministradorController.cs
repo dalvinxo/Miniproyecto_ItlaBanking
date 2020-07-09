@@ -8,9 +8,12 @@ using Microsoft.AspNetCore.Identity;
 using ItlaBanking.Models;
 using Microsoft.EntityFrameworkCore;
 using ItlaBanking.Repository;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ItlaBanking.Controllers
+
 {
+    [Authorize(Roles ="Administrador")]
     public class AdministradorController : Controller
     {
         //conection db
@@ -39,6 +42,7 @@ namespace ItlaBanking.Controllers
 
             return View();
         }
+
 
         public async Task<IActionResult> AdministrarUsuario()
         {

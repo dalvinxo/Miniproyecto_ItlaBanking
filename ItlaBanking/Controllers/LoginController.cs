@@ -26,8 +26,22 @@ namespace ItlaBanking.Controllers
 
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            if (User.Identity.IsAuthenticated) {
+                var user = await _userManager.FindByNameAsync(User.Identity.Name);
+
+                if (await _userManager.IsInRoleAsync(user, "Administrador")) {
+                    return RedirectToAction("Index", "Administrador");
+
+                }
+                else if(await _userManager.IsInRoleAsync(user, "Cliente"))
+                {
+                    return RedirectToAction("Index", "Client");
+
+                }
+
+            }
             return View();
         }
 
@@ -39,7 +53,15 @@ namespace ItlaBanking.Controllers
                 var result = await _signinManager.PasswordSignInAsync(lvm.Usuario1, lvm.Clave, false,false);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Client");
+                    var user = await _userManager.FindByNameAsync(lvm.Usuario1);
+
+                    if (await _userManager.IsInRoleAsync(user, "Cliente")) {
+                        return RedirectToAction("Index", "Client");
+                    }
+                    else if(await _userManager.IsInRoleAsync(user, "Administrador")) {
+                        return RedirectToAction("Index", "Administrador");
+
+                    }
                 }
                 ModelState.AddModelError("","Usuario o clave incorrectos");
             }
