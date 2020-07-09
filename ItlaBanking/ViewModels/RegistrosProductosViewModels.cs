@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,15 +20,21 @@ namespace ItlaBanking.ViewModels
         public string TipoCuenta { get; set; }
 
         [Display(Name = "Digitar monto del prestamo:")]
-        //[Required(ErrorMessage = "Este campo debe ser llenado")]
+        [Range(0, 99999999999.99, ErrorMessage = "Balance invalido; numero maximo de digitos 13.")]
+        [Column(TypeName = "decimal(13, 2)")]
+        [Required(ErrorMessage = "Debe digitar el monto deseado para este campo.")]
         public decimal? Monto { get; set; }
 
         [Display(Name = "Digitar monto limite de la tarjeta:")]
-        //[Required(ErrorMessage = "Este campo debe ser llenado")]
+        [Range(0, 99999999999.99, ErrorMessage = "Balance invalido; numero maximo de digitos 13.")]
+        [Column(TypeName = "decimal(13, 2)")]
+        [Required(ErrorMessage = "Debe digitar el monto deseado para este campo.")]
         public decimal? MontoLimite { get; set; }
 
         [Display(Name = "Digitar monto inicial:")]
-        //[Required(ErrorMessage = "Este campo debe ser llenado")]
+        [Range(0, 99999999999.99, ErrorMessage = "Balance invalido; numero maximo de digitos 13.")]
+        [Column(TypeName = "decimal(13, 2)")]
+        [Required(ErrorMessage = "Debe digitar el monto deseado para este campo.")]
         public decimal? Balance { get; set; }
 
         public DateTime? FechaExpiracion { get; set; }

@@ -174,16 +174,16 @@ namespace ItlaBanking.Controllers
             }
         }
 
-        public IActionResult Producto(int? id) {
+        public async Task<IActionResult> Producto(int? id) {
 
                 int idusuarioentero = Convert.ToInt32(id);
                 TraerProductosViewModels tpvm = new TraerProductosViewModels();
                 //var CuentaList = await _context.Cuenta.Where(x=>x.IdUsuario == id).ToListAsync();
                // var TarjetasList = await _context.TarjetaCredito.Where(x => x.IdUsuario == id).ToListAsync();
                 //var PrestamosList = await _context.Prestamos.Where(x => x.IdUsuario == id).ToListAsync();
-                var CuentaList = _cuentaRepository.GetCuentaUsuario(idusuarioentero);
-                var TarjetasList = _tarjetaCreditoRepository.GetCreditoUsuario(idusuarioentero);
-                var PrestamosList = _repositoryPrestamos.GetPrestamoUsuario(idusuarioentero);
+                var CuentaList = await _cuentaRepository.GetCuentaUsuario(idusuarioentero);
+                var TarjetasList = await  _tarjetaCreditoRepository.GetCreditoUsuario(idusuarioentero);
+                var PrestamosList = await _repositoryPrestamos.GetPrestamoUsuario(idusuarioentero);
 
 
 
@@ -247,16 +247,15 @@ namespace ItlaBanking.Controllers
 
         public async Task<IActionResult> EditUsuario(int? id)
         {
-            //var UserEdit = await _context.Usuario.FirstOrDefaultAsync(x => x.IdUsuario== id);
             var UserEdit = await _usuarioRepository.GetByIdAsync(id.Value);
             if (UserEdit!=null) {
                 var Usu = _mapper.Map<RegistroUsuarioViewModels>(UserEdit);
-                var cuentaPrincipal = _cuentaRepository.GetCuentaAt(id.Value);
+                //var cuentaPrincipal = _cuentaRepository.GetCuentaAt(id.Value);
 
-                if (cuentaPrincipal != null)
-                {
-                    Usu.Balance = cuentaPrincipal.Balance;
-                }
+                //if (cuentaPrincipal != null)
+                //{
+                //    Usu.Balance = cuentaPrincipal.Balance;
+                //}
                
                 return View(Usu);
 

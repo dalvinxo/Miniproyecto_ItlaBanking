@@ -54,10 +54,8 @@ namespace ItlaBanking.ViewModels
 
 
         [Display(Name = "Seleccionar tipo de usuario:")]
-        //[Required(ErrorMessage = "Este campo debe ser llenado")]
         public string TipoUsuario { get; set; }
-
-        //[RegularExpression(@"^\d+\.\d{0,2}$")]
+        
         [Display(Name = "Balance:")]
         [Range(0, 99999999999.99, ErrorMessage = "Balance invalido; numero maximo de digitos 13.")]
         [Column(TypeName = "decimal(13, 2)")]
