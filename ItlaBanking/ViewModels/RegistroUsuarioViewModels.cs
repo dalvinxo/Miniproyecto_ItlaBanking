@@ -55,7 +55,7 @@ namespace ItlaBanking.ViewModels
 
         [Display(Name = "Seleccionar tipo de usuario:")]
         public string TipoUsuario { get; set; }
-        
+
         [Display(Name = "Balance:")]
         [Range(0, 99999999999.99, ErrorMessage = "Balance invalido; numero maximo de digitos 13.")]
         [Column(TypeName = "decimal(13, 2)")]

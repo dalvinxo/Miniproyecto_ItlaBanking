@@ -8,9 +8,12 @@ using Microsoft.AspNetCore.Identity;
 using ItlaBanking.Models;
 using Microsoft.EntityFrameworkCore;
 using ItlaBanking.Repository;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ItlaBanking.Controllers
+
 {
+    [Authorize(Roles ="Administrador")]
     public class AdministradorController : Controller
     {
         //conection db
@@ -43,6 +46,8 @@ namespace ItlaBanking.Controllers
         }
         public async Task<IActionResult> Index()
         {
+            ViewData["Nombre"] =User.Identity.Name;
+
             //Total de clientes segun su estado.
             var TotalCLientActivos = await _usuarioRepository.GetCountUsuario("Activo");
             var TotalClientInactivos = await _usuarioRepository.GetCountUsuario("Inactivo");
@@ -77,6 +82,9 @@ namespace ItlaBanking.Controllers
 
         public async Task<IActionResult> AdministrarUsuario()
         {
+            ViewData["Nombre"] = User.Identity.Name;
+            //var ListaUsuarios = await _usuarioRepository.GetAllAsync();
+
             var ListaUsuarios = await _usuarioRepository.GetUsuarioOrder();
             
             return View(ListaUsuarios);

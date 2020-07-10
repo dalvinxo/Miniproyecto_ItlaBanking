@@ -86,9 +86,11 @@
                     </button>
 
                 </div>
-                <a asp-action="Index" class="navbar-brand align-items-center mr-auto text-dark pl-3 font-italic"><span class="text-info font-weight-bold">Administrador:</span> Pablo Molina </a>
+                <a asp-action="Index" class="navbar-brand align-items-center mr-auto text-dark pl-3 font-italic">
+                <span class="text-info font-weight-bold">Administrador:</span> @ViewData["Nombre"] 
+                </a>
 
-                <a asp-controller="Login" asp-action="Index" class="btn btn-danger ml-auto  btn-sm">Cerrar Sesión</a>
+                <a asp-controller="Login" asp-action="CerrarSesion" class="btn btn-danger ml-auto  btn-sm">Cerrar Sesión</a>
             </nav>
         </header>
     </div>

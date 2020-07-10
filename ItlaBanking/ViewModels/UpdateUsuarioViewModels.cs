@@ -56,7 +56,7 @@ namespace ItlaBanking.ViewModels
         //[Required(ErrorMessage = "Este campo debe ser llenado")]
         public string TipoUsuario { get; set; }
 
-        [MaxLength(13)]
+        //[MaxLength(13)]
         [Display(Name = "Balance:")]
         [DataType(DataType.Currency)]
         public decimal? Balance { get; set; }

@@ -1,13 +1,94 @@
-﻿<body class="bg-light" id="CardViewFormulario">
+﻿@model ItlaBanking.ViewModels.BeneficiarioViewModel
+<body class="bg-light" id="CardViewFormulario">
 
     <div class="container bg-warning border border-white rounded shadow-lg p-1 mb-5 bg-white rounded">
 
         <div class="card-header headNombre rounded border border-secondary shadow-sm p-1 bg-white rounded mb-3">
+            <a data-toggle="modal" data-target="#agg" class="btn btn-success mr-auto  btn-sm text-white">Agregar Beneficiario</a>
+
             <div class="d-flex justify-content-center letterPagos">Beneficiarios</div>
+
         </div>
 
         <div class="d-flex justify-content-center ">
             <div class="W-75 mt-3">
+
+                @*modal*@
+                <div class="modal fade " id="tarjeta" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog modal-sm">
+                        <div class="modal-content bg-danger shadow-sm p-1 rounded">
+
+                            <div class="modal-header shadow p-1 rounded">
+                                <h5 class="modal-title text-white font-weight-bolder" id="staticBackdropLabel" style="font-size:30px;">Tarjeta!</h5>
+                                <button type="button" class=" btn btn-danger text-white font-weight-bolder" data-dismiss="modal" aria-label="Close"><i class="fa fa-times" aria-hidden="true" style="font-size:24px;"></i></button>
+                            </div>
+
+
+                            <div class="modal-body bg-light h6">
+                                ¿Usted esta seguro de que desea eliminar este Tarjeta de crédito?
+
+
+                                <div class="form-row mt-4">
+                                    <div class="form-group col-6">
+                                        <input type="button" value="No" style="font-size:20px;" data-dismiss="modal" class="btn btn-outline-danger btn-block  shadow rounded" />
+
+                                    </div>
+                                    <div class="form-group col-6">
+
+                                        <form asp-controller="Producto" asp-action="DeleteTarjeta" method="post">
+                                            @*<input name="IdCuenta" type="hidden" value="credito.NumeroTarjeta">*@
+                                            @*<input asp-for="IdUsuario" type="hidden" value="Model.IdUsuario">*@
+                                            <input value="Si" type="submit" style="font-size:20px;" class="btn btn-outline-primary btn-block  shadow rounded" />
+                                        </form>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                @*modal Agregar Beneficiario*@
+
+                <div class="modal fade " id="agg" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog modal-sm">
+                        <div class="modal-content bg-danger shadow-sm p-1 rounded">
+
+                            <div class="modal-header shadow p-1 rounded">
+                                <h5 class="modal-title text-white font-weight-bolder" id="staticBackdropLabel" style="font-size:30px;">Beneficiarios</h5>
+                                <button type="button" class=" btn btn-danger text-white font-weight-bolder" data-dismiss="modal" aria-label="Close"><i class="fa fa-times" aria-hidden="true" style="font-size:24px;"></i></button>
+                            </div>
+
+
+                            <div class="modal-body bg-light h6">
+                                Ingrese el numero de cuenta para agregar en su lista de beneficiarios
+
+
+                                <div class="form-row mt-4">
+                                    
+                                    <div class="form-group col-6">
+
+                                        <form asp-controller="Client" asp-action="AgregarBeneficiario" method="post">
+                                            <input asp-for="IdUsuario" type="hidden" value="@Model.IdUsuario">
+                                            <div class="form-group">
+                                                <label class="labelPago d-flex justify-content-center">Monto a pagar: </label>
+                                                <input asp-for="NumeroCuenta" type="number" class="form-control form-control-lg rounded-pill border border-dark shadow-lg p-3  bg-white rounded" placeholder="Ingresar Monto">
+
+                                            </div>                                           
+                                            <input value="Agregar" type="submit" style="font-size:20px;" class="btn btn-outline-primary btn-block  shadow rounded" />
+                                        </form>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
 
                 <table class="table table-striped table-dark text-center shadow rounded table-borderless">
                     <thead>
@@ -15,24 +96,27 @@
                             <th scope="col"> Numero de Cuenta</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Apellido</th>
+
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="bg-primary">
-                            <th scope="row">564564456</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">111555999</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">111444787</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                        </tr>
+                            @foreach (var bene in Model.cuenta)
+                            {
+                                <th scope="row">@bene.NumeroCuenta</th>
+                            }
+                            @foreach (var usu in Model.usuario)
+                            {
+                                <td>@usu.Nombre</td>
+                                <td>@usu.Apellido</td>
+                                <td>
+                                    <a data-toggle="modal" data-target="#tarjeta" class="text-white btn btn-danger ml-auto  btn-sm">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            }
+                            </tr>
+                        
 
                     </tbody>
                 </table>

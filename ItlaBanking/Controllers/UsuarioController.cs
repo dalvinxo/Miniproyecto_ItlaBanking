@@ -6,12 +6,14 @@ using AutoMapper;
 using ItlaBanking.Models;
 using ItlaBanking.Repository;
 using ItlaBanking.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace ItlaBanking.Controllers
 {
+    [Authorize(Roles ="Administrador")]
     public class UsuarioController : Controller
     {
 
