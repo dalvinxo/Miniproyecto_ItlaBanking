@@ -72,15 +72,9 @@ using ItlaBanking.Models;
             BeginContext(56, 2, true);
             WriteLiteral("\r\n");
             EndContext();
-<<<<<<< HEAD
             BeginContext(58, 2889, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c3539a21a42f47a29f4c13f7bd6f5725", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "61e7e9d351df4bdeaf3eb7ee8a430068", async() => {
                 BeginContext(105, 373, true);
-=======
-            BeginContext(10, 2495, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4f52d5db7c354961b6b7bd6facdb6470", async() => {
-                BeginContext(57, 373, true);
->>>>>>> 659e30bb2e273ce2bb6fc612f369c3fbc3a611d0
                 WriteLiteral(@"
 
     <div class=""container bg-warning border border-white rounded shadow-lg p-1 mb-5 bg-white rounded"">
@@ -93,32 +87,13 @@ using ItlaBanking.Models;
 
             ");
                 EndContext();
-<<<<<<< HEAD
                 BeginContext(478, 2422, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6d6c06b63ceb4a2f97f976e14ef4fdac", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a33dc82b77654f03a70c3a9f1e71c6f9", async() => {
                     BeginContext(549, 18, true);
                     WriteLiteral("\r\n                ");
                     EndContext();
                     BeginContext(567, 66, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("div", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ca74f787f50c4559b7fc244e481fa403", async() => {
-=======
-                BeginContext(430, 2028, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cccc1e70ac324988a6ae280c823c6d5f", async() => {
-                    BeginContext(436, 351, true);
-                    WriteLiteral(@"
-
-                <div class=""form-row"">
-                    <div class=""form-group col-md-6"">
-                        <label class=""labelPago ml-3"">Seleccionar Préstamo:</label>
-                        <select class=""custom-select custom-select-lg mb-3 rounded-pill shadow bg-white rounded border border-secondary"">
-                            ");
-                    EndContext();
-                    BeginContext(787, 47, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ffd60c45cc354989a4dc72d2cb2f634d", async() => {
-                        BeginContext(814, 11, true);
-                        WriteLiteral("Seleccionar");
-                        EndContext();
->>>>>>> 659e30bb2e273ce2bb6fc612f369c3fbc3a611d0
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("div", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f31a1f087a1249df9b80006bb75393e8", async() => {
                     }
                     );
                     __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationSummaryTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.ValidationSummaryTagHelper>();
@@ -141,14 +116,13 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationSummaryTagHelper.ValidationSumma
                     BeginContext(633, 208, true);
                     WriteLiteral("\r\n\r\n                <div class=\"form-row\">\r\n                    <div class=\"form-group col-md-6\">\r\n                        <label class=\"labelPago ml-3\">Seleccionar Préstamo:</label>\r\n                        ");
                     EndContext();
-<<<<<<< HEAD
                     BeginContext(841, 498, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "447f67f677b647c5b5923d31596c1167", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c7be776229514728bd84bf606c5cf70a", async() => {
                         BeginContext(982, 30, true);
                         WriteLiteral("\r\n                            ");
                         EndContext();
                         BeginContext(1012, 47, false);
-                        __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cb690097ba45456abcf783e78804dd17", async() => {
+                        __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "33f2eb947ac74872a8e6f33ffbad9d0a", async() => {
                             BeginContext(1039, 11, true);
                             WriteLiteral("Seleccionar");
                             EndContext();
@@ -171,69 +145,18 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationSummaryTagHelper.ValidationSumma
                         EndContext();
                         BeginContext(1059, 2, true);
                         WriteLiteral("\r\n");
-=======
-                    BeginContext(864, 36, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a2ac92a9c17e42e497865f31c97fe656", async() => {
-                        BeginContext(882, 9, true);
-                        WriteLiteral("021858454");
-                        EndContext();
-                    }
-                    );
-                    __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper>();
-                    __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper);
-                    __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper.Value = (string)__tagHelperAttribute_1.Value;
-                    __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_1);
-                    await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
-                    if (!__tagHelperExecutionContext.Output.IsContentModified)
-                    {
-                        await __tagHelperExecutionContext.SetOutputContentAsync();
-                    }
-                    Write(__tagHelperExecutionContext.Output);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.End();
-                    EndContext();
-                    BeginContext(900, 30, true);
-                    WriteLiteral("\r\n                            ");
-                    EndContext();
-                    BeginContext(930, 30, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "24f1f71087574addba89dae6a2aff93a", async() => {
-                        BeginContext(948, 3, true);
-                        WriteLiteral("Two");
-                        EndContext();
-                    }
-                    );
-                    __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper>();
-                    __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper);
-                    __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper.Value = (string)__tagHelperAttribute_2.Value;
-                    __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_2);
-                    await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
-                    if (!__tagHelperExecutionContext.Output.IsContentModified)
-                    {
-                        await __tagHelperExecutionContext.SetOutputContentAsync();
-                    }
-                    Write(__tagHelperExecutionContext.Output);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.End();
-                    EndContext();
-                    BeginContext(960, 30, true);
-                    WriteLiteral("\r\n                            ");
-                    EndContext();
-                    BeginContext(990, 32, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8efada2b5c2640d9a4db95acccdbd340", async() => {
-                        BeginContext(1008, 5, true);
-                        WriteLiteral("Three");
->>>>>>> 659e30bb2e273ce2bb6fc612f369c3fbc3a611d0
                         EndContext();
 #line 24 "C:\Users\Liam\Desktop\ShitBull\Programacion 3\Miniproyecto_ItlaBanking\ItlaBanking\Views\Client\PagosPrestamo.cshtml"
                              foreach (var prestamos in Model.prestamos)
                             {
 
-<<<<<<< HEAD
 #line default
 #line hidden
                         BeginContext(1165, 32, true);
                         WriteLiteral("                                ");
                         EndContext();
                         BeginContext(1197, 76, false);
-                        __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9ef27e4c7e6b4198a4c3ce9946a5a1fe", async() => {
+                        __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dabf2e97a59e43109e96eb7c387112df", async() => {
                             BeginContext(1240, 24, false);
 #line 26 "C:\Users\Liam\Desktop\ShitBull\Programacion 3\Miniproyecto_ItlaBanking\ItlaBanking\Views\Client\PagosPrestamo.cshtml"
                                                                      Write(prestamos.NumeroPrestamo);
@@ -272,17 +195,6 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationSummaryTagHelper.ValidationSumma
 #line hidden
                         BeginContext(1306, 24, true);
                         WriteLiteral("                        ");
-=======
-                    <div class=""form-group col-md-6"">
-                        <label class=""labelPago ml-3"">¿Desde que cuenta la quiere pagar?</label>
-                        <select class=""custom-select custom-select-lg mb-3 rounded-pill shadow bg-white rounded border border-secondary"">
-                            ");
-                    EndContext();
-                    BeginContext(1409, 47, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "28c9a94108a447918f3df7c541c9a719", async() => {
-                        BeginContext(1436, 11, true);
-                        WriteLiteral("Seleccionar");
->>>>>>> 659e30bb2e273ce2bb6fc612f369c3fbc3a611d0
                         EndContext();
                     }
                     );
@@ -306,14 +218,13 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper.For = ModelExpressionProvi
                     BeginContext(1339, 209, true);
                     WriteLiteral("\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-6\">\r\n                        <label class=\"labelPago ml-3\">¿Desde que cuenta la quiere pagar?</label>\r\n                        ");
                     EndContext();
-<<<<<<< HEAD
                     BeginContext(1548, 477, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "741cc216a4c24689be96cc1adcf51a92", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "276dc0247f5149e481de1428d014424e", async() => {
                         BeginContext(1684, 30, true);
                         WriteLiteral("\r\n                            ");
                         EndContext();
                         BeginContext(1714, 47, false);
-                        __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a806d82fe3ad47979b913f388ab17a83", async() => {
+                        __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "364216e758ae41e8bcff6318d3626f59", async() => {
                             BeginContext(1741, 11, true);
                             WriteLiteral("Seleccionar");
                             EndContext();
@@ -347,7 +258,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper.For = ModelExpressionProvi
                         WriteLiteral("                                ");
                         EndContext();
                         BeginContext(1893, 66, false);
-                        __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2b6617c9b5c34c3eab293354dbc23a6a", async() => {
+                        __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "036983a5033649b9b883f0e7ef688ad6", async() => {
                             BeginContext(1931, 19, false);
 #line 37 "C:\Users\Liam\Desktop\ShitBull\Programacion 3\Miniproyecto_ItlaBanking\ItlaBanking\Views\Client\PagosPrestamo.cshtml"
                                                                 Write(cuenta.NumeroCuenta);
@@ -386,12 +297,6 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper.For = ModelExpressionProvi
 #line hidden
                         BeginContext(1992, 24, true);
                         WriteLiteral("                        ");
-=======
-                    BeginContext(1486, 36, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "340c5eece8da4819b7901778b20209a9", async() => {
-                        BeginContext(1504, 9, true);
-                        WriteLiteral("809256312");
->>>>>>> 659e30bb2e273ce2bb6fc612f369c3fbc3a611d0
                         EndContext();
                     }
                     );
@@ -424,16 +329,8 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper.For = ModelExpressionProvi
                         <label class=""labelPago d-flex justify-content-center"">Monto a pagar: </label>
                         ");
                     EndContext();
-<<<<<<< HEAD
                     BeginContext(2320, 190, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "277ddc613ee340e28a57ee2b19f31619", async() => {
-=======
-                    BeginContext(1552, 37, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "976accb5419342e3a477b8c1094da975", async() => {
-                        BeginContext(1570, 10, true);
-                        WriteLiteral("0214520368");
-                        EndContext();
->>>>>>> 659e30bb2e273ce2bb6fc612f369c3fbc3a611d0
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "b44222f2e6a1407f9ab6a929e9549324", async() => {
                     }
                     );
                     __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -461,16 +358,8 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                     BeginContext(2510, 26, true);
                     WriteLiteral("\r\n                        ");
                     EndContext();
-<<<<<<< HEAD
                     BeginContext(2536, 60, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("span", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9d49028774ee450cb4c8ce7ef18e29f3", async() => {
-=======
-                    BeginContext(1619, 32, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5de6e0158c2542e8a989eac0b77aafac", async() => {
-                        BeginContext(1637, 5, true);
-                        WriteLiteral("Three");
-                        EndContext();
->>>>>>> 659e30bb2e273ce2bb6fc612f369c3fbc3a611d0
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("span", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cc9c0ba6f42b4a7db9e1931eadbb3e8e", async() => {
                     }
                     );
                     __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.ValidationMessageTagHelper>();

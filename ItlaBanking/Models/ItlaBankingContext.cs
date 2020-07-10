@@ -1,11 +1,10 @@
 ﻿using System;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace ItlaBanking.Models
 {
-    public partial class ItlaBankingContext : IdentityDbContext
+    public partial class ItlaBankingContext : DbContext
     {
         public ItlaBankingContext()
         {
@@ -15,7 +14,7 @@ namespace ItlaBanking.Models
             : base(options)
         {
         }
-
+        
         public virtual DbSet<Beneficiario> Beneficiario { get; set; }
         public virtual DbSet<Cuenta> Cuenta { get; set; }
         public virtual DbSet<Prestamos> Prestamos { get; set; }
@@ -27,35 +26,40 @@ namespace ItlaBanking.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=LIAM-PC\\SQLEXPRESS;Database=ItlaBanking;Trusted_Connection=True;");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Server=LIAM-PC\\SQLEXPRESS;Database=ItlaBanking;Trusted_Connection=True; persist security info=True;Integrated Security =SSPI");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            
 
 
             modelBuilder.Entity<Beneficiario>(entity =>
             {
                 entity.HasKey(e => new { e.IdUsuarioCliente, e.IdUsuarioBeneficiario });
 
+                entity.HasIndex(e => e.IdUsuarioBeneficiario);
+
                 entity.HasOne(d => d.IdUsuarioBeneficiarioNavigation)
                     .WithMany(p => p.BeneficiarioIdUsuarioBeneficiarioNavigation)
                     .HasForeignKey(d => d.IdUsuarioBeneficiario)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Beneficia__IdUsu__3E52440B");
+                    .HasConstraintName("FK__Beneficia__IdUsu__173876EA");
 
                 entity.HasOne(d => d.IdUsuarioClienteNavigation)
                     .WithMany(p => p.BeneficiarioIdUsuarioClienteNavigation)
                     .HasForeignKey(d => d.IdUsuarioCliente)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Beneficia__IdUsu__3D5E1FD2");
+                    .HasConstraintName("FK__Beneficia__IdUsu__164452B1");
             });
 
             modelBuilder.Entity<Cuenta>(entity =>
             {
                 entity.HasKey(e => e.NumeroCuenta);
+
+                entity.HasIndex(e => e.IdUsuario);
 
                 entity.Property(e => e.NumeroCuenta).ValueGeneratedNever();
 
@@ -75,6 +79,8 @@ namespace ItlaBanking.Models
             modelBuilder.Entity<Prestamos>(entity =>
             {
                 entity.HasKey(e => e.NumeroPrestamo);
+
+                entity.HasIndex(e => e.IdUsuario);
 
                 entity.Property(e => e.NumeroPrestamo).ValueGeneratedNever();
 
@@ -99,6 +105,8 @@ namespace ItlaBanking.Models
             modelBuilder.Entity<TarjetaCredito>(entity =>
             {
                 entity.HasKey(e => e.NumeroTarjeta);
+
+                entity.HasIndex(e => e.IdUsuario);
 
                 entity.Property(e => e.NumeroTarjeta).ValueGeneratedNever();
 
@@ -127,6 +135,8 @@ namespace ItlaBanking.Models
             modelBuilder.Entity<Transacciones>(entity =>
             {
                 entity.HasKey(e => e.IdTransacciones);
+
+                entity.HasIndex(e => e.NumeroCuenta);
 
                 entity.Property(e => e.Fecha)
                     .HasColumnType("datetime")
