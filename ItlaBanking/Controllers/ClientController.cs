@@ -28,20 +28,14 @@ namespace ItlaBanking.Controllers
         private readonly CuentaRepository _cuentaRepository;
         private readonly PrestamosRepository _prestamosRepository;
         private readonly TarjetaCreditoRepository _tarjetasRepository;
-<<<<<<< HEAD
         private readonly BeneficiarioRepository _beneficiarioRepository;
-=======
->>>>>>> 210e86134700a8d31e8b4e3eefbf3645b79adb5e
+
+
 
 
         public ClientController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager,
             ItlaBankingContext context, IMapper mapper, UsuarioRepository usuarioRepository, CuentaRepository cuentaRepository,
-<<<<<<< HEAD
             TarjetaCreditoRepository tarjetasRepository, PrestamosRepository prestamosRepository, BeneficiarioRepository beneficiarioRepository)
-=======
-            TarjetaCreditoRepository tarjetasRepository, PrestamosRepository prestamosRepository)
->>>>>>> 210e86134700a8d31e8b4e3eefbf3645b79adb5e
-
         {
             _userManager = userManager;
             _signinManager = signInManager;
@@ -54,11 +48,8 @@ namespace ItlaBanking.Controllers
             _cuentaRepository = cuentaRepository;
             _prestamosRepository = prestamosRepository;
             _tarjetasRepository = tarjetasRepository;
-<<<<<<< HEAD
             _beneficiarioRepository = beneficiarioRepository;
-=======
 
->>>>>>> 210e86134700a8d31e8b4e3eefbf3645b79adb5e
 
 
         }
@@ -155,7 +146,7 @@ namespace ItlaBanking.Controllers
 
             }
             return View(ptvm);
-<<<<<<< HEAD
+
         }
 
         public IActionResult ConfirmPagosExpreso() {
@@ -167,13 +158,6 @@ namespace ItlaBanking.Controllers
 
             return View();
         }
-=======
-        }
-
-
->>>>>>> 210e86134700a8d31e8b4e3eefbf3645b79adb5e
-
-
 
         public async Task<IActionResult> PagosTarjeta()
         {
@@ -191,7 +175,6 @@ namespace ItlaBanking.Controllers
 
         [HttpPost]
         public async Task<IActionResult> PagosTarjeta(PagosViewModel ptvm)
-<<<<<<< HEAD
         {
             ViewData["Nombre"] = User.Identity.Name;
 
@@ -237,62 +220,9 @@ namespace ItlaBanking.Controllers
         }
 
 
-
         public async Task<IActionResult> PagosPrestamo()
         {
             ViewData["Nombre"] = User.Identity.Name;
-=======
-
-        {
-            ViewData["Nombre"] = User.Identity.Name;
-
-            if (ModelState.IsValid)
-            {
-                var cuenta = await _context.Cuenta.FirstOrDefaultAsync(x => x.NumeroCuenta == ptvm.NumeroCuenta);
-                var tarjeta = await _context.TarjetaCredito.FirstOrDefaultAsync(x => x.NumeroTarjeta == ptvm.NumeroCuentaPagar);
-                if (cuenta == null || tarjeta == null)
-                {
-                    return RedirectToAction("Transferencia");
-                }
-                if (cuenta.Balance < ptvm.Monto)
-                {
-                    ModelState.AddModelError("", "No tiene suficiente balance");
-                    return View();
-
-                }
-                cuenta.Balance = cuenta.Balance - ptvm.Monto;
-
-                if (tarjeta.MontoLimite > ptvm.Monto)
-                {
-                    tarjeta.MontoLimite = tarjeta.MontoLimite - ptvm.Monto;
-                }
-                else if (tarjeta.MontoLimite < ptvm.Monto)
-                {
-                    ptvm.Monto = ptvm.Monto - tarjeta.MontoLimite;
-                    tarjeta.MontoLimite = 0;
-                    cuenta.Balance = cuenta.Balance + ptvm.Monto;
-
-                }
-                try
-                {
-                    await _cuentaRepository.Update(cuenta);
-                    await _tarjetasRepository.Update(tarjeta);
-                }
-                catch { }
-
-                return RedirectToAction("Index");
-
-
-            }
-            return View(ptvm);
-        }
-
-
-
-        public async Task<IActionResult> PagosPrestamo()
-        {
-            ViewData["Nombre"] = User.Identity.Name;
->>>>>>> 210e86134700a8d31e8b4e3eefbf3645b79adb5e
             Usuario usu = new Usuario();
             usu = await _context.Usuario.FirstOrDefaultAsync(x => x.Usuario1 == User.Identity.Name);
             int? id = usu.IdUsuario;
@@ -346,7 +276,7 @@ namespace ItlaBanking.Controllers
             }
             return View(ppvm);
         }
-<<<<<<< HEAD
+
         public async Task<IActionResult> Beneficiario()
         {
             ViewData["Nombre"] = User.Identity.Name;
@@ -364,15 +294,8 @@ namespace ItlaBanking.Controllers
 
         public IActionResult AddBeneficiario() {
             return View();
-=======
-        public IActionResult Beneficiario()
-        {
 
-            CuentasyPagos cp = new CuentasyPagos(_context, _userManager);
-
-            return View(cp.Beneficiarios(User.Identity.Name));
->>>>>>> 210e86134700a8d31e8b4e3eefbf3645b79adb5e
-        }
+         }
 
         [HttpPost]
         public async Task<IActionResult> AddBeneficiario(ProbandoBeneficiarioViewModel pbv)
@@ -440,8 +363,6 @@ namespace ItlaBanking.Controllers
             CuentasyPagos cp = new CuentasyPagos(_context, _userManager);
 
             return View(cp.Beneficiarios(User.Identity.Name));
-<<<<<<< HEAD
-=======
         }
 
         [HttpPost]
@@ -495,39 +416,9 @@ namespace ItlaBanking.Controllers
 
             }
             return RedirectToAction("Beneficiario");
->>>>>>> 210e86134700a8d31e8b4e3eefbf3645b79adb5e
         }
 
-        [HttpPost]
-        public async Task<IActionResult> PagosBeneficiario(BeneficiarioViewModel bvm)
-        {
-         ViewData["Nombre"] = User.Identity.Name;
-            if (ModelState.IsValid) {
-                var cuenta = await _context.Cuenta.FirstOrDefaultAsync(x => x.NumeroCuenta == bvm.NumeroCuenta);
-                var cuenta2 = await _context.Cuenta.FirstOrDefaultAsync(x => x.NumeroCuenta == bvm.NumeroCuentaPagar);
-                if (cuenta  == null || cuenta2 == null) {
-                    return RedirectToAction("Transferencia");
-                }
-                if (cuenta.Balance< bvm.Monto) {
-                    ModelState.AddModelError("", "No tiene suficiente balance");
-                    return RedirectToAction("Transferencia");
-                }
-                cuenta.Balance = cuenta.Balance - bvm.Monto;
-                cuenta2.Balance = cuenta2.Balance + bvm.Monto;
-                try
-                {
-                    await _cuentaRepository.Update(cuenta);
-                    await _cuentaRepository.Update(cuenta2);
-                }
-                catch { }
-
-                return RedirectToAction("Index");
-
-
-            }
-            return View(bvm);
-}
-
+   
        
         //OtrasVista
         public IActionResult AvanceEfectivo()

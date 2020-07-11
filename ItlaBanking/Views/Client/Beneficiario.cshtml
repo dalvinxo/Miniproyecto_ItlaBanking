@@ -4,8 +4,6 @@
     <div class="container bg-warning border border-white rounded shadow-lg p-1 mb-5 bg-white rounded">
 
         <div class="card-header headNombre rounded border border-secondary shadow-sm p-1 bg-white rounded mb-3">
-            <a data-toggle="modal" data-target="#agg" class="btn btn-success mr-auto  btn-sm text-white">Agregar Beneficiario</a>
-
             <div class="d-flex justify-content-center letterPagos">Beneficiarios</div>
 
         </div>
@@ -99,7 +97,6 @@
                             <th scope="col"> Numero de Cuenta</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Apellido</th>
-<<<<<<< HEAD
                             <th scope="col">⭐</th>
                         </tr>
                     </thead>
@@ -157,29 +154,6 @@
                             </div>
 
                         }
-=======
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="bg-primary">
-                            @foreach (var bene in Model.cuenta)
-                            {
-                                <th scope="row">@bene.NumeroCuenta</th>
-                            }
-                            @foreach (var usu in Model.usuario)
-                            {
-                                <td>@usu.Nombre</td>
-                                <td>@usu.Apellido</td>
-                                <td>
-                                    <a data-toggle="modal" data-target="#tarjeta" class="text-white btn btn-danger ml-auto  btn-sm">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                            }
-                            </tr>
-                        
->>>>>>> 210e86134700a8d31e8b4e3eefbf3645b79adb5e
 
                     </tbody>
                 </table>

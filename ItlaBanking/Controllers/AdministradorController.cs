@@ -84,10 +84,6 @@ namespace ItlaBanking.Controllers
         public async Task<IActionResult> AdministrarUsuario()
         {
             ViewData["Nombre"] = User.Identity.Name;
-<<<<<<< HEAD
-=======
-            //var ListaUsuarios = await _usuarioRepository.GetAllAsync();
->>>>>>> 210e86134700a8d31e8b4e3eefbf3645b79adb5e
 
             var ListaUsuarios = await _usuarioRepository.GetUsuarioOrder();
             
