@@ -1,4 +1,10 @@
 ﻿@model ItlaBanking.ViewModels.PagosViewModel
+<<<<<<< HEAD
+=======
+
+@{
+}
+>>>>>>> 210e86134700a8d31e8b4e3eefbf3645b79adb5e
 <html>
 
 <body class="bg-light" id="CardViewFormulario">
@@ -16,19 +22,30 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label class="labelPago ml-3">Número de cuenta del destinatario: </label>
+<<<<<<< HEAD
                         <input asp-for="NumeroCuentaPagar" type="number" class="form-control form-control-lg rounded-pill border border-success shadow-sm p-3 bg-white rounded" placeholder="Ingresar número de cuenta">
                         <span asp-validation-for="NumeroCuentaPagar" class="text-danger"></span>
                     </div>
                     <div class="form-group col-md-6">
                         <label class="labelPago ml-3">¿Desde que cuenta la quiere pagar?</label>
                         <select asp-for="NumeroCuenta" class="custom-select custom-select-lg mb-3 rounded-pill shadow bg-white rounded border border-success">
+=======
+                        <input asp-for="NumeroCuentaPagar"  type="number" min="100000000" class="form-control form-control-lg rounded-pill border border-success shadow-sm p-3 bg-white rounded" placeholder="Ingresar número de cuenta">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="labelPago ml-3">¿Desde que cuenta la quiere pagar?</label>
+                        <select asp-for="NumeroCuenta" class="custom-select custom-select-lg mb-3 rounded-pill shadow bg-white rounded border border-secondary">
+>>>>>>> 210e86134700a8d31e8b4e3eefbf3645b79adb5e
                             <option value="0" selected>Seleccionar</option>
                             @foreach (var cuenta in Model.cuenta)
                             {
                                 <option value="@cuenta.NumeroCuenta">@cuenta.NumeroCuenta</option>
                             }
                         </select>
+<<<<<<< HEAD
                         <span asp-validation-for="NumeroCuenta" class="text-danger"></span>
+=======
+>>>>>>> 210e86134700a8d31e8b4e3eefbf3645b79adb5e
                     </div>
                 </div>
 
@@ -42,7 +59,13 @@
                         <span asp-validation-for="Monto"></span>
 
                     </div>
+<<<<<<< HEAD
 
+=======
+                    <input asp-for="Monto" type="number" min="0.01" step="0.01" class="form-control rounded-right border border-success shadow-sm p-3" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                    <div class="ml-2">
+                        <button class="btn btn-success" type="submit">Pagar</button>
+>>>>>>> 210e86134700a8d31e8b4e3eefbf3645b79adb5e
                     </div>
                     <div class="d-flex justify-content-center mt-1 mb-2">
                         <input type="submit" value="Pagar" class="btn btn-outline-success font-weight-bold  shadow-lg rounded w-25">

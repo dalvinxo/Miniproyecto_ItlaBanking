@@ -1,13 +1,32 @@
 ﻿@model ItlaBanking.ViewModels.PagosViewModel
+<<<<<<< HEAD
+=======
+
+@{
+}
+>>>>>>> 210e86134700a8d31e8b4e3eefbf3645b79adb5e
 <html>
 <body class="bg-light" id="CardViewFormulario">
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 210e86134700a8d31e8b4e3eefbf3645b79adb5e
     <div class="container bg-warning border border-white rounded shadow-lg p-1 mb-5 bg-white rounded">
         <div>
             <div class="card-header headNombre rounded border border-secondary shadow-sm p-1 bg-white rounded mb-3">
                 <div class="d-flex justify-content-center letterPagos">Pagos Tarjeta de Crédito</div>
             </div>
+<<<<<<< HEAD
             <form asp-action="PagosTarjeta" asp-controller="Client" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+=======
+
+            <form asp-action="PagosTarjeta" asp-controller="Client" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+>>>>>>> 210e86134700a8d31e8b4e3eefbf3645b79adb5e
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label class="labelPago ml-3">Seleccionar cuenta de la tarjeta de credito:</label>
@@ -17,6 +36,7 @@
                             {
                                 <option value="@tarjetas.NumeroTarjeta">@tarjetas.NumeroTarjeta</option>
                             }
+<<<<<<< HEAD
                         </select>
                     </div>
 
@@ -31,6 +51,22 @@
                         </select>
                     </div>
 
+=======
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label class="labelPago ml-3">¿Desde que cuenta la quiere pagar?</label>
+                        <select asp-for="NumeroCuenta" class="custom-select custom-select-lg mb-3 rounded-pill shadow bg-white rounded border border-secondary">
+                            <option value="0" selected>Seleccionar</option>
+                            @foreach (var cuenta in Model.cuenta)
+                            {
+                                <option value="@cuenta.NumeroCuenta">@cuenta.NumeroCuenta</option>
+                            }
+                        </select>
+                    </div>
+
+>>>>>>> 210e86134700a8d31e8b4e3eefbf3645b79adb5e
 
                 </div>
 
@@ -38,6 +74,10 @@
                     <div class="form-group">
                         <label class="labelPago d-flex justify-content-center">Monto a pagar: </label>
                         <input asp-for="Monto" type="number" min="0.01" step="0.01" class="form-control form-control-lg rounded-pill border border-dark shadow-lg p-3  bg-white rounded" placeholder="Ingresar Monto">
+<<<<<<< HEAD
+=======
+
+>>>>>>> 210e86134700a8d31e8b4e3eefbf3645b79adb5e
                     </div>
                 </div>
 
