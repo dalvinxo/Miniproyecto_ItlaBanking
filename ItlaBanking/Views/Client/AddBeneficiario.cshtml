@@ -1,0 +1,48 @@
+﻿@model ItlaBanking.ViewModels.ProbandoBeneficiarioViewModel
+@{ 
+    ViewData["Title"] = "Agregando Beneficiario";
+    ViewData["banner"] = "Agregando Beneficiarios";
+    Layout = "~/Views/Shared/_LayoutUsuarioClient.cshtml";
+    ViewData["action"] = "Beneficiario";
+
+}
+<body style="background: #606c88;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+">
+
+        <div class="card container  p-0 rounded shadow-lg  rounded bg-success border border-success">
+           
+            <div class="card-header headNombre rounded shadow-sm p-1 bg-success rounded">
+                <h1 class="text-center text-white font-weigth-bold">Beneficiarios</h1>
+            </div>
+
+            <div class="card-body m-1 bg-white">
+                <div class="card-title h3 text-center"> Ingrese el numero de cuenta del beneficiario, para agregar en su lista de beneficiarios</div>
+
+                <div class="form-row mt-1 d-flex justify-content-center">
+
+                    <div class="form-group col-6">
+
+                        <form asp-controller="Client" asp-action="AddBeneficiario" method="post">
+                            <div asp-validation-summary="All" class="text-danger">
+        
+                             </div>
+                            <div class="form-group">
+                                <label class="labelPago d-flex justify-content-center h2">Número de cuenta del beneficiario: </label>
+                                <input asp-for="CuentaBeneficiario" type="number" class="form-control form-control-lg rounded-pill border border-dark shadow-lg p-3 text-danger  bg-white rounded text-center" placeholder="Cuenta Beneficiario">
+                                <span asp-validation-for="CuentaBeneficiario" class="text-danger"></span>
+                            </div>
+                            <input value="Agregar" type="submit" style="font-size:20px;" class="btn btn-outline-primary btn-block  mt-2 shadow rounded" />
+                        </form>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+</body>
+

@@ -41,7 +41,16 @@ namespace ItlaBanking.Repository
 
             return entity;
         }
-        
+
+        public async Task<TEntity> DeleteEntity(TEntity entiry)
+        {
+            
+            _context.Set<TEntity>().Remove(entiry);
+            await _context.SaveChangesAsync();
+
+            return entiry;
+        }
+
         public async Task<List<TEntity>> GetAllAsync()
         {
 
@@ -62,8 +71,12 @@ namespace ItlaBanking.Repository
 
         }
 
-      
-
+        public async Task<TEntity> UpdateExplicito(TEntity entity)
+        {
+            _context.Update(entity);
+            await _context.SaveChangesAsync();
+            return entity;
+        }
     }
 
 

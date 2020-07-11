@@ -62,13 +62,15 @@ namespace ItlaBanking.Controllers
         public async Task<IActionResult> CrearProducto(RegistrosProductosViewModels pdt)
         {
             int? id = pdt.IdUsuario;
-
+            try { 
             if (pdt.TipoCuenta == "Ahorro")
             {
                 if (pdt.Balance == null)
                 {
-                    pdt.Balance = 0;
-                }
+                        //pdt.Balance = 0;
+                        ModelState.AddModelError("null", "La cantidad insertada debe contener menos de 13 digitos, intentelo de nuevo");
+                        return View(pdt);
+                    }
 
             A:
                 Random r = new Random();
@@ -96,7 +98,7 @@ namespace ItlaBanking.Controllers
                 if (pdt.MontoLimite == null)
                 {
 
-                    pdt.MontoLimite = 0;
+                  //  pdt.MontoLimite = 0;
                     ModelState.AddModelError("","Necesita Ingresar el monto limite de esta tarjeta");
                     return View(pdt);
 
@@ -135,7 +137,7 @@ namespace ItlaBanking.Controllers
 
                 if (pdt.Monto == null)
                 {
-                    pdt.Monto = 0;
+                //    pdt.Monto = 0;
                     ModelState.AddModelError("", "Necesita Ingresar el monto del prestamo");
                     return View(pdt);
 
@@ -173,6 +175,13 @@ namespace ItlaBanking.Controllers
             else {
                 return RedirectToAction("AdministrarUsuario", "Administrador");
 
+            }
+            }
+            catch 
+            {
+                ModelState.AddModelError("","");
+
+                return View(pdt);
             }
         }
 
@@ -245,49 +254,59 @@ namespace ItlaBanking.Controllers
             }
             return View(rvm);
         }
-        
 
+       
         public async Task<IActionResult> EditUsuario(int? id)
         {
             var UserEdit = await _usuarioRepository.GetByIdAsync(id.Value);
             if (UserEdit!=null) {
-                var Usu = _mapper.Map<RegistroUsuarioViewModels>(UserEdit);
-                //var cuentaPrincipal = _cuentaRepository.GetCuentaAt(id.Value);
-
-                //if (cuentaPrincipal != null)
-                //{
-                //    Usu.Balance = cuentaPrincipal.Balance;
-                //}
-               
+                var Usu = _mapper.Map<UpdateUsuarioViewModels>(UserEdit);
                 return View(Usu);
-
-
-
+                
             }
 
             return RedirectToAction("AdministrarUsuario","Administrador");
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditUsuario(RegistroUsuarioViewModels uvmd)
+        public async Task<IActionResult> EditUsuario(UpdateUsuarioViewModels uvmd)
         {
 
+            /*try
+             {*/
+             
+                var valio = _usuarioRepository.UsuarioNoRepeat(uvmd.Usuario1);
+
+            if (valio != null)
+            {
+                            
+                ModelState.AddModelError("", "Este usuario ya existe intenta con otro");
+                return View(uvmd);
+
+            }
+            else {
+
+                if (ModelState.IsValid)
+                {
+                    var mapeador = _mapper.Map<Usuario>(uvmd);
+                    await _usuarioRepository.Update(mapeador);
+
+                    var cuentaPrincipal = _cuentaRepository.GetCuentaAt(mapeador.IdUsuario);
+                    if (uvmd.Balance == null) {
+                        uvmd.Balance = 0;
+                    }
+
+                    cuentaPrincipal.Balance = cuentaPrincipal.Balance + uvmd.Balance.Value;
+                    await _cuentaRepository.Update(cuentaPrincipal);
 
 
-           /*try
-            {*/
-                
-                if (ModelState.IsValid) {
-                var mapeador = _mapper.Map<Usuario>(uvmd);
-                await _usuarioRepository.Update(mapeador);
-                var cuentaPrincipal = _cuentaRepository.GetCuentaAt(mapeador.IdUsuario);
-                cuentaPrincipal.Balance = cuentaPrincipal.Balance+ uvmd.Balance;
-                await _cuentaRepository.Update(cuentaPrincipal);
-                
-         
-                return RedirectToAction("AdministrarUsuario", "Administrador");
+                    return RedirectToAction("AdministrarUsuario", "Administrador");
                 }
                 return View(uvmd);
+                
+            }
+                
+      
 
             /*}
             catch

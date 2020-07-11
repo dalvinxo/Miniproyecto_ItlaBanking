@@ -1,0 +1,43 @@
+﻿@{ 
+    ViewData["Title"] = "Confirmación - Pago";
+    ViewData["banner"] = "Confirmacion de pago expreso";
+    Layout = "~/Views/Shared/_LayoutUsuarioClient.cshtml";
+    ViewData["action"] = "PagosExpreso";
+
+}
+<body style="background: #606c88;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+">
+
+        <div class="card container  p-0 rounded shadow-lg  rounded bg-warning border border-warning">
+           
+            <div class="card-header headNombre rounded shadow-sm p-1 bg-warning rounded">
+                <h1 class="text-center text-dark font-weigth-bold">Confirmar pago expreso</h1>
+            </div>
+
+            <div class="card-body m-1 bg-white">
+                <div class="card-title h3 text-center text-primary">¿Usted esta de acuerdo con que este pago se efectué?</div>
+
+                <div class="form-row mt-4">
+                    <div class="form-group col-6">
+                      
+                        <a asp-action="PagosExpreso" asp-controller="Client" style="font-size:20px;" class="btn btn-outline-danger btn-block  shadow rounded">No</a>
+
+                    </div>
+                    <div class="form-group col-6">
+
+                        <form asp-controller="" asp-action="" method="post">
+                         
+                            <input value="Si" type="submit" style="font-size:20px;" class="btn btn-outline-primary btn-block  shadow rounded" />
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+</body>
+

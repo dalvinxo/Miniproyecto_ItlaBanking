@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using ItlaBanking.ViewModels;
 
 namespace ItlaBanking.Models
 {
@@ -23,17 +24,33 @@ namespace ItlaBanking.Models
         public virtual DbSet<Transacciones> Transacciones { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
 
+        public DbSet<BeneficiarioProdureViewModel> _BeneficiarioProdureViewModels { get; set; }
+
+        public DbSet<ProbandoBeneficiarioViewModel> probandoBeneficiarioViewModels { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=LIAM-PC\\SQLEXPRESS;Database=ItlaBanking;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-DK0MCFF;Database=ItlaBanking;Trusted_Connection=True;");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<BeneficiarioProdureViewModel>(entity =>
+            {
+               entity.HasKey(e => e.IdUsuario);
+            });
+
+            modelBuilder.Entity<ProbandoBeneficiarioViewModel>(entity =>
+            {
+                entity.HasKey(e => e.IdUsuarioCliente);
+                entity.HasKey(e => e.IdUsuarioBeneficiario);
+
+            });
 
 
             modelBuilder.Entity<Beneficiario>(entity =>
@@ -51,6 +68,11 @@ namespace ItlaBanking.Models
                     .HasForeignKey(d => d.IdUsuarioCliente)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Beneficia__IdUsu__3D5E1FD2");
+
+                entity.Property(d => d.CuentaBeneficiario)
+             .HasColumnType("int");
+
+
             });
 
             modelBuilder.Entity<Cuenta>(entity =>

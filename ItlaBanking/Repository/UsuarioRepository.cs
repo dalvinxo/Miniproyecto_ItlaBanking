@@ -1,4 +1,5 @@
 ﻿using ItlaBanking.Models;
+using ItlaBanking.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,12 @@ namespace ItlaBanking.Repository
             return code;
         }
 
+        public Usuario UsuarioNoRepeat(string usuario1)
+        {
+            var code = _context.Usuario.FirstOrDefault(x => x.Usuario1 == usuario1);
+            return code;
+        }
+
 
         public async Task<IEnumerable<Usuario>> GetCountUsuario(string estado) {
 
@@ -44,13 +51,31 @@ namespace ItlaBanking.Repository
 
         }
 
+        //public async Task<IEnumerable<BeneficiarioProdureViewModel>> GetAllBeneficiario(string estado)
+        //{
 
-        public async Task<IEnumerable<TarjetaCredito>> GetUsuarioTarjetaCreditoId( int IdUsuario) {
+        //    if (estado == "Activo")
+        //    {
+
+        //        return await _context.Usuario.Where(x => x.Estado == "Activo").ToListAsync();
+
+        //    }
+        //    else
+        //    {
+        //        return await _context.Usuario.Where(x => x.Estado == "Inactivo").ToListAsync();
+
+        //    }
 
 
-            return null;
+        //}
 
-        }
+
+        //public async Task<IEnumerable<TarjetaCredito>> GetUsuarioTarjetaCreditoId( int IdUsuario) {
+
+
+        //    return null;
+
+        //}
 
 
 

@@ -18,9 +18,8 @@ namespace ItlaBanking.Automapper
             MapearCuentaProducto();
             MapearTarjetaProducto();
             MapearPrestamoProducto();
-
-
-
+            MapearBeneficiarios();
+            MapearActualizar();
         }
 
         private void MapearPrestamoProducto()
@@ -58,6 +57,11 @@ namespace ItlaBanking.Automapper
         private void MapearARegistro()
         {
             CreateMap<Usuario, RegistroUsuarioViewModels>().ReverseMap();
+        }
+
+        private void MapearActualizar()
+        {
+            CreateMap<Usuario, UpdateUsuarioViewModels>().ReverseMap();
         }
 
         private void MapearCuenta()
@@ -102,5 +106,18 @@ namespace ItlaBanking.Automapper
             //.ReverseMap()ForMember(dest=>dest.Campo, opt => opt.Ignore());
 
         }
+
+        private void MapearBeneficiarios()
+        {
+            CreateMap<ProbandoBeneficiarioViewModel, Beneficiario>().ReverseMap().
+                        ForMember(dest => dest.Nombre, opt => opt.Ignore()).
+                            ForMember(dest => dest.Apellido, opt => opt.Ignore())
+
+                        ;
+
+            ;
+        }
+
+
     }
 }
