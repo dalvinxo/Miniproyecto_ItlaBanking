@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ItlaBanking.Models;
+using ItlaBanking.Repository;
 using ItlaBanking.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -16,14 +17,25 @@ namespace ItlaBanking.Controllers
 
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signinManager;
+        private readonly UsuarioRepository _usuarioRepository;
 
-        public LoginController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, ItlaBankingContext context)
+
+        public LoginController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, ItlaBankingContext context,
+                                UsuarioRepository usuarioRepository)
         {
             _userManager = userManager;
             _signinManager = signInManager;
             _context = context;
+            _usuarioRepository = usuarioRepository;
 
 
+
+        }
+        public async Task<int> IdUsuarioClienteAsync(string user)
+        {
+            Usuario usu = new Usuario();
+            usu = await _usuarioRepository.GetUsuarioByName(user);
+            return usu.IdUsuario;
         }
 
         public async Task<IActionResult> Index()
@@ -54,11 +66,18 @@ namespace ItlaBanking.Controllers
                 ModelState.AddModelError("", "Usuario o clave incorrectos");
                 return View(lvm);
             }
-            if (await _userManager.GetAccessFailedCountAsync(user) > 3)
-            {
-                return RedirectToAction("DesactivarUsuario", "Administrador", lvm.Usuario1);
-
+            var Usuario = await _usuarioRepository.GetByIdAsync(await IdUsuarioClienteAsync(user.UserName));
+            if (Usuario.Estado == null) {
+                return RedirectToAction("Error", "Home");
             }
+            if (Usuario.TipoUsuario == "Cliente") {
+                if (await _userManager.GetAccessFailedCountAsync(user) > 3)
+                {
+                    return RedirectToAction("Desactivador", "Login", IdUsuarioClienteAsync(user.UserName));
+
+                }
+            }
+            
             if (ModelState.IsValid) {
                 var result = await _signinManager.PasswordSignInAsync(lvm.Usuario1, lvm.Clave, false,true);
                 if (result.Succeeded)
@@ -78,6 +97,35 @@ namespace ItlaBanking.Controllers
                 ModelState.AddModelError("","Usuario o clave incorrectos");
             }
             return View(lvm);
+        }
+
+        public async Task<IActionResult> Desactivador(int? id)
+        {
+
+            
+            //{try
+
+                var Usuario = await _usuarioRepository.GetByIdAsync(id.Value);
+
+                if (Usuario.Estado == null)
+                {
+                    return RedirectToAction("Inde");
+                }
+                
+                    Usuario.Estado = "Inactivo";
+                              
+
+                await _usuarioRepository.Update(Usuario);
+
+            //}
+            //catch
+            //{
+
+               return RedirectToAction("Error", "Home");
+            //}
+
+            //return RedirectToAction("Index");
+
         }
 
 
