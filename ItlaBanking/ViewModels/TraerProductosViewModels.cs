@@ -11,7 +11,6 @@ namespace ItlaBanking.ViewModels
         public int IdUsuario { get; set; }
 
         public IEnumerable<Cuenta> Cuenta;
-        //public ICollection<Cuenta> Cuenta;
 
         public IEnumerable<TarjetaCredito> Credito;
 

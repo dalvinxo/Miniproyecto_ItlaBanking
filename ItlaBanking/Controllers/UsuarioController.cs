@@ -92,6 +92,7 @@ namespace ItlaBanking.Controllers
                 DateTime FechaExpiracion = Convert.ToDateTime(fecha);
                 Pago = Pago.AddDays(20);
                 FechaExpiracion = FechaExpiracion.AddDays(30);
+                pdt.Monto = 0;
 
                 if (pdt.MontoLimite == null)
                 {
@@ -217,7 +218,17 @@ namespace ItlaBanking.Controllers
                
                 var user = new IdentityUser { UserName = rvm.Usuario1 };
                 var result = await _userManager.CreateAsync(user, rvm.Clave);
-                                               
+                
+                if (rvm.TipoUsuario == "Administrador") {
+                    await _userManager.AddToRoleAsync(user, "Administrador");
+
+                }
+                else if(rvm.TipoUsuario == "Cliente") {
+                    await _userManager.AddToRoleAsync(user, "Cliente");
+
+                }
+
+
                 if (result.Succeeded){
                     var newUsuario = _mapper.Map<Usuario>(rvm);
                     await _usuarioRepository.AddAsync(newUsuario);

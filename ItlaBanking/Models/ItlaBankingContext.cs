@@ -117,6 +117,9 @@ namespace ItlaBanking.Models
 
                 entity.Property(e => e.MontoLimite).HasColumnType("decimal(13, 2)");
 
+                entity.Property(e => e.Monto).HasColumnType("decimal(13, 2)");
+
+
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.TarjetaCredito)
                     .HasForeignKey(d => d.IdUsuario)

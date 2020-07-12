@@ -12,6 +12,8 @@ namespace ItlaBanking.Models
         public string Estado { get; set; }
         public int IdUsuario { get; set; }
 
+        public decimal? Monto { get; set; }
+
         public Usuario IdUsuarioNavigation { get; set; }
     }
 }
