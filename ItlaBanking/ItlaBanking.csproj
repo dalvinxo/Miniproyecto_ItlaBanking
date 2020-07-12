@@ -53,8 +53,4 @@
     </Content>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Action\" />
-  </ItemGroup>
-
 </Project>

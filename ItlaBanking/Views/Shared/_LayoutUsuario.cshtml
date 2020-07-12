@@ -25,6 +25,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
     <script>
+
         function myFunction() {
             var x = document.getElementById("Clave");
 
@@ -59,8 +60,14 @@
 
             var tipo_cuenta = document.getElementById('opciones').value;
 
+            //var inputBalance = document.getElementById('montoBalance');
+            //var inputTarjeta = document.getElementById('montoTarjeta');
+            //var inputPrestamo = document.getElementById('montoPrestamo');
+
             if (tipo_cuenta == "Ahorro") {
                 element.style.display = 'block';
+                document.getElementById("montoTarjeta").value = "";
+                document.getElementById("montoPrestamo").value = "";
             }
             else {
                 element.style.display = 'none';
@@ -68,6 +75,8 @@
 
             if (tipo_cuenta == "Credito") {
                 elemento.style.display = 'block';
+                document.getElementById("montoBalance").value = "";
+                document.getElementById("montoPrestamo").value = "";
             }
             else {
                 elemento.style.display = 'none';
@@ -75,6 +84,8 @@
 
             if (tipo_cuenta == "Prestamo") {
                 elementos.style.display = 'block';
+                document.getElementById("montoTarjeta").value = "";
+                document.getElementById("montoBalance").value = "";
             }
             else {
                 elementos.style.display = 'none';

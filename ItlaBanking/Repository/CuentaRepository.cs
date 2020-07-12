@@ -1,4 +1,5 @@
 ﻿using ItlaBanking.Models;
+using ItlaBanking.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,7 @@ namespace ItlaBanking.Repository
             return await _context.Cuenta.Where(x => x.IdUsuario == id).OrderBy(x => x.Categoria).ToListAsync();
         }
 
+  
         //public async Task<IEnumerable<Cuenta>> GetTotalProducto() {
         //    R
         //}
