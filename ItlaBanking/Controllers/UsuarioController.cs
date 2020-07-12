@@ -64,6 +64,7 @@ namespace ItlaBanking.Controllers
         {
             int? id = pdt.IdUsuario;
 
+
             GestionProductoUsuario Validar = new GestionProductoUsuario(_userManager,_signinManager,_context, _mapper, _usuarioRepository, _repositoryPrestamos, _cuentaRepository, _tarjetaCreditoRepository);
             var validacion = await Validar.ValidarProducto(pdt);
 
@@ -107,6 +108,7 @@ namespace ItlaBanking.Controllers
         {
             if (ModelState.IsValid)
             {
+
 
                 GestionProductoUsuario Validar = new GestionProductoUsuario(_userManager, _signinManager, _context, _mapper, _usuarioRepository, _repositoryPrestamos, _cuentaRepository, _tarjetaCreditoRepository);
                 var Validacion = await Validar.CrearUsuario(rvm);

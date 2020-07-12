@@ -29,13 +29,18 @@
                     </div>
 
                     <div class="form-group col-md-6">
-                        <label class="labelPago ml-3">¿Desde que cuenta la quiere pagar?</label>
+                        <label class="labelPago ml-3">¿Desde que cuenta o tarjeta la quiere pagar?</label>
                         <select asp-for="NumeroCuenta" class="custom-select custom-select-lg mb-3 rounded-pill shadow bg-white rounded border border-secondary">
                             <option value="0" selected>Seleccionar</option>
                             @foreach (var cuenta in Model.cuenta)
                             {
-                                <option value="@cuenta.NumeroCuenta">@cuenta.NumeroCuenta</option>
+                                <option value="@cuenta.NumeroCuenta">Cuenta # @cuenta.NumeroCuenta</option>
                             }
+                            @foreach (var tarjeta in Model.tarjetas)
+                            {
+                                <option value="@tarjeta.NumeroTarjeta">Tarjeta # @tarjeta.NumeroTarjeta</option>
+                            }
+
                         </select>
                     </div>
 

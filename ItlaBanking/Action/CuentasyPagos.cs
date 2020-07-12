@@ -12,19 +12,28 @@ using Microsoft.Identity.Client;
 
 namespace ItlaBanking.Action
 {
-    public class CuentasyPagos
+    public class CuentasyPagos:Controller
     {
 
         private readonly ItlaBankingContext _context;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly CuentaRepository _cuentaRepository;
+        private readonly TarjetaCreditoRepository _tarjetasRepository;
+        private readonly PrestamosRepository _prestamosRepository;
 
-        public CuentasyPagos(ItlaBankingContext context, UserManager<IdentityUser> userManager, CuentaRepository cuentaRepository) {
+
+
+
+
+
+        public CuentasyPagos(ItlaBankingContext context, UserManager<IdentityUser> userManager,
+                            CuentaRepository cuentaRepository, TarjetaCreditoRepository tarjetasRepository,
+                            PrestamosRepository prestamosRepository) {
             _context = context;
             _userManager = userManager;
             _cuentaRepository = cuentaRepository;
-
-
+            _tarjetasRepository = tarjetasRepository;
+            _prestamosRepository = prestamosRepository;
         }
 
         public PagosViewModel TraerCuentas(int? id) {
@@ -44,7 +53,7 @@ namespace ItlaBanking.Action
 
         }
 
-        public BeneficiarioViewModel Beneficiarios(string user) {
+        public async Task<BeneficiarioViewModel> Beneficiarios(string user) {
             Usuario usu = new Usuario();
             usu =  _context.Usuario.FirstOrDefault(x => x.Usuario1 == user);
             BeneficiarioViewModel agg = new BeneficiarioViewModel();
@@ -52,7 +61,7 @@ namespace ItlaBanking.Action
             var list = new List<Cuenta>();
             var lista = new List<Usuario>();
 
-            var beneficiarios =  _context.Beneficiario.Where(x => x.IdUsuarioCliente == usu.IdUsuario).ToList();
+            var beneficiarios =  await _context.Beneficiario.Where(x => x.IdUsuarioCliente == usu.IdUsuario).ToListAsync();
             foreach (var c in beneficiarios)
             {
                 var cuenta =  _context.Cuenta.FirstOrDefault(x => x.IdUsuario == c.IdUsuarioBeneficiario);
@@ -71,44 +80,160 @@ namespace ItlaBanking.Action
             return agg;
         }
 
-       //public async Task<bool> PagarAsync(PagosViewModel ptvm) {
-       //     var cuenta = await _context.Cuenta.FirstOrDefaultAsync(x => x.NumeroCuenta == ptvm.NumeroCuenta);
-       //     var tarjeta = await _context.TarjetaCredito.FirstOrDefaultAsync(x => x.NumeroTarjeta == ptvm.NumeroCuentaPagar);
-       //     if (cuenta == null || tarjeta == null)
-       //     {
-       //         return false;
-       //     }
-       //     if (cuenta.Balance < ptvm.Monto)
-       //     {
-       //         //ModelState.AddModelError("", "No tiene suficiente balance");
-       //         return false;
-
-       //     }
-       //     cuenta.Balance = cuenta.Balance - ptvm.Monto;
-
-       //     if (tarjeta.MontoLimite > ptvm.Monto)
-       //     {
-       //         tarjeta.MontoLimite = tarjeta.MontoLimite - ptvm.Monto;
-       //     }
-       //     else if (tarjeta.MontoLimite < ptvm.Monto)
-       //     {
-       //         ptvm.Monto = ptvm.Monto - tarjeta.MontoLimite;
-       //         tarjeta.MontoLimite = 0;
-       //         cuenta.Balance = cuenta.Balance + ptvm.Monto;
-       //         try
-       //         {
-       //             await _cuentaRepository.Update(cuenta);
-       //             await _tarjetasRepository.Update(tarjeta);
-       //             return RedirectToAction("Index");
-
-       //         }
-       //         catch { }
 
 
+        public async Task<PagosViewModel> PagoExpreso(PagosViewModel ptvm)
+        {
+            var cuenta = await _context.Cuenta.FirstOrDefaultAsync(x => x.NumeroCuenta == ptvm.NumeroCuenta);
+            var cuenta2 = await _context.Cuenta.FirstOrDefaultAsync(x => x.NumeroCuenta == ptvm.NumeroCuentaPagar);
+            if (cuenta == null || cuenta2 == null)
+            {
+                ModelState.AddModelError("", "Cuenta Inexistente");
 
-       //     }
+                return ptvm;
+            }
+            if (cuenta.Balance < ptvm.Monto)
+            {
+                ModelState.AddModelError("", "No tiene suficiente balance");
+                return ptvm;
 
-       //     return false;
-       // }
+            }
+            cuenta.Balance = cuenta.Balance - ptvm.Monto;
+            cuenta2.Balance = cuenta2.Balance + ptvm.Monto;
+            try
+            {
+                await _cuentaRepository.Update(cuenta);
+                await _cuentaRepository.Update(cuenta2);
+            }
+            catch { }
+
+            return null;
+
+        }
+
+        public async Task<PagosViewModel> PagoTarjeta(PagosViewModel ptvm)
+        {
+            var cuenta = await _context.Cuenta.FirstOrDefaultAsync(x => x.NumeroCuenta == ptvm.NumeroCuenta);
+            var tarjeta = await _context.TarjetaCredito.FirstOrDefaultAsync(x => x.NumeroTarjeta == ptvm.NumeroCuentaPagar);
+            if (cuenta == null || tarjeta == null)
+            {
+                ModelState.AddModelError("", "Cuenta Inexistente");
+
+                return ptvm;
+            }
+            if (cuenta.Balance < ptvm.Monto)
+            {
+                ModelState.AddModelError("", "No tiene suficiente balance");
+                return ptvm;
+
+            }
+            cuenta.Balance = cuenta.Balance - ptvm.Monto;
+
+            if (tarjeta.Deuda > ptvm.Monto)
+            {
+                tarjeta.Deuda = tarjeta.Deuda - ptvm.Monto;
+            }
+            else if (tarjeta.Deuda < ptvm.Monto)
+            {
+                ptvm.Monto = ptvm.Monto - tarjeta.Deuda;
+                tarjeta.Deuda = 0;
+                cuenta.Balance = cuenta.Balance + ptvm.Monto;
+
+            }
+            try
+            {
+                await _cuentaRepository.Update(cuenta);
+                await _tarjetasRepository.Update(tarjeta);
+            }
+            catch { }
+
+            return null;
+
+        }
+
+        public async Task<PagosViewModel> PagoPrestamo(PagosViewModel ptvm)
+        {
+            var cuenta = await _context.Cuenta.FirstOrDefaultAsync(x => x.NumeroCuenta == ptvm.NumeroCuenta);
+            var prestamo = await _context.Prestamos.FirstOrDefaultAsync(x => x.NumeroPrestamo == ptvm.NumeroCuentaPagar);
+            var tarjeta = await _context.TarjetaCredito.FirstOrDefaultAsync(x => x.NumeroTarjeta == ptvm.NumeroCuenta);
+            if (tarjeta!=null) {
+                 return await PagoPrestamoconTarjeta(ptvm, tarjeta, prestamo);
+            }
+            if (cuenta == null || prestamo == null)
+            {
+                ModelState.AddModelError("", "Cuenta Inexistente");
+
+                return ptvm;
+            }
+            if (cuenta.Balance < ptvm.Monto)
+            {
+                ModelState.AddModelError("", "No tiene suficiente balance");
+
+                return ptvm;
+
+            }
+            cuenta.Balance = cuenta.Balance - ptvm.Monto;
+
+            if (prestamo.Monto > ptvm.Monto)
+            {
+                prestamo.Monto = prestamo.Monto - ptvm.Monto;
+            }
+            else if (prestamo.Monto < ptvm.Monto)
+            {
+                ptvm.Monto = ptvm.Monto - prestamo.Monto;
+                prestamo.Monto = 0;
+                cuenta.Balance = cuenta.Balance + ptvm.Monto;
+
+            }
+            try
+            {
+                await _cuentaRepository.Update(cuenta);
+                await _prestamosRepository.Update(prestamo);
+            }
+            catch { }
+
+            return null;
+
+        }
+
+        public async Task<PagosViewModel> PagoPrestamoconTarjeta(PagosViewModel ptvm, TarjetaCredito tarjeta, Prestamos prestamo)
+        {
+           
+            
+            if (tarjeta.MontoLimite < ptvm.Monto)
+            {
+                ModelState.AddModelError("", "Sobrepasa el limite de su tarjeta");
+
+                return ptvm;
+
+            }
+            if (tarjeta.Deuda + ptvm.Monto > tarjeta.MontoLimite) {
+                ModelState.AddModelError("", "Sobrepasa el limite de su tarjeta");
+
+                return ptvm;
+            }
+            tarjeta.Deuda = tarjeta.Deuda + ptvm.Monto;
+
+            if (prestamo.Monto > ptvm.Monto)
+            {
+                prestamo.Monto = prestamo.Monto - ptvm.Monto;
+            }
+            else if (prestamo.Monto < ptvm.Monto)
+            {
+                ptvm.Monto = ptvm.Monto - prestamo.Monto;
+                prestamo.Monto = 0;
+                tarjeta.Deuda = tarjeta.Deuda - ptvm.Monto;
+
+            }
+            try
+            {
+                await _tarjetasRepository.Update(tarjeta);
+                await _prestamosRepository.Update(prestamo);
+            }
+            catch { }
+
+            return null;
+
+        }
     }
 }

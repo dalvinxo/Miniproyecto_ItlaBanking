@@ -27,6 +27,8 @@ namespace ItlaBanking.Models
         public DbSet<BeneficiarioProdureViewModel> _BeneficiarioProdureViewModels { get; set; }
 
         public DbSet<ProbandoBeneficiarioViewModel> probandoBeneficiarioViewModels { get; set; }
+        public DbSet<EstadisticaAdministradorViewModel> estadisticaAdministradorViewModel { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -51,6 +53,13 @@ namespace ItlaBanking.Models
                 entity.HasKey(e => e.IdUsuarioBeneficiario);
 
             });
+
+            modelBuilder.Entity<EstadisticaAdministradorViewModel>(entity =>
+            {
+                entity.HasKey(e => e.TotalTransacciones);
+
+            });
+
 
 
             modelBuilder.Entity<Beneficiario>(entity =>

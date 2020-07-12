@@ -23,6 +23,7 @@ namespace ItlaBanking.Controllers
         private readonly CuentaRepository _cuentaRepository;
         private readonly PrestamosRepository _prestamosRepository;
         private readonly TarjetaCreditoRepository _tarjetaCreditoRepository;
+        private readonly ItlaBankingContext _context;
         
 
         //identity
@@ -32,7 +33,7 @@ namespace ItlaBanking.Controllers
 
         public AdministradorController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager,
            UsuarioRepository usuarioRepository, CuentaRepository cuentaRepository, PrestamosRepository prestamosRepository,
-            TarjetaCreditoRepository tarjetaCreditoRepository
+            TarjetaCreditoRepository tarjetaCreditoRepository, ItlaBankingContext context
           )
         {
             _userManager = userManager;
@@ -41,6 +42,7 @@ namespace ItlaBanking.Controllers
             _cuentaRepository = cuentaRepository;
             _tarjetaCreditoRepository = tarjetaCreditoRepository;
             _prestamosRepository = prestamosRepository;
+            _context = context;
 
 
         }
@@ -48,35 +50,12 @@ namespace ItlaBanking.Controllers
         {
             ViewData["Nombre"] =User.Identity.Name;
 
-            //Total de clientes segun su estado.
-            var TotalCLientActivos = await _usuarioRepository.GetCountUsuario("Activo");
-            var TotalClientInactivos = await _usuarioRepository.GetCountUsuario("Inactivo");
+            var Estadisticas = await _context.estadisticaAdministradorViewModel.FromSql("Estadisticas").ToListAsync();
+                        
+            EstadisticaAdministradorViewModel estadistica = new EstadisticaAdministradorViewModel();
 
-            //Total de Productos por tipos
-            var TotalCuenta = await _cuentaRepository.GetAllAsync();
-            var TotalPrestamo = await _prestamosRepository.GetAllAsync();
-            var TotalTarjeta = await _tarjetaCreditoRepository.GetAllAsync();
             
-            //conversion client
-            int CountClientesActivos = Convert.ToInt32(TotalCLientActivos.Count());
-            int CountClientInactivos = Convert.ToInt32(TotalClientInactivos.Count());
-
-            //conversion producto
-            int CountProductCuenta = Convert.ToInt32(TotalCuenta.Count());
-            int CountProductTarjeta = Convert.ToInt32(TotalTarjeta.Count());
-            int CountProductoPrestamo = Convert.ToInt32(TotalPrestamo.Count());
-
-
-
-            EstadisticaAdministradorViewModel estadistica = new EstadisticaAdministradorViewModel() {
-    
-                TotalClientActivos = CountClientesActivos,
-                TotalClienteInactivos = CountClientInactivos,
-                TotalCuenta = CountProductCuenta,
-                TotalPrestamo = CountProductoPrestamo,
-                TotalTarjeta = CountProductTarjeta
-
-            };
+            estadistica.stats = Estadisticas;
             return View(estadistica);
         }
 
@@ -109,6 +88,10 @@ namespace ItlaBanking.Controllers
                 }
                 else {
                     Usuario.Estado = "Activo";
+                    var user = await _userManager.FindByNameAsync(Usuario.Usuario1);
+
+                    await _userManager.ResetAccessFailedCountAsync(user);
+
                 }
 
                 await _usuarioRepository.Update(Usuario);

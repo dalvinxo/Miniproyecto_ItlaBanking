@@ -43,7 +43,6 @@ namespace ItlaBanking.Automapper
             CreateMap<RegistrosProductosViewModels, TarjetaCredito>().ReverseMap().
                         ForMember(dest => dest.NumeroCuenta, opt => opt.Ignore()).
                         ForMember(dest => dest.TipoCuenta, opt => opt.Ignore()).
-                        ForMember(dest => dest.Monto, opt => opt.Ignore()).
                         ForMember(dest => dest.Balance, opt => opt.Ignore()).
                         ForMember(dest => dest.FechaAdquisicion, opt => opt.Ignore()).
                         ForMember(dest => dest.Categoria, opt => opt.Ignore()).

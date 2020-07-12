@@ -111,6 +111,7 @@ namespace ItlaBanking.Action
                     pdt.NumeroTarjeta = codigo;
 
                     var newTarjeta = _mapper.Map<TarjetaCredito>(pdt);
+                    newTarjeta.Deuda = 0;
                     newTarjeta.FechaExpiracion = FechaExpiracion;
                     newTarjeta.FechaPago = Pago;
 
