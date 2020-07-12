@@ -304,14 +304,14 @@ namespace ItlaBanking.Controllers
 
 
 
-        public IActionResult PagosBeneficiario()
+        public async Task<IActionResult> PagosBeneficiario()
         {
 
             CuentasyPagos cp = new CuentasyPagos(_context, _userManager, _cuentaRepository,
                 _tarjetasRepository, _prestamosRepository);
 
 
-            return View(cp.Beneficiarios(User.Identity.Name));
+            return View(await cp.Beneficiarios(User.Identity.Name));
         }
 
         [HttpPost]

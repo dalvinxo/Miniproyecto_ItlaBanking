@@ -25,5 +25,8 @@ namespace ItlaBanking.ViewModels
         public int TotalTarjeta { get; set; }
 
         public int TotalPrestamo { get; set; }
+
+        public IEnumerable<EstadisticaAdministradorViewModel> stats;
+
     }
 }

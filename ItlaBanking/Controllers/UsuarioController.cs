@@ -63,69 +63,7 @@ namespace ItlaBanking.Controllers
         public async Task<IActionResult> CrearProducto(RegistrosProductosViewModels pdt)
         {
             int? id = pdt.IdUsuario;
-<<<<<<< HEAD
-            try { 
-            if (pdt.TipoCuenta == "Ahorro")
-            {
-                if (pdt.Balance == null)
-                {
-                        //pdt.Balance = 0;
-                        ModelState.AddModelError("null", "La cantidad insertada debe contener menos de 13 digitos, intentelo de nuevo");
-                        return View(pdt);
-                    }
 
-            A:
-                Random r = new Random();
-                int codigo = r.Next(100000000, 999999999);
-
-                if (!ValidarCodigo(codigo))
-                {
-                    goto A;
-                }
-                pdt.NumeroCuenta = codigo;
-                              
-                var newCuenta = _mapper.Map<Cuenta>(pdt);
-                await _cuentaRepository.AddAsync(newCuenta);
-                return RedirectToAction("Producto", "Usuario", new { @id = id });
-
-            }
-            else if (pdt.TipoCuenta == "Credito")
-            {
-                DateTime fecha = DateTime.Now;
-                DateTime Pago = Convert.ToDateTime(fecha);
-                DateTime FechaExpiracion = Convert.ToDateTime(fecha);
-                Pago = Pago.AddDays(20);
-                FechaExpiracion = FechaExpiracion.AddDays(30);
-                pdt.Monto = 0;
-
-                if (pdt.MontoLimite == null)
-                {
-
-                  //  pdt.MontoLimite = 0;
-                    ModelState.AddModelError("","Necesita Ingresar el monto limite de esta tarjeta");
-                    return View(pdt);
-
-                }
-
-            B:
-                Random r = new Random();
-                int codigo = r.Next(100000000, 999999999);
-
-                if (!ValidarCodigo(codigo))
-                {
-                    goto B;
-                }
-
-                pdt.NumeroTarjeta = codigo;
-
-                var newTarjeta = _mapper.Map<TarjetaCredito>(pdt);
-                newTarjeta.FechaExpiracion = FechaExpiracion;
-                newTarjeta.FechaPago = Pago;
-
-               // await _context.TarjetaCredito.AddAsync(newTarjeta);
-                await _context.SaveChangesAsync();
-=======
->>>>>>> 69028b1c1de789fdf32b721a6036c1e941488527
 
             GestionProductoUsuario Validar = new GestionProductoUsuario(_userManager,_signinManager,_context, _mapper, _usuarioRepository, _repositoryPrestamos, _cuentaRepository, _tarjetaCreditoRepository);
             var validacion = await Validar.ValidarProducto(pdt);
@@ -171,52 +109,12 @@ namespace ItlaBanking.Controllers
             if (ModelState.IsValid)
             {
 
-<<<<<<< HEAD
-                if (rvm.Balance == null) {
-                    rvm.Balance = 0;
-                }
-               
-                var user = new IdentityUser { UserName = rvm.Usuario1 };
-                var result = await _userManager.CreateAsync(user, rvm.Clave);
-                
-                if (rvm.TipoUsuario == "Administrador") {
-                    await _userManager.AddToRoleAsync(user, "Administrador");
 
-                }
-                else if(rvm.TipoUsuario == "Cliente") {
-                    await _userManager.AddToRoleAsync(user, "Cliente");
-
-                }
-
-
-                if (result.Succeeded){
-                    var newUsuario = _mapper.Map<Usuario>(rvm);
-                    await _usuarioRepository.AddAsync(newUsuario);
-
-                A:
-                    Random r = new Random();
-                    int codigo = r.Next(100000000, 999999999);
-
-                    if (!ValidarCodigo(codigo))
-                    {
-                        goto A;
-                    }
-                    rvm.NumeroCuenta = codigo;
-
-                    rvm.Categoria = 1;
-                    rvm.IdUsuario = newUsuario.IdUsuario;
-
-                    var newCuenta = _mapper.Map<Cuenta>(rvm);
-                    await _cuentaRepository.AddAsync(newCuenta);
-
-                    return RedirectToAction("AdministrarUsuario", "Administrador");
-=======
                 GestionProductoUsuario Validar = new GestionProductoUsuario(_userManager, _signinManager, _context, _mapper, _usuarioRepository, _repositoryPrestamos, _cuentaRepository, _tarjetaCreditoRepository);
                 var Validacion = await Validar.CrearUsuario(rvm);
 
                 if (Validacion != null) {
                     return View(Validacion);
->>>>>>> 69028b1c1de789fdf32b721a6036c1e941488527
                 }
                 return RedirectToAction("AdministrarUsuario", "Administrador");
                 
