@@ -75,7 +75,7 @@ using ItlaBanking.Models;
             WriteLiteral("\r\n<html>\r\n");
             EndContext();
             BeginContext(106, 7866, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "18fd486e8706466495c498f8814223de", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ccf87cce98ac4ba4b66e0d949a03f6fb", async() => {
                 BeginContext(153, 266, true);
                 WriteLiteral(@"
     <div class=""card container bg-warning border border-white rounded shadow-lg p-1 mb-5 bg-white border border-primary"">
@@ -85,7 +85,7 @@ using ItlaBanking.Models;
                 ");
                 EndContext();
                 BeginContext(419, 127, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "58d16f0c39bd432a88cf7adb514658bf", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f3b74e7350ed4b2f935c1bdad0190155", async() => {
                     BeginContext(527, 15, true);
                     WriteLiteral("Agregar Usuario");
                     EndContext();
@@ -199,7 +199,7 @@ using ItlaBanking.Models;
                 WriteLiteral("</td>\r\n                                <td>\r\n                                    ");
                 EndContext();
                 BeginContext(2143, 174, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "aa8f009e62104677a500385d63773531", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f70025627cf64ca880f301a1b4bbbe7c", async() => {
                     BeginContext(2266, 47, true);
                     WriteLiteral("<i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>");
                     EndContext();
@@ -247,7 +247,7 @@ using ItlaBanking.Models;
                 WriteLiteral("                                        ");
                 EndContext();
                 BeginContext(2546, 231, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b4ca94f9752b4384824ec5f89094e3e7", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f6cd4d4d3031417ba01445bd2bc8d8ac", async() => {
                     BeginContext(2675, 98, true);
                     WriteLiteral("<i class=\"fa fa-times-circle\" style=\"font-size:14px; color:red\" aria-hidden=\"true\"></i> Desactivar");
                     EndContext();
@@ -296,7 +296,7 @@ using ItlaBanking.Models;
                 WriteLiteral("                                        ");
                 EndContext();
                 BeginContext(2941, 231, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cc5ea83d68284f88a242362a7ffa2029", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "68b4286f42af4defb9ecffda79608dc8", async() => {
                     BeginContext(3065, 103, true);
                     WriteLiteral("<i class=\"fa fa-check-circle\" style=\"font-size:14px; color:greenyellow\" aria-hidden=\"true\"></i> Activar");
                     EndContext();
@@ -351,7 +351,7 @@ using ItlaBanking.Models;
                 WriteLiteral("                                    <td>\r\n                                        ");
                 EndContext();
                 BeginContext(3442, 215, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c10c5292f7ff4b388ba9c1899a17d497", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "82f506171b2f47e7aedb64a0817420ee", async() => {
                     BeginContext(3567, 86, true);
                     WriteLiteral("<i class=\"fa fa-credit-card-alt\" aria-hidden=\"true\" style=\"color:black\"></i> Productos");
                     EndContext();
@@ -468,7 +468,7 @@ using ItlaBanking.Models;
                 WriteLiteral("</td>\r\n                                <td>\r\n                                    ");
                 EndContext();
                 BeginContext(4580, 174, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0deab198b13a4cd6b32294fc36d3cc8d", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "75fa3cc1fb944b8b9933b20f935b2eaa", async() => {
                     BeginContext(4703, 47, true);
                     WriteLiteral("<i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>");
                     EndContext();
@@ -515,7 +515,7 @@ using ItlaBanking.Models;
                 WriteLiteral("                                    <td>\r\n                                        ");
                 EndContext();
                 BeginContext(4975, 234, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3fd86170c1844d3d932d39c4fe43d690", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3beba7c07e68482aa8a40bdcb5f45f19", async() => {
                     BeginContext(5107, 98, true);
                     WriteLiteral("<i class=\"fa fa-times-circle\" style=\"font-size:14px; color:red\" aria-hidden=\"true\"></i> Desactivar");
                     EndContext();
@@ -563,7 +563,7 @@ using ItlaBanking.Models;
                 WriteLiteral("                                    <td>\r\n                                        ");
                 EndContext();
                 BeginContext(5444, 231, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c49840f27bf145dabb21a8af655993a9", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "221569dee5324a6397e0a6c2f8568cc0", async() => {
                     BeginContext(5568, 103, true);
                     WriteLiteral("<i class=\"fa fa-check-circle\" style=\"font-size:14px; color:greenyellow\" aria-hidden=\"true\"></i> Activar");
                     EndContext();

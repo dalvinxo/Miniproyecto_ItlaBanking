@@ -10,7 +10,7 @@ namespace ItlaBanking.Models
         public int? NumeroCuentaDestinatario { get; set; }
         public DateTime? Fecha { get; set; }
         public int NumeroCuenta { get; set; }
-
+        public int TipoTransaccion { get; set; }
         public Cuenta NumeroCuentaNavigation { get; set; }
     }
 }
