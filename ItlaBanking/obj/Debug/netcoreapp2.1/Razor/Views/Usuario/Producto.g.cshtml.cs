@@ -75,8 +75,13 @@ using ItlaBanking.Models;
 
 #line default
 #line hidden
+<<<<<<< HEAD
             BeginContext(198, 17959, false);
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cb64f69021ab4ac19d76bbb7f087341d", async() => {
+=======
+            BeginContext(198, 17849, false);
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5d804424788643bba7788abcbea9b496", async() => {
+>>>>>>> 69028b1c1de789fdf32b721a6036c1e941488527
                 BeginContext(245, 293, true);
                 WriteLiteral(@"
 
@@ -89,7 +94,11 @@ using ItlaBanking.Models;
                     ");
                 EndContext();
                 BeginContext(538, 194, false);
+<<<<<<< HEAD
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa9a2429f04f4a67b1c36fac56d42fac", async() => {
+=======
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3c9aa5c903a54ecbb9f589053e9ddb06", async() => {
+>>>>>>> 69028b1c1de789fdf32b721a6036c1e941488527
                     BeginContext(657, 71, true);
                     WriteLiteral("<i class=\"fa fa-plus-circle\" aria-hidden=\"true\"> Registrar Producto</i>");
                     EndContext();
@@ -216,7 +225,11 @@ using ItlaBanking.Models;
                                                 ");
                 EndContext();
                 BeginContext(3793, 547, false);
+<<<<<<< HEAD
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "eea2c54a5d4940a282c507e83cd0d3bc", async() => {
+=======
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ae47b724ed6345a8ae68f38a4550329a", async() => {
+>>>>>>> 69028b1c1de789fdf32b721a6036c1e941488527
                     BeginContext(3871, 90, true);
                     WriteLiteral("\r\n                                                    <input name=\"IdCuenta\" type=\"hidden\"");
                     EndContext();
@@ -231,7 +244,11 @@ WriteAttributeValue("", 3969, cuenta.NumeroCuenta, 3969, 20, false);
                     WriteLiteral(">\r\n                                                    ");
                     EndContext();
                     BeginContext(4045, 66, false);
+<<<<<<< HEAD
                     __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "6d5296402e3341fd8e90238e01fd0200", async() => {
+=======
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "a6ed16c323af43f0b29c88f3e2e21291", async() => {
+>>>>>>> 69028b1c1de789fdf32b721a6036c1e941488527
                     }
                     );
                     __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -443,9 +460,15 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
 
                                                  ");
                 EndContext();
+<<<<<<< HEAD
                 BeginContext(8688, 542, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8fff380dbc9b499d83b0f3b920e50eed", async() => {
                     BeginContext(8761, 90, true);
+=======
+                BeginContext(8578, 542, false);
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "aca32dbfaae64a8b919543de30e73950", async() => {
+                    BeginContext(8651, 90, true);
+>>>>>>> 69028b1c1de789fdf32b721a6036c1e941488527
                     WriteLiteral("\r\n                                                    <input name=\"IdCuenta\" type=\"hidden\"");
                     EndContext();
                     BeginWriteAttribute("value", " value=\"", 8851, "\"", 8881, 1);
@@ -458,8 +481,13 @@ WriteAttributeValue("", 8859, credito.NumeroTarjeta, 8859, 22, false);
                     BeginContext(8882, 55, true);
                     WriteLiteral(">\r\n                                                    ");
                     EndContext();
+<<<<<<< HEAD
                     BeginContext(8937, 66, false);
                     __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "24c7d324a5db46b0bda4f16422bc4145", async() => {
+=======
+                    BeginContext(8827, 66, false);
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "a0c7e1f3fce14f508f76b99948525ea4", async() => {
+>>>>>>> 69028b1c1de789fdf32b721a6036c1e941488527
                     }
                     );
                     __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -652,9 +680,15 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                                                     
                                                     ");
                 EndContext();
+<<<<<<< HEAD
                 BeginContext(14551, 562, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "941bd7b1b41a46d99966a63be03f47c5", async() => {
                     BeginContext(14625, 94, true);
+=======
+                BeginContext(14441, 562, false);
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "06931e44308c4a70b0be3ff23f7618e0", async() => {
+                    BeginContext(14515, 94, true);
+>>>>>>> 69028b1c1de789fdf32b721a6036c1e941488527
                     WriteLiteral("\r\n                                                        <input name=\"IdCuenta\" type=\"hidden\"");
                     EndContext();
                     BeginWriteAttribute("value", " value=\"", 14719, "\"", 14752, 1);
@@ -667,8 +701,13 @@ WriteAttributeValue(" ", 14727, prestamo.NumeroPrestamo, 14728, 24, false);
                     BeginContext(14753, 59, true);
                     WriteLiteral(">\r\n                                                        ");
                     EndContext();
+<<<<<<< HEAD
                     BeginContext(14812, 66, false);
                     __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "5cd088011208475f9519deaa279471d3", async() => {
+=======
+                    BeginContext(14702, 66, false);
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "744281130960489983e3bee0f54ea88e", async() => {
+>>>>>>> 69028b1c1de789fdf32b721a6036c1e941488527
                     }
                     );
                     __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();

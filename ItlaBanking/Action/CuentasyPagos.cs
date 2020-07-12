@@ -25,6 +25,7 @@ namespace ItlaBanking.Action
 
 
 
+
         public CuentasyPagos(ItlaBankingContext context, UserManager<IdentityUser> userManager,
                             CuentaRepository cuentaRepository, TarjetaCreditoRepository tarjetasRepository,
                             PrestamosRepository prestamosRepository) {

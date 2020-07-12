@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using ItlaBanking.Action;
 using ItlaBanking.Models;
 using ItlaBanking.Repository;
 using ItlaBanking.ViewModels;
@@ -13,7 +14,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ItlaBanking.Controllers
 {
-    [Authorize(Roles ="Administrador")]
+    [Authorize(Roles = "Administrador")]
     public class UsuarioController : Controller
     {
 
@@ -31,7 +32,7 @@ namespace ItlaBanking.Controllers
 
 
         public UsuarioController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager,
-            ItlaBankingContext context, IMapper mapper, UsuarioRepository usuarioRepository, PrestamosRepository prestamosRepository, CuentaRepository cuentaRepository, TarjetaCreditoRepository tarjetaCreditoRepository){
+            ItlaBankingContext context, IMapper mapper, UsuarioRepository usuarioRepository, PrestamosRepository prestamosRepository, CuentaRepository cuentaRepository, TarjetaCreditoRepository tarjetaCreditoRepository) {
             _userManager = userManager;
             _signinManager = signInManager;
             _context = context;
@@ -47,7 +48,7 @@ namespace ItlaBanking.Controllers
 
         public IActionResult CrearProducto(int? id)
         {
-            if (id!=null) {
+            if (id != null) {
                 RegistrosProductosViewModels pdt0 = new RegistrosProductosViewModels();
                 pdt0.IdUsuario = Convert.ToInt32(id);
                 return View(pdt0);
@@ -62,6 +63,7 @@ namespace ItlaBanking.Controllers
         public async Task<IActionResult> CrearProducto(RegistrosProductosViewModels pdt)
         {
             int? id = pdt.IdUsuario;
+<<<<<<< HEAD
             try { 
             if (pdt.TipoCuenta == "Ahorro")
             {
@@ -122,77 +124,25 @@ namespace ItlaBanking.Controllers
 
                // await _context.TarjetaCredito.AddAsync(newTarjeta);
                 await _context.SaveChangesAsync();
+=======
+>>>>>>> 69028b1c1de789fdf32b721a6036c1e941488527
 
-                await _tarjetaCreditoRepository.AddAsync(newTarjeta);
-                //await _cuentaRepository.AddAsync(newCuenta);
+            GestionProductoUsuario Validar = new GestionProductoUsuario(_userManager,_signinManager,_context, _mapper, _usuarioRepository, _repositoryPrestamos, _cuentaRepository, _tarjetaCreditoRepository);
+            var validacion = await Validar.ValidarProducto(pdt);
 
+            if (validacion == null) {
                 return RedirectToAction("Producto", "Usuario", new { @id = id });
-
-
             }
-            else if (pdt.TipoCuenta == "Prestamo")
-            {
-                DateTime fecha = DateTime.Now;
-                DateTime nuevaFecha = Convert.ToDateTime(fecha);
-                nuevaFecha = nuevaFecha.AddDays(30);
 
-                if (pdt.Monto == null)
-                {
-                //    pdt.Monto = 0;
-                    ModelState.AddModelError("", "Necesita Ingresar el monto del prestamo");
-                    return View(pdt);
-
-                }
-
-            C:
-                Random r = new Random();
-                int codigo = r.Next(100000000, 999999999);
-                if (!ValidarCodigo(codigo))
-                {
-                    goto C;
-                }
-                pdt.NumeroPrestamo = codigo;
-                var newPrestamo = _mapper.Map<Prestamos>(pdt);
-                newPrestamo.FechaExpiracion = nuevaFecha;
-
-
-                //Agrando monto prestamo a cuenta principal
-                decimal MontoPrestamo = Convert.ToDecimal(newPrestamo.Monto);
-
-                var cuentaPrincipal = _cuentaRepository.GetCuentaAt(id.Value);
-                decimal MontoCuentaPrincipal = Convert.ToDecimal(cuentaPrincipal.Balance);
-
-                decimal total = MontoCuentaPrincipal + MontoPrestamo;
-                cuentaPrincipal.Balance = total;
-
-                await _cuentaRepository.Update(cuentaPrincipal);
-
-                await _repositoryPrestamos.AddAsync(newPrestamo);
-
-                
-                return RedirectToAction("Producto", "Usuario", new { @id = id });
-
-            }
-            else {
-                return RedirectToAction("AdministrarUsuario", "Administrador");
-
-            }
-            }
-            catch 
-            {
-                ModelState.AddModelError("","");
-
-                return View(pdt);
-            }
+            return View(validacion);
+            
         }
+    
 
         public async Task<IActionResult> Producto(int? id) {
 
                 int idusuarioentero = Convert.ToInt32(id);
                 TraerProductosViewModels tpvm = new TraerProductosViewModels();
-                //var CuentaList = await _context.Cuenta.Where(x=>x.IdUsuario == id).ToListAsync();
-               // var TarjetasList = await _context.TarjetaCredito.Where(x => x.IdUsuario == id).ToListAsync();
-                //var PrestamosList = await _context.Prestamos.Where(x => x.IdUsuario == id).ToListAsync();
                 var CuentaList = await _cuentaRepository.GetCuentaUsuario(idusuarioentero);
                 var TarjetasList = await  _tarjetaCreditoRepository.GetCreditoUsuario(idusuarioentero);
                 var PrestamosList = await _repositoryPrestamos.GetPrestamoUsuario(idusuarioentero);
@@ -221,6 +171,7 @@ namespace ItlaBanking.Controllers
             if (ModelState.IsValid)
             {
 
+<<<<<<< HEAD
                 if (rvm.Balance == null) {
                     rvm.Balance = 0;
                 }
@@ -259,10 +210,19 @@ namespace ItlaBanking.Controllers
                     await _cuentaRepository.AddAsync(newCuenta);
 
                     return RedirectToAction("AdministrarUsuario", "Administrador");
+=======
+                GestionProductoUsuario Validar = new GestionProductoUsuario(_userManager, _signinManager, _context, _mapper, _usuarioRepository, _repositoryPrestamos, _cuentaRepository, _tarjetaCreditoRepository);
+                var Validacion = await Validar.CrearUsuario(rvm);
+
+                if (Validacion != null) {
+                    return View(Validacion);
+>>>>>>> 69028b1c1de789fdf32b721a6036c1e941488527
                 }
-                AddErrors(result);
+                return RedirectToAction("AdministrarUsuario", "Administrador");
+                
             }
             return View(rvm);
+
         }
 
        
@@ -281,73 +241,37 @@ namespace ItlaBanking.Controllers
         [HttpPost]
         public async Task<IActionResult> EditUsuario(UpdateUsuarioViewModels uvmd)
         {
-
-            /*try
-             {*/
-             
+            
                 var valio = _usuarioRepository.UsuarioNoRepeat(uvmd.Usuario1);
 
-            if (valio != null)
-            {
-                            
-                ModelState.AddModelError("", "Este usuario ya existe intenta con otro");
-                return View(uvmd);
+                    if (valio != null)
+                    {
+                              ModelState.AddModelError("", "Este usuario ya existe intenta con otro");
+                                return View(uvmd);
+                    } else {
 
-            }
-            else {
+                        if (ModelState.IsValid)
+                        {
+                            var mapeador = _mapper.Map<Usuario>(uvmd);
+                            await _usuarioRepository.Update(mapeador);
 
-                if (ModelState.IsValid)
-                {
-                    var mapeador = _mapper.Map<Usuario>(uvmd);
-                    await _usuarioRepository.Update(mapeador);
+                            var cuentaPrincipal = _cuentaRepository.GetCuentaAt(mapeador.IdUsuario);
+                            if (uvmd.Balance == null) {
+                                uvmd.Balance = 0;
+                            }
 
-                    var cuentaPrincipal = _cuentaRepository.GetCuentaAt(mapeador.IdUsuario);
-                    if (uvmd.Balance == null) {
-                        uvmd.Balance = 0;
+                            cuentaPrincipal.Balance = cuentaPrincipal.Balance + uvmd.Balance.Value;
+                            await _cuentaRepository.Update(cuentaPrincipal);
+
+
+                            return RedirectToAction("AdministrarUsuario", "Administrador");
+                        }
+                        return View(uvmd);
+                
                     }
-
-                    cuentaPrincipal.Balance = cuentaPrincipal.Balance + uvmd.Balance.Value;
-                    await _cuentaRepository.Update(cuentaPrincipal);
-
-
-                    return RedirectToAction("AdministrarUsuario", "Administrador");
-                }
-                return View(uvmd);
                 
-            }
-                
-      
-
-            /*}
-            catch
-            {
-                return RedirectToAction("Index", "Login");
-            }*/
-        }
-
         
-
-        private void AddErrors(IdentityResult result)
-        {
-            foreach (var error in result.Errors)
-            {
-                ModelState.AddModelError("", error.Description);
-            }
         }
-
-        public bool ValidarCodigo(int codigo)
-        {
-            var code = _context.Cuenta.FirstOrDefault(x => x.NumeroCuenta == codigo);
-            var code2 = _context.Prestamos.FirstOrDefault(x => x.NumeroPrestamo == codigo);
-            var code3 = _context.TarjetaCredito.FirstOrDefault(x => x.NumeroTarjeta == codigo);
-
         
-            if (code != null && code2 != null && code3 != null)
-            {
-                return false;
-            }
-
-            return true;
-        }
     }
 }

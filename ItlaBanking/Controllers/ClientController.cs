@@ -53,6 +53,14 @@ namespace ItlaBanking.Controllers
 
 
         }
+      public async Task<int> IdUsuarioClienteAsync() {
+            Usuario usu = new Usuario();
+            usu = await _usuarioRepository.GetUsuarioByName(User.Identity.Name);
+            return usu.IdUsuario;
+        }
+
+     
+
 
         [HttpGet]
         //Vistas Gets home y beneficiario.
@@ -83,16 +91,20 @@ namespace ItlaBanking.Controllers
         public async Task<IActionResult> PagosExpreso()
         {
             ViewData["Nombre"] = User.Identity.Name;
-            Usuario usu = new Usuario();
-            usu = await _context.Usuario.FirstOrDefaultAsync(x => x.Usuario1 == User.Identity.Name);
-            int? id = usu.IdUsuario;
+            int? id = await IdUsuarioClienteAsync();
+
             if (id != null)
             {
-                CuentasyPagos cp = new CuentasyPagos(_context, _userManager, _cuentaRepository, 
-                    _tarjetasRepository, _prestamosRepository);
-                return View(cp.TraerCuentas(id));
+
+                var cuentaUsuario = await _cuentaRepository.GetCuentaUsuario(id.Value);
+                PagosViewModel cuentas = new PagosViewModel();
+                cuentas.cuenta = cuentaUsuario;
+
+                return View(cuentas);
             }
-            return View();
+
+
+            return View("Index", "Login");
         }
 
 
@@ -138,6 +150,7 @@ namespace ItlaBanking.Controllers
             {
                 CuentasyPagos cp = new CuentasyPagos(_context, _userManager, _cuentaRepository,
                     _tarjetasRepository, _prestamosRepository);
+
                 return View(cp.TraerCuentas(id));
             }
             return View();
@@ -179,6 +192,7 @@ namespace ItlaBanking.Controllers
             {
                 CuentasyPagos cp = new CuentasyPagos(_context, _userManager, _cuentaRepository,
                     _tarjetasRepository, _prestamosRepository);
+
                 return View(cp.TraerCuentas(id));
             }
 
@@ -295,6 +309,7 @@ namespace ItlaBanking.Controllers
 
             CuentasyPagos cp = new CuentasyPagos(_context, _userManager, _cuentaRepository,
                 _tarjetasRepository, _prestamosRepository);
+
 
             return View(cp.Beneficiarios(User.Identity.Name));
         }

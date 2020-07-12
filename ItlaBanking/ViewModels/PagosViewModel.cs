@@ -14,7 +14,10 @@ namespace ItlaBanking.ViewModels
         //[Required]
         public int? NumeroCuenta { get; set; }
 
-        [Required]
+    
+        [RegularExpression("([0-9]+)", ErrorMessage = "Por favor agregar numeros validos")]
+        [Range(100000000, 999999999, ErrorMessage = "la cantidad de numeros para numero de cuenta debe ser 9 digitos")]
+        [Required(ErrorMessage = "Debes Enviar un numero de cuenta.")]
         public int? NumeroCuentaPagar { get; set; }
 
         [Required]

@@ -24,6 +24,12 @@ namespace ItlaBanking.Repository
             return await _context.Usuario.OrderByDescending(x=> x.TipoUsuario == "Administrador").ToListAsync();
         }
 
+        public async Task<Usuario> GetUsuarioByName(string Usuario1)
+        {
+            return await _context.Usuario.FirstOrDefaultAsync(x => x.Usuario1 == Usuario1);
+        }
+
+
         public Usuario GetUsuarioAt(int idusuario)
         {
             var code = _context.Usuario.FirstOrDefault(x => x.IdUsuario == idusuario);

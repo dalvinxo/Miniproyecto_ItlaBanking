@@ -57,8 +57,13 @@ using ItlaBanking.Models;
 
 #line default
 #line hidden
+<<<<<<< HEAD
             BeginContext(85, 4117, false);
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b5b961176a364408be5738ddbe2ad486", async() => {
+=======
+            BeginContext(85, 3978, false);
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "38ddce6899a64f2ca82222f26c2881cd", async() => {
+>>>>>>> 69028b1c1de789fdf32b721a6036c1e941488527
                 BeginContext(132, 496, true);
                 WriteLiteral(@"
     <div class=""container bg-warning border border-white rounded shadow-lg p-1 mb-5 bg-white rounded"">
