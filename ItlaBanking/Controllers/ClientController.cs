@@ -28,12 +28,14 @@ namespace ItlaBanking.Controllers
         private readonly CuentaRepository _cuentaRepository;
         private readonly PrestamosRepository _prestamosRepository;
         private readonly TarjetaCreditoRepository _tarjetasRepository;
+        private readonly BeneficiarioRepository _beneficiarioRepository;
+
+
 
 
         public ClientController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager,
             ItlaBankingContext context, IMapper mapper, UsuarioRepository usuarioRepository, CuentaRepository cuentaRepository,
-            TarjetaCreditoRepository tarjetasRepository, PrestamosRepository prestamosRepository)
-
+            TarjetaCreditoRepository tarjetasRepository, PrestamosRepository prestamosRepository, BeneficiarioRepository beneficiarioRepository)
         {
             _userManager = userManager;
             _signinManager = signInManager;
@@ -46,6 +48,7 @@ namespace ItlaBanking.Controllers
             _cuentaRepository = cuentaRepository;
             _prestamosRepository = prestamosRepository;
             _tarjetasRepository = tarjetasRepository;
+            _beneficiarioRepository = beneficiarioRepository;
 
 
 
@@ -143,11 +146,18 @@ namespace ItlaBanking.Controllers
 
             }
             return View(ptvm);
+
         }
 
+        public IActionResult ConfirmPagosExpreso() {
 
+            return View();
+        }
 
+        public IActionResult ConfirmPagosBeneficiario() {
 
+            return View();
+        }
 
         public async Task<IActionResult> PagosTarjeta()
         {
@@ -165,7 +175,6 @@ namespace ItlaBanking.Controllers
 
         [HttpPost]
         public async Task<IActionResult> PagosTarjeta(PagosViewModel ptvm)
-
         {
             ViewData["Nombre"] = User.Identity.Name;
 
@@ -209,7 +218,6 @@ namespace ItlaBanking.Controllers
             }
             return View(ptvm);
         }
-
 
 
         public async Task<IActionResult> PagosPrestamo()
@@ -268,13 +276,86 @@ namespace ItlaBanking.Controllers
             }
             return View(ppvm);
         }
-        public IActionResult Beneficiario()
+
+        public async Task<IActionResult> Beneficiario()
+        {
+            ViewData["Nombre"] = User.Identity.Name;
+
+            Usuario usu = new Usuario();
+            usu = await _context.Usuario.FirstOrDefaultAsync(x => x.Usuario1 == User.Identity.Name);
+
+            var newBeneficiarios = await _context.probandoBeneficiarioViewModels.FromSql("TodosBeneficiarios @IdUsuario = {0}", usu.IdUsuario).ToListAsync();
+
+            BeneficiarioViewModel bf = new BeneficiarioViewModel();
+            bf.LosBeneficiarios = newBeneficiarios;
+
+            return View(bf);
+        }
+
+        public IActionResult AddBeneficiario() {
+            return View();
+
+         }
+
+        [HttpPost]
+        public async Task<IActionResult> AddBeneficiario(ProbandoBeneficiarioViewModel pbv)
+        {
+            var cuental = await _cuentaRepository.GetByIdAsync(pbv.CuentaBeneficiario);
+
+            if (cuental != null)
+            {
+                Usuario usu = new Usuario();
+                usu = await _context.Usuario.FirstOrDefaultAsync(x => x.Usuario1 == User.Identity.Name);
+
+                pbv.IdUsuarioBeneficiario = cuental.IdUsuario;
+                pbv.IdUsuarioCliente = usu.IdUsuario;
+
+
+                var norepetidos = _beneficiarioRepository.GetBeneficiarios(pbv.IdUsuarioBeneficiario, pbv.CuentaBeneficiario );
+
+                if (norepetidos != null)
+                {
+                    ModelState.AddModelError("", "El numero de cuenta " + pbv.CuentaBeneficiario + " ya lo tienes como beneficiario");
+                    return View(pbv);
+                }
+
+                var Beneficiario = _mapper.Map<Beneficiario>(pbv);
+                
+
+
+                await _beneficiarioRepository.AddAsync(Beneficiario);
+                return RedirectToAction("Beneficiario");
+            }
+
+            ModelState.AddModelError("", "El numero de cuenta "+pbv.CuentaBeneficiario+" no existe.");
+            return View(pbv);
+       
+    
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EliminarBeneficiario(int IdUsuarioClient, int IdUsuarioBeneficiario, int CuentaBeneficiario)
         {
 
-            CuentasyPagos cp = new CuentasyPagos(_context, _userManager);
+            Beneficiario bn = new Beneficiario()
+            {
+                    IdUsuarioCliente = IdUsuarioClient,
+                    IdUsuarioBeneficiario = IdUsuarioBeneficiario,
+                    CuentaBeneficiario = CuentaBeneficiario
+            };
 
-            return View(cp.Beneficiarios(User.Identity.Name));
+            var validandob = _beneficiarioRepository.ValidandoBeneficiarios(bn.IdUsuarioCliente, bn.IdUsuarioBeneficiario, bn.CuentaBeneficiario);
+
+            if(validandob != null){
+                await _beneficiarioRepository.DeleteEntity(validandob);
+                return RedirectToAction("Beneficiario");
+            }
+
+            return RedirectToAction("Error");
         }
+
+
+
 
         public IActionResult PagosBeneficiario()
         {
@@ -337,6 +418,8 @@ namespace ItlaBanking.Controllers
             return RedirectToAction("Beneficiario");
         }
 
+   
+       
         //OtrasVista
         public IActionResult AvanceEfectivo()
         {

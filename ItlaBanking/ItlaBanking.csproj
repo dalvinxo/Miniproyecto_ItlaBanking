@@ -33,6 +33,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Views\Client\ConfirmPagosBeneficiario.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Client\ConfirmPagosExpreso.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Client\AddBeneficiario.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Client\CrearUsuario.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\_LayoutUsuarioClient.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Shared\_LayoutUsuario.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

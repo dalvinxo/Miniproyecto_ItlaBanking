@@ -46,6 +46,7 @@ namespace ItlaBanking
             services.AddScoped<PrestamosRepository>();
             services.AddScoped<TarjetaCreditoRepository>();
             services.AddScoped<TarjetadeUsuario>();
+            services.AddScoped<BeneficiarioRepository>();
 
 
             //dataServices

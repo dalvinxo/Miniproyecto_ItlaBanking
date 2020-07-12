@@ -20,20 +20,20 @@ namespace ItlaBanking.ViewModels
         public string TipoCuenta { get; set; }
 
         [Display(Name = "Digitar monto del prestamo:")]
-        [Range(0, 99999999999.99, ErrorMessage = "Balance invalido; numero maximo de digitos 13.")]
-        [Column(TypeName = "decimal(13, 2)")]
+        [RegularExpression(@"^\d+\.\d{0,2}$", ErrorMessage = "Por favor agregar numeros validos")]
+        [Range(0, 99999999.99, ErrorMessage = "la cantidad de dinero no pueder ser mayor a ser 13 digitos")]
         [Required(ErrorMessage = "Debe digitar el monto deseado para este campo.")]
         public decimal? Monto { get; set; }
 
         [Display(Name = "Digitar monto limite de la tarjeta:")]
-        [Range(0, 99999999999.99, ErrorMessage = "Balance invalido; numero maximo de digitos 13.")]
-        [Column(TypeName = "decimal(13, 2)")]
         [Required(ErrorMessage = "Debe digitar el monto deseado para este campo.")]
+        [RegularExpression(@"^\d+\.\d{0,2}$", ErrorMessage = "Por favor agregar numeros validos")]
+        [Range(0, 99999999.99, ErrorMessage = "la cantidad de dinero no pueder ser mayor a ser 13 digitos")]
         public decimal? MontoLimite { get; set; }
 
-        [Display(Name = "Digitar monto inicial:")]
-        [Range(0, 99999999999.99, ErrorMessage = "Balance invalido; numero maximo de digitos 13.")]
-        [Column(TypeName = "decimal(13, 2)")]
+        [Display(Name = "Digitar balance:")]
+        [RegularExpression(@"^\d+\.\d{0,2}$", ErrorMessage = "Por favor agregar numeros validos")]
+        [Range(0, 99999999.99, ErrorMessage = "la cantidad de dinero no pueder ser mayor a ser 13 digitos")]
         [Required(ErrorMessage = "Debe digitar el monto deseado para este campo.")]
         public decimal? Balance { get; set; }
 

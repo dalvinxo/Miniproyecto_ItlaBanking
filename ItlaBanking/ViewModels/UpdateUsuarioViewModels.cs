@@ -9,7 +9,7 @@ namespace ItlaBanking.ViewModels
     public class UpdateUsuarioViewModels
     {
 
-        [Key]
+        
         public int IdUsuario { get; set; }
 
         [Required(ErrorMessage = "Este campo debe ser llenado")]
@@ -33,7 +33,7 @@ namespace ItlaBanking.ViewModels
         [DataType(DataType.EmailAddress)]
         public string Correo { get; set; }
         
-        [Usuario(ErrorMessage = "Este usuario ya existe!")]
+        
         [Required(ErrorMessage = "Este campo debe ser llenado")]
         [Display(Name = "Usuario: ")]
         [StringLength(30)]
@@ -58,6 +58,8 @@ namespace ItlaBanking.ViewModels
 
         //[MaxLength(13)]
         [Display(Name = "Balance:")]
+        [RegularExpression("([0-9]+)", ErrorMessage = "Por favor agregar numeros validos")]
+        [Range(0, 99999999999.99, ErrorMessage = "la cantidad de dinero no pueder ser mayor a ser 13 digitos")]
         [DataType(DataType.Currency)]
         public decimal? Balance { get; set; }
 
@@ -67,6 +69,8 @@ namespace ItlaBanking.ViewModels
         public int? Categoria { get; set;  }
 
         public string Estado { get; set; }
+
+        public string ValidationUsuario { get; set; }
 
         public DateTime? FechaAdquisicion { get; set; }
     }

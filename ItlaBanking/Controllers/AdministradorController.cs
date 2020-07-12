@@ -31,7 +31,7 @@ namespace ItlaBanking.Controllers
 
 
         public AdministradorController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager,
-            ItlaBankingContext context, UsuarioRepository usuarioRepository, CuentaRepository cuentaRepository, PrestamosRepository prestamosRepository,
+           UsuarioRepository usuarioRepository, CuentaRepository cuentaRepository, PrestamosRepository prestamosRepository,
             TarjetaCreditoRepository tarjetaCreditoRepository
           )
         {
@@ -67,8 +67,9 @@ namespace ItlaBanking.Controllers
             int CountProductoPrestamo = Convert.ToInt32(TotalPrestamo.Count());
 
 
-            EstadisticaAdministradorViewModel estadistica = new EstadisticaAdministradorViewModel() {
 
+            EstadisticaAdministradorViewModel estadistica = new EstadisticaAdministradorViewModel() {
+    
                 TotalClientActivos = CountClientesActivos,
                 TotalClienteInactivos = CountClientInactivos,
                 TotalCuenta = CountProductCuenta,
@@ -83,7 +84,6 @@ namespace ItlaBanking.Controllers
         public async Task<IActionResult> AdministrarUsuario()
         {
             ViewData["Nombre"] = User.Identity.Name;
-            //var ListaUsuarios = await _usuarioRepository.GetAllAsync();
 
             var ListaUsuarios = await _usuarioRepository.GetUsuarioOrder();
             
