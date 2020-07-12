@@ -59,9 +59,6 @@ namespace ItlaBanking.Controllers
             return usu.IdUsuario;
         }
 
-     
-
-
         [HttpGet]
         //Vistas Gets home y beneficiario.
         public async Task<IActionResult> Index()
@@ -109,7 +106,6 @@ namespace ItlaBanking.Controllers
                 var cuentaUsuario = await _cuentaRepository.GetCuentaUsuario(id.Value);
                 PagosViewModel cuentas = new PagosViewModel();
                 cuentas.cuenta = cuentaUsuario;
-
                 return View(cuentas);
             }
 
