@@ -7,6 +7,7 @@ using ItlaBanking.Repository;
 using ItlaBanking.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ItlaBanking.Controllers
 {
@@ -67,13 +68,16 @@ namespace ItlaBanking.Controllers
                 return View(lvm);
             }
             var Usuario = await _usuarioRepository.GetByIdAsync(await IdUsuarioClienteAsync(user.UserName));
-            if (Usuario.Estado == null) {
-                return RedirectToAction("Error", "Home");
+            if (Usuario.Estado == "Inactivo")
+            {
+                return RedirectToAction("UsuarioDes", "Login");
+
             }
             if (Usuario.TipoUsuario == "Cliente") {
                 if (await _userManager.GetAccessFailedCountAsync(user) > 3)
                 {
-                    return RedirectToAction("Desactivador", "Login", IdUsuarioClienteAsync(user.UserName));
+
+                    return RedirectToAction("Desactivador", "Login",new { @id = Usuario.IdUsuario });
 
                 }
             }
@@ -100,32 +104,28 @@ namespace ItlaBanking.Controllers
         }
 
         public async Task<IActionResult> Desactivador(int? id)
-        {
+        {            
+            if (id!=null) {
+                var Usua = await _usuarioRepository.GetByIdAsync(id.Value);                
+                Usua.Estado = "Inactivo";
+                try {
+                    await _usuarioRepository.Update(Usua);
+                    
 
-            
-            //{try
+                } catch {
+                    return RedirectToAction("Index");
 
-                var Usuario = await _usuarioRepository.GetByIdAsync(id.Value);
-
-                if (Usuario.Estado == null)
-                {
-                    return RedirectToAction("Inde");
                 }
+                return RedirectToAction("UsuarioDes", "Login");
                 
-                    Usuario.Estado = "Inactivo";
-                              
+            }
+            return RedirectToAction("Index");
 
-                await _usuarioRepository.Update(Usuario);
+        }
 
-            //}
-            //catch
-            //{
+        public IActionResult UsuarioDes() {
 
-               return RedirectToAction("Error", "Home");
-            //}
-
-            //return RedirectToAction("Index");
-
+            return View();
         }
 
 

@@ -88,6 +88,10 @@ namespace ItlaBanking.Controllers
                 }
                 else {
                     Usuario.Estado = "Activo";
+                    var user = await _userManager.FindByNameAsync(Usuario.Usuario1);
+
+                    await _userManager.ResetAccessFailedCountAsync(user);
+
                 }
 
                 await _usuarioRepository.Update(Usuario);

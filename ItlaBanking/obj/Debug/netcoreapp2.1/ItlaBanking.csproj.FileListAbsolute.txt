@@ -98,3 +98,4 @@ C:\Users\Liam\Desktop\ShitBull\Programacion 3\Miniproyecto_ItlaBanking\ItlaBanki
 C:\Users\Liam\Desktop\ShitBull\Programacion 3\Miniproyecto_ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\ItlaBanking.Views.pdb
 C:\Users\Liam\Desktop\ShitBull\Programacion 3\Miniproyecto_ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\ItlaBanking.csproj.CopyComplete
 C:\Users\Liam\Desktop\ShitBull\Programacion 3\Miniproyecto_ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\ItlaBanking.csprojAssemblyReference.cache
+C:\Users\Liam\Desktop\ShitBull\Programacion 3\Miniproyecto_ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\Razor\Views\Login\UsuarioDes.g.cshtml.cs

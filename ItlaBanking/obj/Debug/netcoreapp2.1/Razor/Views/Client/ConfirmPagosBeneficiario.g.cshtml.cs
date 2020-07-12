@@ -73,7 +73,7 @@ background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, F
 #line default
 #line hidden
             BeginContext(226, 1444, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "19d82b6036fe4325aa032eaf89d9d914", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa934447b4714524855d22b566c972bf", async() => {
                 BeginContext(525, 590, true);
                 WriteLiteral(@"  
 
@@ -92,7 +92,7 @@ background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, F
                     ");
                 EndContext();
                 BeginContext(1115, 145, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "81af12bffebb48818ab8d27067008552", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6a0f8b3c58c145ecac5bf58b99115ae0", async() => {
                     BeginContext(1254, 2, true);
                     WriteLiteral("No");
                     EndContext();
@@ -118,7 +118,7 @@ background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, F
                 WriteLiteral("\r\n\r\n                </div>\r\n                <div class=\"form-group col-6\">\r\n\r\n                    ");
                 EndContext();
                 BeginContext(1358, 223, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "27535046f3824e43a5d98f7c99451990", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "20f7e6076b434f7797295c391091283a", async() => {
                     BeginContext(1410, 164, true);
                     WriteLiteral("\r\n                        <input value=\"Si\" type=\"submit\" style=\"font-size:20px;\" class=\"btn btn-outline-primary btn-block  shadow rounded\" />\r\n                    ");
                     EndContext();
