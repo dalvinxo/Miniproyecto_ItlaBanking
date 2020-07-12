@@ -258,7 +258,6 @@ namespace ItlaBanking.Controllers
                     var newCuenta = _mapper.Map<Cuenta>(rvm);
                     await _cuentaRepository.AddAsync(newCuenta);
 
-                    await _signinManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("AdministrarUsuario", "Administrador");
                 }
                 AddErrors(result);

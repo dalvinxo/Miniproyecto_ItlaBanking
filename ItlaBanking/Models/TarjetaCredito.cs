@@ -11,8 +11,7 @@ namespace ItlaBanking.Models
         public DateTime? FechaExpiracion { get; set; }
         public string Estado { get; set; }
         public int IdUsuario { get; set; }
-
-        public decimal? Monto { get; set; }
+        public decimal? Deuda { get; set; }
 
         public Usuario IdUsuarioNavigation { get; set; }
     }

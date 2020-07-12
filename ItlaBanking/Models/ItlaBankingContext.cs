@@ -138,9 +138,7 @@ namespace ItlaBanking.Models
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.MontoLimite).HasColumnType("decimal(13, 2)");
-
-                entity.Property(e => e.Monto).HasColumnType("decimal(13, 2)");
-
+                entity.Property(e => e.Deuda).HasColumnType("decimal(13, 2)");
 
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.TarjetaCredito)
@@ -156,6 +154,9 @@ namespace ItlaBanking.Models
                 entity.Property(e => e.Fecha)
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
+
+                entity.Property(d => d.TipoTransaccion)
+         .HasColumnType("int");
 
                 entity.Property(e => e.Monto).HasColumnType("decimal(13, 2)");
 
