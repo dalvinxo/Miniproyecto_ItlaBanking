@@ -17,12 +17,12 @@ namespace ItlaBanking.Action
 
         private readonly ItlaBankingContext _context;
         private readonly UserManager<IdentityUser> _userManager;
-        
+        private readonly CuentaRepository _cuentaRepository;
 
-        public CuentasyPagos(ItlaBankingContext context, UserManager<IdentityUser> userManager) {
+        public CuentasyPagos(ItlaBankingContext context, UserManager<IdentityUser> userManager, CuentaRepository cuentaRepository) {
             _context = context;
             _userManager = userManager;
-            
+            _cuentaRepository = cuentaRepository;
 
 
         }
