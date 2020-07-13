@@ -55,4 +55,3 @@ C:\Users\Pablo Molina\source\repos\ItlaBankings\Miniproyecto_ItlaBanking\ItlaBan
 C:\Users\Pablo Molina\source\repos\ItlaBankings\Miniproyecto_ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\ItlaBanking.dll
 C:\Users\Pablo Molina\source\repos\ItlaBankings\Miniproyecto_ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\ItlaBanking.pdb
 C:\Users\Pablo Molina\source\repos\ItlaBankings\Miniproyecto_ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\ItlaBanking.csproj.CopyComplete
-C:\Users\Pablo Molina\source\repos\ItlaBankings\Miniproyecto_ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\ItlaBanking.csprojAssemblyReference.cache
