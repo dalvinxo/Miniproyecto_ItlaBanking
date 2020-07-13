@@ -495,7 +495,7 @@ namespace ItlaBanking.Controllers
 
             var cuentaUsuario = await _cuentaRepository.GetCuentaUsuario(await IdUsuarioClienteAsync());
             var TarjetaUsuario = await _tarjetasRepository.GetCreditoUsuario(await IdUsuarioClienteAsync());
-            
+            ViewBag.exists = "";
             Aev.cuenta = cuentaUsuario;
             Aev.tarjetas = TarjetaUsuario;
 
@@ -534,7 +534,7 @@ namespace ItlaBanking.Controllers
                     var transacciones = _mapper.Map<Transacciones>(Aev);
                     transacciones.NumeroCuentaDestinatario = CuentaTarjetaCredito.NumeroTarjeta;
                     await _transaccionesRepository.AddAsync(transacciones);
-
+                    ViewBag.exists = "Avance de efectivo, realizado sastifactoriamente.";
 
                     return View(Aev);
                 }
