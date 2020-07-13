@@ -12,6 +12,7 @@
             </div>
 
             <form asp-action="PagosExpreso" asp-controller="Client" method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
 
                 <div class="form-row">
                     <div class="form-group col-md-6">
@@ -42,11 +43,11 @@
                         <span asp-validation-for="Monto"></span>
 
                     </div>
-                    </div>
-                    <div class="d-flex justify-content-center mt-1 mb-2">
-                        <input type="submit" value="Pagar" class="btn btn-outline-success font-weight-bold  shadow-lg rounded w-25">
+                </div>
+                <div class="d-flex justify-content-center mt-1 mb-2">
+                    <input type="submit" value="Pagar" class="btn btn-outline-success font-weight-bold  shadow-lg rounded w-25">
 
-                    </div>
+                </div>
 
             </form>
 

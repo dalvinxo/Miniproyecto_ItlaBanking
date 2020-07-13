@@ -200,12 +200,23 @@ namespace ItlaBanking.Action
                 var user = new IdentityUser { UserName = rvm.Usuario1 };
                 var result = await _userManager.CreateAsync(user, rvm.Clave);
 
-                if (result.Succeeded)
+            
+
+            if (result.Succeeded)
                 {
                     var newUsuario = _mapper.Map<Usuario>(rvm);
                     await _usuarioRepository.AddAsync(newUsuario);
+                if (rvm.TipoUsuario == "Cliente")
+                {
+                    await _userManager.AddToRoleAsync(user, "Cliente");
+                }
+                else
+                {
+                    await _userManager.AddToRoleAsync(user, "Administrador");
 
-                A:
+                }
+
+            A:
                     Random r = new Random();
                     int codigo = r.Next(100000000, 999999999);
 

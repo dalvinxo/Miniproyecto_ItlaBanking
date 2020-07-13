@@ -111,9 +111,13 @@ namespace ItlaBanking.Controllers
         [HttpPost]
         public async Task<IActionResult> PagosExpreso(PagosViewModel pevm)
         {
+            var cuentaUsuario = await _cuentaRepository.GetCuentaUsuario(await IdUsuarioClienteAsync());
+            PagosViewModel cuentas = new PagosViewModel();
+            cuentas.cuenta = cuentaUsuario;
             ViewData["Nombre"] = User.Identity.Name;
             if (ModelState.IsValid)
             {
+                
                 PagosViewModel pvm = new PagosViewModel();
                 CuentasyPagos cp = new CuentasyPagos(_context, _userManager, _cuentaRepository,
                     _tarjetasRepository, _prestamosRepository);
@@ -123,10 +127,10 @@ namespace ItlaBanking.Controllers
                     return RedirectToAction("Index");
                 }
                 else {
-                    return View(pvm);
+                    return View(cuentas);
                 }
             }
-            return View(pevm);
+            return View(cuentas);
 
         }
 
@@ -160,12 +164,13 @@ namespace ItlaBanking.Controllers
         public async Task<IActionResult> PagosTarjeta(PagosViewModel ptvm)
         {
             ViewData["Nombre"] = User.Identity.Name;
+            CuentasyPagos cp = new CuentasyPagos(_context, _userManager, _cuentaRepository,
+                    _tarjetasRepository, _prestamosRepository);
 
             if (ModelState.IsValid)
             {
                 PagosViewModel pvm = new PagosViewModel();
-                CuentasyPagos cp = new CuentasyPagos(_context, _userManager, _cuentaRepository, 
-                    _tarjetasRepository, _prestamosRepository);
+                
                 pvm = await cp.PagoTarjeta(ptvm);
                 if (pvm == null)
                 {
@@ -173,12 +178,12 @@ namespace ItlaBanking.Controllers
                 }
                 else
                 {
-                    return View(pvm);
+                    return View(cp.TraerCuentas(await IdUsuarioClienteAsync()));
                 }
 
-                
+
             }
-            return View(ptvm);
+            return View(cp.TraerCuentas(await IdUsuarioClienteAsync()));
         }
 
 
@@ -203,11 +208,11 @@ namespace ItlaBanking.Controllers
         public async Task<IActionResult> PagosPrestamo(PagosViewModel ppvm)
         {
             ViewData["Nombre"] = User.Identity.Name;
-
+            CuentasyPagos cp = new CuentasyPagos(_context, _userManager, _cuentaRepository,
+                    _tarjetasRepository, _prestamosRepository);
             if (ModelState.IsValid) {
                 PagosViewModel pvm = new PagosViewModel();
-                CuentasyPagos cp = new CuentasyPagos(_context, _userManager, _cuentaRepository,
-                    _tarjetasRepository, _prestamosRepository);
+                
                 pvm = await cp.PagoPrestamo(ppvm);
                 if (pvm == null)
                 {
@@ -215,13 +220,13 @@ namespace ItlaBanking.Controllers
                 }
                 else
                 {
-                    return View(pvm);
+                    return View(cp.TraerCuentas(await IdUsuarioClienteAsync()));
                 }
 
 
 
             }
-            return View(ppvm);
+            return View(cp.TraerCuentas(await IdUsuarioClienteAsync()));
         }
 
         public async Task<IActionResult> Beneficiario()

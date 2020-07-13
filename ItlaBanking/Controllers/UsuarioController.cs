@@ -144,6 +144,7 @@ namespace ItlaBanking.Controllers
 
                     if (valio != null)
                     {
+                        
                               ModelState.AddModelError("", "Este usuario ya existe intenta con otro");
                                 return View(uvmd);
                     } else {
@@ -152,6 +153,10 @@ namespace ItlaBanking.Controllers
                         {
                             var mapeador = _mapper.Map<Usuario>(uvmd);
                             await _usuarioRepository.Update(mapeador);
+                    var user = await _userManager.FindByNameAsync(mapeador.Usuario1);
+
+                    await _userManager.UpdateAsync(user);
+
 
                             var cuentaPrincipal = _cuentaRepository.GetCuentaAt(mapeador.IdUsuario);
                             if (uvmd.Balance == null) {

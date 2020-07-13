@@ -11,7 +11,7 @@ namespace ItlaBanking.ViewModels
     {
         //public int IdUsuario;
 
-        //[Required]
+        [Required(ErrorMessage = "El numero de cuenta no debe estar vacio")]
         public int? NumeroCuenta { get; set; }
 
     
@@ -20,7 +20,7 @@ namespace ItlaBanking.ViewModels
         [Required(ErrorMessage = "Debes Enviar un numero de cuenta.")]
         public int? NumeroCuentaPagar { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "El monto no debe estar vacio.")]
         public decimal? Monto { get; set; }
 
 
