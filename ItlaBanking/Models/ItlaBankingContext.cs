@@ -34,7 +34,7 @@ namespace ItlaBanking.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=LIAM-PC\\SQLEXPRESS;Database=ItlaBanking;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-DK0MCFF;Database=ItlaBanking;Trusted_Connection=True;");
             }
         }
 

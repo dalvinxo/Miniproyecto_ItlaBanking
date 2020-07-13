@@ -20,6 +20,7 @@ namespace ItlaBanking.Automapper
             MapearPrestamoProducto();
             MapearBeneficiarios();
             MapearActualizar();
+            MapearTrasaccion();
         }
 
         private void MapearPrestamoProducto()
@@ -116,6 +117,18 @@ namespace ItlaBanking.Automapper
 
             ;
         }
+
+        private void MapearTrasaccion()
+        {
+            CreateMap<TransaccionesViewModels, Transacciones>().ReverseMap().
+                        ForMember(dest => dest.Nombre, opt => opt.Ignore()).
+                        ForMember(dest => dest.Apellido, opt => opt.Ignore())
+                     
+
+
+                        ;
+        }
+
 
 
     }

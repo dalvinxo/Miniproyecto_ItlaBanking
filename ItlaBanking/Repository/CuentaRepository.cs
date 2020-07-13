@@ -28,7 +28,13 @@ namespace ItlaBanking.Repository
             return await _context.Cuenta.Where(x => x.IdUsuario == id).OrderBy(x => x.Categoria).ToListAsync();
         }
 
-      
+        //public Cuenta Cuenta Destinatario(int idusuario)
+        //{
+
+        //    var code = _context.Cuenta.FirstOrDefault(x => x.IdUsuario == idusuario && x.Categoria == 1);
+        //    return code;
+        //}
+
         //public async Task<IEnumerable<Cuenta>> GetTotalProducto() {
         //    R
         //}
