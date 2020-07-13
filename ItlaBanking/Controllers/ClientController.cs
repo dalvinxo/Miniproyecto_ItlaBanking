@@ -257,6 +257,7 @@ namespace ItlaBanking.Controllers
             ViewData["Nombre"] = User.Identity.Name;
             CuentasyPagos cp = new CuentasyPagos(_context, _userManager, _cuentaRepository,
                     _tarjetasRepository, _prestamosRepository);
+
             if (ModelState.IsValid) {
                 PagosViewModel pvm = new PagosViewModel();
                 

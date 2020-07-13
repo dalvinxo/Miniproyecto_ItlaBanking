@@ -158,7 +158,7 @@ namespace ItlaBanking.Controllers
                     await _userManager.UpdateAsync(user);
 
 
-                            var cuentaPrincipal = _cuentaRepository.GetCuentaAt(mapeador.IdUsuario);
+                    var cuentaPrincipal = _cuentaRepository.GetCuentaAt(mapeador.IdUsuario);
                             if (uvmd.Balance == null) {
                                 uvmd.Balance = 0;
                             }

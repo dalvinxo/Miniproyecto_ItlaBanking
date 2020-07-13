@@ -68,7 +68,7 @@ using ItlaBanking.Models;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
             BeginContext(53, 9499, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c3b4934473d244839c8e44b407c78650", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d5ad4cec910f4884a87fee79b515d7fc", async() => {
                 BeginContext(100, 426, true);
                 WriteLiteral(@"
 
@@ -110,7 +110,7 @@ using ItlaBanking.Models;
                                         ");
                 EndContext();
                 BeginContext(2016, 516, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a7afac36d60549f4a5038cdffee5938c", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9c2304c187694bdba48c2b95e87d1d41", async() => {
                     BeginContext(2089, 2, true);
                     WriteLiteral("\r\n");
                     EndContext();
@@ -160,12 +160,12 @@ using ItlaBanking.Models;
                 WriteLiteral("                     <div class=\"form-row mt-4\">\r\n                                    \r\n                                    <div class=\"form-group col-6\">\r\n\r\n                                        ");
                 EndContext();
                 BeginContext(4016, 924, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "56a35dcc76fc422db625256c2967e1ec", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e496498e330d4d148538ce279c71fd9d", async() => {
                     BeginContext(4093, 46, true);
                     WriteLiteral("\r\n                                            ");
                     EndContext();
                     BeginContext(4139, 66, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "7ff466a7679d4f39883703009b703226", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4c0651cf972a414fa3032e42ffd21078", async() => {
                     }
                     );
                     __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -199,7 +199,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                     WriteLiteral("\r\n                                            <div class=\"form-group\">\r\n                                                <label class=\"labelPago d-flex justify-content-center\">Monto a pagar: </label>\r\n                                                ");
                     EndContext();
                     BeginContext(4453, 174, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "ebb9792558714e2aa4546deb995a2f46", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "79b6be7b5b674c84a8f87087027cb478", async() => {
                     }
                     );
                     __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -268,7 +268,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                             <th colspan=""4"">");
                 EndContext();
                 BeginContext(5395, 131, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cf37de03a3f941f6b456ea3744a8121d", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d9fc2dbbb1714383bd8c1d4a8de49db2", async() => {
                     BeginContext(5502, 20, true);
                     WriteLiteral("Agregar Beneficiario");
                     EndContext();
@@ -375,7 +375,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                                                     ");
                 EndContext();
                 BeginContext(8373, 737, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8a37336778cd4c7ba07868230976b3dc", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2dc01723baf44669873a1479a6085cf7", async() => {
                     BeginContext(8451, 101, true);
                     WriteLiteral("\r\n                                                        <input name=\"IdUsuarioClient\" type=\"hidden\"");
                     EndContext();

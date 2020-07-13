@@ -72,7 +72,7 @@ using ItlaBanking.Models;
             WriteLiteral("\r\n<html>\r\n");
             EndContext();
             BeginContext(56, 2818, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0a9821648f2b4832bf12a60f6d2211ac", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1cf6a21a6ebc4bf9aa4a7798bcf929f5", async() => {
                 BeginContext(103, 376, true);
                 WriteLiteral(@"
 
@@ -84,12 +84,12 @@ using ItlaBanking.Models;
             ");
                 EndContext();
                 BeginContext(479, 2350, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "44be734bebab452eb2b0b97dc5461390", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3173a7ece5304e9ebf5156616280e88c", async() => {
                     BeginContext(549, 18, true);
                     WriteLiteral("\r\n                ");
                     EndContext();
                     BeginContext(567, 60, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("div", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a71d3837db18449eb37521fb80dff7ce", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("div", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2a31d6da59fa4c6d88e64c66b9246469", async() => {
                     }
                     );
                     __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationSummaryTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.ValidationSummaryTagHelper>();
@@ -113,12 +113,12 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationSummaryTagHelper.ValidationSumma
                     WriteLiteral("\r\n\r\n                <div class=\"form-row\">\r\n                    <div class=\"form-group col-md-6\">\r\n                        <label class=\"labelPago ml-3\">Seleccionar cuenta de la tarjeta de credito:</label>\r\n                        ");
                     EndContext();
                     BeginContext(858, 494, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "992d717ece3d4f43ab1b71b085de394b", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "88d5ed10686f4c1ebfa9aac228546e30", async() => {
                         BeginContext(999, 30, true);
                         WriteLiteral("\r\n                            ");
                         EndContext();
                         BeginContext(1029, 47, false);
-                        __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ef2f00772af64ea4af83fbcef6beede9", async() => {
+                        __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "00d32901d53449c784e387d8891fefaf", async() => {
                             BeginContext(1056, 11, true);
                             WriteLiteral("Seleccionar");
                             EndContext();
@@ -152,7 +152,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationSummaryTagHelper.ValidationSumma
                         WriteLiteral("                                ");
                         EndContext();
                         BeginContext(1212, 72, false);
-                        __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "00ff9004c75042149d4e27f69bd77f1d", async() => {
+                        __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1d2abd783bda41dca6a122b4d6f20fd8", async() => {
                             BeginContext(1253, 22, false);
 #line 21 "C:\Users\Pablo Molina\source\repos\ItlaBankings\Miniproyecto_ItlaBanking\ItlaBanking\Views\Client\PagosTarjeta.cshtml"
                                                                    Write(tarjetas.NumeroTarjeta);
@@ -215,12 +215,12 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper.For = ModelExpressionProvi
                     WriteLiteral("\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-6\">\r\n                        <label class=\"labelPago ml-3\">¿Desde que cuenta la quiere pagar?</label>\r\n                        ");
                     EndContext();
                     BeginContext(1561, 477, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2ed1d92e6a8e45e3a01b53b05215a752", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d6660bdc24f749c9bde3dc70384d67a3", async() => {
                         BeginContext(1697, 30, true);
                         WriteLiteral("\r\n                            ");
                         EndContext();
                         BeginContext(1727, 47, false);
-                        __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ac3d0e5c7f64cb88ad5bd0a8dfd72aa", async() => {
+                        __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dc01401199bb42448377f6ba229bdbcf", async() => {
                             BeginContext(1754, 11, true);
                             WriteLiteral("Seleccionar");
                             EndContext();
@@ -254,7 +254,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper.For = ModelExpressionProvi
                         WriteLiteral("                                ");
                         EndContext();
                         BeginContext(1906, 66, false);
-                        __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "07f8d320d2764fcf9e49ab22cd3e7c1a", async() => {
+                        __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "153986be2ffc4770910a694fb8b7c0c8", async() => {
                             BeginContext(1944, 19, false);
 #line 33 "C:\Users\Pablo Molina\source\repos\ItlaBankings\Miniproyecto_ItlaBanking\ItlaBanking\Views\Client\PagosTarjeta.cshtml"
                                                                 Write(cuenta.NumeroCuenta);
@@ -326,7 +326,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper.For = ModelExpressionProvi
                         ");
                     EndContext();
                     BeginContext(2333, 190, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "17b50038520f47009f9f5140b3b48b81", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "acd92908a2d845f1a2ff1b64b9cf5387", async() => {
                     }
                     );
                     __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();

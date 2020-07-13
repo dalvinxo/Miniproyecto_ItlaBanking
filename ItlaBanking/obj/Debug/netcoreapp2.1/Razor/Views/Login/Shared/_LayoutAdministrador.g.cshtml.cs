@@ -69,12 +69,12 @@ using ItlaBanking.Models;
             WriteLiteral("<!DOCTYPE html>\r\n<html>\r\n");
             EndContext();
             BeginContext(25, 1764, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9cad769b6f7c4abbbd256c00a299da1b", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7887f845d72b44a1b4e0b3c68e4ceeb7", async() => {
                 BeginContext(31, 150, true);
                 WriteLiteral("\r\n    <meta charset=\"utf-8\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n    <title>Administrador</title>\r\n\r\n    ");
                 EndContext();
                 BeginContext(181, 47, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "e1ebffaabf7e4961b28b60def6000dee", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "61a523ca9bdf445fbaf3034b5139ca16", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -93,7 +93,7 @@ using ItlaBanking.Models;
                 WriteLiteral("\r\n    ");
                 EndContext();
                 BeginContext(234, 51, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "9de2e33384584c9c8fda05ad328a7c47", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "3be1c8a0a02c42acb80a1e17c878d708", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -112,7 +112,7 @@ using ItlaBanking.Models;
                 WriteLiteral("\r\n    ");
                 EndContext();
                 BeginContext(291, 62, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "367fb7f13fec435f90efc3c443099af0", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "0e0a4673b6f946c2aace05fc05434699", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -131,7 +131,7 @@ using ItlaBanking.Models;
                 WriteLiteral("\r\n    ");
                 EndContext();
                 BeginContext(359, 56, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "75e62a014fc4471ca0b5fe09b1eba50b", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "a490169b9c174c6c9032eb6693635729", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -179,7 +179,7 @@ using ItlaBanking.Models;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(1791, 3259, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "afa395d3dc07453da60ae16f92d3d89f", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fc5b4611a5f941ba9e94d6bfeda65c74", async() => {
                 BeginContext(1797, 2027, true);
                 WriteLiteral(@"
 
@@ -249,7 +249,7 @@ using ItlaBanking.Models;
                 ");
                 EndContext();
                 BeginContext(3824, 220, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e7d85b5bcd12443487753b0d6daa4541", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0054d80ea0de480c88ca4986a8d3e36b", async() => {
                     BeginContext(3921, 81, true);
                     WriteLiteral("\r\n                <span class=\"text-info font-weight-bold\">Administrador:</span> ");
                     EndContext();
@@ -282,7 +282,7 @@ using ItlaBanking.Models;
                 WriteLiteral("\r\n\r\n                ");
                 EndContext();
                 BeginContext(4064, 108, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "994bddd30a3a4ca195f38ffe9a9914f8", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a912ebfc235b453b83e641ff95920a8e", async() => {
                     BeginContext(4155, 13, true);
                     WriteLiteral("Cerrar Sesión");
                     EndContext();
@@ -314,7 +314,7 @@ using ItlaBanking.Models;
         ");
                 EndContext();
                 BeginContext(4455, 152, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "114771704a1744db8cd1215c258c0bf3", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "32183a7fc6a14f5ab769541dbba68500", async() => {
                     BeginContext(4530, 73, true);
                     WriteLiteral("<i class=\"fa fa-home\" style=\"font-size:30px\" aria-hidden=\"true\"></i> Home");
                     EndContext();
@@ -339,7 +339,7 @@ using ItlaBanking.Models;
                 WriteLiteral("\r\n        <div class=\"dropdown-divider\"></div>\r\n        <span class=\"dropdown-header\" style=\"font-size:20px; color:#0071c5;\">Administración Usuario</span>\r\n        ");
                 EndContext();
                 BeginContext(4771, 153, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bb9306de4cd74a518686235fc6519c6a", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8e3845d6e8b748cba018ef083c2530a1", async() => {
                     BeginContext(4859, 61, true);
                     WriteLiteral("<i class=\"fa fa-user-circle\" aria-hidden=\"true\"></i> Usuarios");
                     EndContext();
