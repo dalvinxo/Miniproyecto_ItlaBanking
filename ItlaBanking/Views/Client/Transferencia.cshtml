@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ItlaBanking.ViewModels.AvanceEfectivoViewModel
+@{
 }
 <html>
 <body class="bg-light" id="CardViewFormulario">
@@ -9,35 +10,52 @@
                 <div class="d-flex justify-content-center letterPagos">Transferencias</div>
             </div>
 
-            <form>
+            <form asp-action="Transferencia" asp-controller="Client" method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
 
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label class="labelPago ml-3">Seleccionar  cuenta de origen:</label>
-                        <select class="custom-select custom-select-lg mb-3 rounded-pill shadow bg-white rounded border border-primary">
-                            <option value="0" selected>Cuentas de ahorros...</option>
-                            <option value="1">021858454</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label class="labelPago ml-3">Seleccionar  cuenta de origen:</label>
+                            <select asp-for="NumeroCuenta" class="custom-select custom-select-lg mb-3 rounded-pill shadow bg-white rounded border border-success">
+                                <option value="" selected>Seleccionar</option>
+                                @foreach (var cuenta in Model.cuenta)
+                                {
+                                    <option value="@cuenta.NumeroCuenta">@cuenta.NumeroCuenta</option>
+                                }
+                            </select>
+                            <span asp-validation-for="NumeroCuenta" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label class="labelPago ml-3">Seleccionar cuenta de destino:</label>
+                            <select asp-for="NumeroCuentaDestinatario" class="custom-select custom-select-lg mb-3 rounded-pill shadow bg-white rounded border border-success">
+                                <option value="" selected>Seleccionar</option>
+                                @foreach (var ct in Model.cuentaMismoCliente)
+                                {
+                                    <option value="@ct.NumeroCuenta">@ct.NumeroCuenta</option>
+                                }
+                            </select>
+                            <span asp-validation-for="NumeroCuentaDestinatario" class="text-danger"></span>
+                        </div>
+
                     </div>
 
-                    <div class="form-group col-md-6">
-                        <label class="labelPago ml-3">Seleccionar cuenta de destino:</label>
-                        <select class="custom-select custom-select-lg mb-3 rounded-pill shadow bg-white rounded border border-primary">
-                            <option value="1" selected>Cuentas de ahorros...</option>
-                            <option value="4">809256312</option>
-                            <option value="2">0214520368</option>
-                        </select>
+                    <div class="d-flex justify-content-center p-1">
+                        <div class="form-group">
+                            <label class="labelPago d-flex justify-content-center"> Monto: </label>
+                            <input asp-for="Monto" type="number" min="0.01" step="0.01" class="form-control form-control-lg rounded-pill border border-secondary shadow-lg p-3  bg-white rounded" placeholder="Ingresar Monto">
+                        </div>
+
                     </div>
 
-                </div>
+                    <div class="d-flex justify-content-center mb-2 p-1">
+                        <span asp-validation-for="Monto" class="text-danger"></span>
+                    </div>
 
+                    <div class="d-flex justify-content-center">
+                        <button class="btn btn-info font-weight-bold btn-lg shadow-lg rounded-pill W-25" type="submit">Transferir</button>
 
-                <div class="d-flex justify-content-center">
-                    <button class="btn btn-info font-weight-bold btn-lg shadow-lg rounded-pill W-25" type="submit">Transferir</button>
-
-                </div>
+                    </div>
 
             </form>
 

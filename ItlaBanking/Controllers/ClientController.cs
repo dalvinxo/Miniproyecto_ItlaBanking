@@ -151,13 +151,7 @@ namespace ItlaBanking.Controllers
                     return View(cuentas);
                 }
 
-
-                //if (pvm == null)
-                //{
-                //    return RedirectToAction("Index");
-                //} else {
-                //    return View(cuentas);
-                //}
+               
             }
             return View(cuentas);
 
@@ -436,16 +430,122 @@ namespace ItlaBanking.Controllers
    
        
         //OtrasVista
-        public IActionResult AvanceEfectivo()
+        public async Task<IActionResult> AvanceEfectivo()
         {
-            return View();
+            
+            ViewData["Nombre"] = User.Identity.Name;
+       
+            var cuentaUsuario = await _cuentaRepository.GetCuentaUsuario(await IdUsuarioClienteAsync());
+            var TarjetaUsuario = await _tarjetasRepository.GetCreditoUsuario(await IdUsuarioClienteAsync());
+
+            AvanceEfectivoViewModel avanceCuenta = new AvanceEfectivoViewModel();
+            avanceCuenta.cuenta = cuentaUsuario;
+            avanceCuenta.tarjetas = TarjetaUsuario;
+
+
+            return View(avanceCuenta);
         }
-        
-        public IActionResult Transferencia()
+
+        [HttpPost]
+        public async Task<IActionResult> AvanceEfectivo(AvanceEfectivoViewModel Aev)
         {
-            return View();
+
+            var cuentaUsuario = await _cuentaRepository.GetCuentaUsuario(await IdUsuarioClienteAsync());
+            var TarjetaUsuario = await _tarjetasRepository.GetCreditoUsuario(await IdUsuarioClienteAsync());
+            
+            Aev.cuenta = cuentaUsuario;
+            Aev.tarjetas = TarjetaUsuario;
+
+            ViewData["Nombre"] = User.Identity.Name;
+
+            if (ModelState.IsValid)
+            {
+
+                var CuentaTarjetaCredito = await _tarjetasRepository.GetByIdAsync(Aev.NumeroTarjeta.Value);
+                var CuentaAhorroSeleccionada = await _cuentaRepository.GetByIdAsync(Aev.NumeroCuenta.Value);
+
+                double deuda = Convert.ToDouble(CuentaTarjetaCredito.Deuda);
+                double MontoOne = Convert.ToDouble(Aev.Monto);
+                double MontoVerdadero = MontoOne * 0.0625;
+                double deuda1 = Convert.ToDouble(CuentaTarjetaCredito.Deuda);
+                double MontoDeudaTotal = MontoOne + MontoVerdadero +deuda1;
+                decimal result = Convert.ToDecimal(MontoDeudaTotal);
+
+
+                if (result > CuentaTarjetaCredito.MontoLimite)
+                {
+
+                    ModelState.AddModelError("", "El monto del avance de efectivo supera el monto limite de la tarjeta de crédito numero " + CuentaTarjetaCredito.NumeroTarjeta);
+                    return View(Aev);
+                }
+                else
+                {
+                  
+                    CuentaAhorroSeleccionada.Balance = CuentaAhorroSeleccionada.Balance + Aev.Monto;
+                    await _cuentaRepository.Update(CuentaAhorroSeleccionada);
+
+                    CuentaTarjetaCredito.Deuda = result;
+                    await _tarjetasRepository.Update(CuentaTarjetaCredito);
+
+
+                    var transacciones = _mapper.Map<Transacciones>(Aev);
+                    transacciones.NumeroCuentaDestinatario = CuentaTarjetaCredito.NumeroTarjeta;
+                    await _transaccionesRepository.AddAsync(transacciones);
+
+
+                    return View(Aev);
+                }
+
+
+            }
+
+            return View(Aev);
         }
-        
+
+
+            public async Task<IActionResult> Transferencia()
+            {
+            ViewData["Nombre"] = User.Identity.Name;
+
+            var cuentaUsuario = await _cuentaRepository.GetCuentaUsuario(await IdUsuarioClienteAsync());
+
+            AvanceEfectivoViewModel avanceCuenta = new AvanceEfectivoViewModel();
+            avanceCuenta.cuenta = cuentaUsuario;
+            avanceCuenta.cuentaMismoCliente = cuentaUsuario;
+
+
+            return View(avanceCuenta);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Transferencia(AvanceEfectivoViewModel tf)
+        {
+
+            var cuentaUsuario = await _cuentaRepository.GetCuentaUsuario(await IdUsuarioClienteAsync());
+            tf.cuenta = cuentaUsuario;
+            tf.cuentaMismoCliente = cuentaUsuario;
+
+            ViewData["Nombre"] = User.Identity.Name;
+
+            if (ModelState.IsValid)
+            {
+
+                if (tf.NumeroCuenta == tf.NumeroCuentaDestinatario)
+                { 
+
+                    ModelState.AddModelError("","La cuenta destinataria es igual a la cuenta de origen, transferencia invalida");
+                    return View(tf);
+                }
+
+             
+
+
+            }
+
+
+                return View(tf);
+        }
+
 
 
     }

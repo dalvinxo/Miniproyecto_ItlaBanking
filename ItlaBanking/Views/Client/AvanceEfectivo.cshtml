@@ -1,5 +1,4 @@
-﻿
-
+﻿@model ItlaBanking.ViewModels.AvanceEfectivoViewModel
 <body class="bg-light" id="CardViewFormulario">
 
     <div class="container bg-warning border border-white rounded shadow-lg p-1 mb-5 bg-white rounded">
@@ -10,38 +9,49 @@
             </div>
 
 
-            <form>
+            <form asp-action="AvanceEfectivo" asp-controller="Client" method="post">
+                <div asp-validation-summary="All" class="text-danger">
+                </div>
+
 
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label class="labelPago ml-3">Seleccionar  tarjeta de crédito:</label>
-                        <select class="custom-select custom-select-lg mb-3 rounded-pill shadow bg-white rounded border border-warning">
-                            <option value="0" selected>Tarjetas de creditos asignadas...</option>
-                            <option value="1">021858454</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select asp-for="NumeroTarjeta" class="custom-select custom-select-lg mb-3 rounded-pill shadow bg-white rounded border border-success">
+                            <option value="" selected>Seleccionar</option>
+                            @foreach (var tarjeta in Model.tarjetas)
+                            {
+                                <option value="@tarjeta.NumeroTarjeta">@tarjeta.NumeroTarjeta</option>
+                            }
                         </select>
+                        <span asp-validation-for="NumeroTarjeta" class="text-danger"></span>
                     </div>
 
                     <div class="form-group col-md-6">
                         <label class="labelPago ml-3">Seleccionar cuenta de ahorro:</label>
-                        <select class="custom-select custom-select-lg mb-3 rounded-pill shadow bg-white rounded border border-warning">
-                            <option value="1" selected>Seleccionar</option>
-                            <option value="4">809256312</option>
-                            <option value="2">0214520368</option>
+                        <select asp-for="NumeroCuenta" class="custom-select custom-select-lg mb-3 rounded-pill shadow bg-white rounded border border-success">
+                            <option value="" selected>Seleccionar</option>
+                            @foreach (var cuenta in Model.cuenta)
+                            {
+                                <option value="@cuenta.NumeroCuenta">@cuenta.NumeroCuenta</option>
+                            }
                         </select>
+                        <span asp-validation-for="NumeroCuenta" class="text-danger"></span>
                     </div>
 
                 </div>
 
-                <div class="d-flex justify-content-center">
+                <div class="d-flex justify-content-center p-1">
                     <div class="form-group">
                         <label class="labelPago d-flex justify-content-center">Avance de efectivo: </label>
-                        <input type="number" min="0.01" step="0.01" class="form-control form-control-lg rounded-pill border border-secondary shadow-lg p-3  bg-white rounded" placeholder="Ingresar Monto">
+                        <input asp-for="Monto" type="number" min="0.01" step="0.01" class="form-control form-control-lg rounded-pill border border-secondary shadow-lg p-3  bg-white rounded" placeholder="Ingresar Monto">
                     </div>
+
                 </div>
-
-
+                <input asp-for="TipoTransaccion" type="hidden" value="2" />
+                <div class="d-flex justify-content-center mb-2 p-1">
+                    <span asp-validation-for="Monto" class="text-danger"></span>
+                </div>
 
                 <div class="d-flex justify-content-center">
                     <button class="btn btn-info font-weight-bold btn-lg shadow-lg rounded-pill W-25" type="submit">Transferir Dinero</button>
