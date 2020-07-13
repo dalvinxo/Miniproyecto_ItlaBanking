@@ -116,14 +116,11 @@ namespace ItlaBanking.Controllers
             cuentas.cuenta = cuentaUsuario;
             ViewData["Nombre"] = User.Identity.Name;
             if (ModelState.IsValid)
-            {
-                
+            {                
                 var CuentaDestinatario = await _cuentaRepository.GetByIdAsync(pevm.NumeroCuentaPagar.Value);
-
                 if (CuentaDestinatario != null)
                 {
                     var CuentaAhorroSeleccionada = await _cuentaRepository.GetByIdAsync(pevm.NumeroCuenta.Value);
-
                     if (CuentaAhorroSeleccionada.Balance < pevm.Monto)
                     {
                         ModelState.AddModelError("", "Tu cuenta de Ahorro, no tiene suficiente balance para transferir "+pevm.Monto+"");
