@@ -74,7 +74,7 @@ using ItlaBanking.Models;
             WriteLiteral("\r\n<html>\r\n");
             EndContext();
             BeginContext(139, 10567, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b511342807274a9cacbacc9e526c561b", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "45cdb8b38c984886ba847f66a761ce03", async() => {
                 BeginContext(186, 266, true);
                 WriteLiteral(@"
     <div class=""card container bg-warning border border-white rounded shadow-lg p-1 mb-5 bg-white border border-primary"">
@@ -84,7 +84,7 @@ using ItlaBanking.Models;
                 ");
                 EndContext();
                 BeginContext(452, 127, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a064d842a3b348febe37cf92cac42f85", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "aa7ea9988fef4b6391ef9e15399166f7", async() => {
                     BeginContext(560, 15, true);
                     WriteLiteral("Agregar Usuario");
                     EndContext();
@@ -218,7 +218,7 @@ using ItlaBanking.Models;
                 WriteLiteral("                            <td>\r\n                                ");
                 EndContext();
                 BeginContext(2361, 174, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ea39dd17338f4aae84b176ecb4d75e59", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dad7e32e74ff4540ac819303c6f03290", async() => {
                     BeginContext(2484, 47, true);
                     WriteLiteral("<i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>");
                     EndContext();
@@ -292,7 +292,7 @@ WriteAttributeValue("", 2914, user.IdUsuario, 2914, 17, false);
                 WriteLiteral("           Seguro que desea Desactivar a este usuario?\r\n\r\n                                                <div class=\"mt-2 d-flex justify-content-center\">\r\n                                                    ");
                 EndContext();
                 BeginContext(4164, 231, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1ba1f581499b4f7cace4fe97b3521ebc", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d08a79ee0d154abe8a81ce7f8f8f231c", async() => {
                     BeginContext(4293, 98, true);
                     WriteLiteral("<i class=\"fa fa-times-circle\" style=\"font-size:14px; color:red\" aria-hidden=\"true\"></i> Desactivar");
                     EndContext();
@@ -351,7 +351,7 @@ WriteAttributeValue("", 2914, user.IdUsuario, 2914, 17, false);
                 WriteLiteral("                                <td>\r\n                                    ");
                 EndContext();
                 BeginContext(4852, 215, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2bc7d420f35d4b52bdf391e5a33620ca", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1e7ff2d5d3674e45abe823d3278854f2", async() => {
                     BeginContext(4977, 86, true);
                     WriteLiteral("<i class=\"fa fa-credit-card-alt\" aria-hidden=\"true\" style=\"color:black\"></i> Productos");
                     EndContext();
@@ -496,7 +496,7 @@ WriteAttributeValue("", 2914, user.IdUsuario, 2914, 17, false);
                 WriteLiteral("                            <td>\r\n                                ");
                 EndContext();
                 BeginContext(6178, 174, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9d3bb1363dd34f0e872245a5253cd9f6", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d57cbc05e94e42509712774ed0dc4809", async() => {
                     BeginContext(6301, 47, true);
                     WriteLiteral("<i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>");
                     EndContext();
@@ -570,7 +570,7 @@ WriteAttributeValue("", 6731, user.IdUsuario, 6731, 17, false);
                 WriteLiteral("           Seguro que desea activar a este usuario?\r\n\r\n                                                <div class=\"mt-2 d-flex justify-content-center\">\r\n                                                    ");
                 EndContext();
                 BeginContext(7978, 231, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "97d65cdec57b4e19bae82653a16086f5", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "180ea3cf86974a1b8bc9e7571e1c8583", async() => {
                     BeginContext(8102, 103, true);
                     WriteLiteral("<i class=\"fa fa-check-circle\" style=\"font-size:14px; color:greenyellow\" aria-hidden=\"true\"></i> Activar");
                     EndContext();
