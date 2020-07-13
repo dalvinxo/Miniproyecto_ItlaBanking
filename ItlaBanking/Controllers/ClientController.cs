@@ -150,11 +150,6 @@ namespace ItlaBanking.Controllers
                     ModelState.AddModelError("", "La cuenta que digito no existe, por favor intente con otra");
                     return View(cuentas);
                 }
-<<<<<<< HEAD
-
-               
-=======
->>>>>>> 49d68abcaf0155f1ea83e99cf4c7a42ad6d93414
             }
             return View(cuentas);
 

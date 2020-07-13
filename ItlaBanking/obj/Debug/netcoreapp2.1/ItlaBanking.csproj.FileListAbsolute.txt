@@ -100,3 +100,10 @@ C:\Users\Liam\Desktop\ShitBull\Programacion 3\Miniproyecto_ItlaBanking\ItlaBanki
 C:\Users\Liam\Desktop\ShitBull\Programacion 3\Miniproyecto_ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\ItlaBanking.pdb
 C:\Users\Liam\Desktop\ShitBull\Programacion 3\Miniproyecto_ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\ItlaBanking.csproj.CopyComplete
 C:\Users\Liam\Desktop\ShitBull\Programacion 3\Miniproyecto_ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\Razor\Views\Client\ConfirmPagosBeneficiario.g.cshtml.cs
+C:\Users\Pablo Molina\source\repos\ItlaBankings\Miniproyecto_ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\Razor\Views\Login\Shared\Error.g.cshtml.cs
+C:\Users\Pablo Molina\source\repos\ItlaBankings\Miniproyecto_ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\Razor\Views\Login\Shared\_CookieConsentPartial.g.cshtml.cs
+C:\Users\Pablo Molina\source\repos\ItlaBankings\Miniproyecto_ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\Razor\Views\Login\Shared\_Layout.g.cshtml.cs
+C:\Users\Pablo Molina\source\repos\ItlaBankings\Miniproyecto_ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\Razor\Views\Login\Shared\_LayoutAdministrador.g.cshtml.cs
+C:\Users\Pablo Molina\source\repos\ItlaBankings\Miniproyecto_ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\Razor\Views\Login\Shared\_LayoutUsuario.g.cshtml.cs
+C:\Users\Pablo Molina\source\repos\ItlaBankings\Miniproyecto_ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\Razor\Views\Login\Shared\_LayoutUsuarioClient.g.cshtml.cs
+C:\Users\Pablo Molina\source\repos\ItlaBankings\Miniproyecto_ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\Razor\Views\Login\Shared\_ValidationScriptsPartial.g.cshtml.cs
