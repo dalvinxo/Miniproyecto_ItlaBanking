@@ -23,7 +23,8 @@ namespace ItlaBanking.Controllers
         private readonly SignInManager<IdentityUser> _signinManager;
 
 
-        //repository
+        //repository        
+
         private readonly UsuarioRepository _usuarioRepository;
         private readonly CuentaRepository _cuentaRepository;
         private readonly PrestamosRepository _prestamosRepository;
@@ -116,14 +117,11 @@ namespace ItlaBanking.Controllers
             cuentas.cuenta = cuentaUsuario;
             ViewData["Nombre"] = User.Identity.Name;
             if (ModelState.IsValid)
-            {
-                
+            {                
                 var CuentaDestinatario = await _cuentaRepository.GetByIdAsync(pevm.NumeroCuentaPagar.Value);
-
                 if (CuentaDestinatario != null)
                 {
                     var CuentaAhorroSeleccionada = await _cuentaRepository.GetByIdAsync(pevm.NumeroCuenta.Value);
-
                     if (CuentaAhorroSeleccionada.Balance < pevm.Monto)
                     {
                         ModelState.AddModelError("", "Tu cuenta de Ahorro, no tiene suficiente balance para transferir "+pevm.Monto+"");
@@ -200,7 +198,7 @@ namespace ItlaBanking.Controllers
             {
 
                 CuentasyPagos cp = new CuentasyPagos(_context, _userManager, _cuentaRepository,
-                    _tarjetasRepository, _prestamosRepository);
+                    _tarjetasRepository, _prestamosRepository, _usuarioRepository, _transaccionesRepository, _mapper);
                 return View(cp.TraerCuentas(id));
             }
             return View();
@@ -211,7 +209,7 @@ namespace ItlaBanking.Controllers
         {
             ViewData["Nombre"] = User.Identity.Name;
             CuentasyPagos cp = new CuentasyPagos(_context, _userManager, _cuentaRepository,
-                    _tarjetasRepository, _prestamosRepository);
+                    _tarjetasRepository, _prestamosRepository, _usuarioRepository, _transaccionesRepository, _mapper);
 
             if (ModelState.IsValid)
             {
@@ -243,7 +241,7 @@ namespace ItlaBanking.Controllers
             {
 
                 CuentasyPagos cp = new CuentasyPagos(_context, _userManager, _cuentaRepository,
-                    _tarjetasRepository, _prestamosRepository);
+                    _tarjetasRepository, _prestamosRepository, _usuarioRepository, _transaccionesRepository, _mapper);
                 
                 return View(cp.TraerCuentas(id));
             }
@@ -256,7 +254,7 @@ namespace ItlaBanking.Controllers
         {
             ViewData["Nombre"] = User.Identity.Name;
             CuentasyPagos cp = new CuentasyPagos(_context, _userManager, _cuentaRepository,
-                    _tarjetasRepository, _prestamosRepository);
+                    _tarjetasRepository, _prestamosRepository, _usuarioRepository, _transaccionesRepository, _mapper);
 
             if (ModelState.IsValid) {
                 PagosViewModel pvm = new PagosViewModel();
@@ -362,7 +360,7 @@ namespace ItlaBanking.Controllers
 
 
             CuentasyPagos cp = new CuentasyPagos(_context, _userManager, _cuentaRepository,
-                _tarjetasRepository, _prestamosRepository);
+                _tarjetasRepository, _prestamosRepository, _usuarioRepository, _transaccionesRepository, _mapper);
 
 
 
@@ -374,7 +372,7 @@ namespace ItlaBanking.Controllers
         {
          ViewData["Nombre"] = User.Identity.Name;
             CuentasyPagos cp = new CuentasyPagos(_context, _userManager, _cuentaRepository,
-                _tarjetasRepository, _prestamosRepository);
+                _tarjetasRepository, _prestamosRepository, _usuarioRepository, _transaccionesRepository, _mapper);
             if (ModelState.IsValid) {
                 var cuenta = await _context.Cuenta.FirstOrDefaultAsync(x => x.NumeroCuenta == bvm.NumeroCuenta);
                 var cuenta2 = await _context.Cuenta.FirstOrDefaultAsync(x => x.NumeroCuenta == bvm.NumeroCuentaPagar);

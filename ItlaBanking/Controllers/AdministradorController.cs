@@ -81,7 +81,7 @@ namespace ItlaBanking.Controllers
 
                 if (Usuario == null)
                 {
-                    return RedirectToAction("Error", "Home");
+                    return RedirectToAction("AdministrarUsuario");
                 }
                 
                     if (Usuario.Estado == "Activo") {
@@ -101,7 +101,7 @@ namespace ItlaBanking.Controllers
             catch
             {
 
-                return RedirectToAction("Error", "Home");
+                return RedirectToAction("Index");
             }
 
             return RedirectToAction("AdministrarUsuario","Administrador");

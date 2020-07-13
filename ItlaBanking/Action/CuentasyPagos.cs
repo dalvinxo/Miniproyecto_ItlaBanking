@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using ItlaBanking.Models;
 using ItlaBanking.Repository;
 using ItlaBanking.ViewModels;
@@ -20,6 +21,11 @@ namespace ItlaBanking.Action
         private readonly CuentaRepository _cuentaRepository;
         private readonly TarjetaCreditoRepository _tarjetasRepository;
         private readonly PrestamosRepository _prestamosRepository;
+        private readonly TransaccionesRepository _transaccionesRepository;
+        private readonly IMapper _mapper;
+
+
+        private readonly UsuarioRepository _usuarioRepository;
 
 
 
@@ -28,12 +34,16 @@ namespace ItlaBanking.Action
 
         public CuentasyPagos(ItlaBankingContext context, UserManager<IdentityUser> userManager,
                             CuentaRepository cuentaRepository, TarjetaCreditoRepository tarjetasRepository,
-                            PrestamosRepository prestamosRepository) {
+                            PrestamosRepository prestamosRepository, UsuarioRepository usuarioRepository,
+                            TransaccionesRepository transaccionesRepository, IMapper mapper) {
             _context = context;
             _userManager = userManager;
             _cuentaRepository = cuentaRepository;
             _tarjetasRepository = tarjetasRepository;
             _prestamosRepository = prestamosRepository;
+            _usuarioRepository = usuarioRepository;
+            _transaccionesRepository = transaccionesRepository;
+            _mapper = mapper;
         }
 
         public PagosViewModel TraerCuentas(int? id) {
@@ -82,34 +92,34 @@ namespace ItlaBanking.Action
 
 
 
-        public async Task<PagosViewModel> PagoExpreso(PagosViewModel ptvm)
-        {
-            var cuenta = await _context.Cuenta.FirstOrDefaultAsync(x => x.NumeroCuenta == ptvm.NumeroCuenta);
-            var cuenta2 = await _context.Cuenta.FirstOrDefaultAsync(x => x.NumeroCuenta == ptvm.NumeroCuentaPagar);
-            if (cuenta == null || cuenta2 == null)
-            {
-                ModelState.AddModelError("", "Cuenta Inexistente");
+        //public async Task<PagosViewModel> PagoExpreso(PagosViewModel ptvm)
+        //{
+        //    var cuenta = await _context.Cuenta.FirstOrDefaultAsync(x => x.NumeroCuenta == ptvm.NumeroCuenta);
+        //    var cuenta2 = await _context.Cuenta.FirstOrDefaultAsync(x => x.NumeroCuenta == ptvm.NumeroCuentaPagar);
+        //    if (cuenta == null || cuenta2 == null)
+        //    {
+        //        ModelState.AddModelError("", "Cuenta Inexistente");
 
-                return ptvm;
-            }
-            if (cuenta.Balance < ptvm.Monto)
-            {
-                ModelState.AddModelError("", "No tiene suficiente balance");
-                return ptvm;
+        //        return ptvm;
+        //    }
+        //    if (cuenta.Balance <= ptvm.Monto)
+        //    {
+        //        ModelState.AddModelError("", "No tiene suficiente balance");
+        //        return ptvm;
 
-            }
-            cuenta.Balance = cuenta.Balance - ptvm.Monto;
-            cuenta2.Balance = cuenta2.Balance + ptvm.Monto;
-            try
-            {
-                await _cuentaRepository.Update(cuenta);
-                await _cuentaRepository.Update(cuenta2);
-            }
-            catch { }
+        //    }
+        //    cuenta.Balance = cuenta.Balance - ptvm.Monto;
+        //    cuenta2.Balance = cuenta2.Balance + ptvm.Monto;
+        //    try
+        //    {
+        //        await _cuentaRepository.Update(cuenta);
+        //        await _cuentaRepository.Update(cuenta2);
+        //    }
+        //    catch { }
 
-            return null;
+        //    return null;
 
-        }
+        //}
 
         public async Task<PagosViewModel> PagoTarjeta(PagosViewModel ptvm)
         {
@@ -133,7 +143,7 @@ namespace ItlaBanking.Action
             {
                 tarjeta.Deuda = tarjeta.Deuda - ptvm.Monto;
             }
-            else if (tarjeta.Deuda < ptvm.Monto)
+            else if (tarjeta.Deuda <= ptvm.Monto)
             {
                 ptvm.Monto = ptvm.Monto - tarjeta.Deuda;
                 tarjeta.Deuda = 0;
@@ -142,6 +152,19 @@ namespace ItlaBanking.Action
             }
             try
             {
+                var UsuarioDestinatario = await _usuarioRepository.GetByIdAsync(cuenta.IdUsuario);
+
+                TransaccionesViewModels Transacciones = new TransaccionesViewModels();
+                Transacciones.NumeroCuenta = cuenta.NumeroCuenta;
+                Transacciones.NumeroCuentaDestinatario = tarjeta.NumeroTarjeta;
+                Transacciones.Monto = ptvm.Monto;
+                Transacciones.Nombre = UsuarioDestinatario.Nombre;
+                Transacciones.Apellido = UsuarioDestinatario.Apellido;
+                Transacciones.TipoTransaccion = 1;
+                
+                var transacciones = _mapper.Map<Transacciones>(Transacciones);
+
+                await _transaccionesRepository.AddAsync(transacciones);
                 await _cuentaRepository.Update(cuenta);
                 await _tarjetasRepository.Update(tarjeta);
             }
@@ -178,7 +201,7 @@ namespace ItlaBanking.Action
             {
                 prestamo.Monto = prestamo.Monto - ptvm.Monto;
             }
-            else if (prestamo.Monto < ptvm.Monto)
+            else if (prestamo.Monto <= ptvm.Monto)
             {
                 ptvm.Monto = ptvm.Monto - prestamo.Monto;
                 prestamo.Monto = 0;
@@ -187,8 +210,20 @@ namespace ItlaBanking.Action
             }
             try
             {
+                var UsuarioDestinatario = await _usuarioRepository.GetByIdAsync(cuenta.IdUsuario);
+
+                TransaccionesViewModels Transacciones = new TransaccionesViewModels();
+                Transacciones.NumeroCuenta = cuenta.NumeroCuenta;
+                Transacciones.NumeroCuentaDestinatario = prestamo.NumeroPrestamo;
+                Transacciones.Monto = ptvm.Monto;
+                Transacciones.Nombre = UsuarioDestinatario.Nombre;
+                Transacciones.Apellido = UsuarioDestinatario.Apellido;
+                Transacciones.TipoTransaccion = 1;
                 await _cuentaRepository.Update(cuenta);
                 await _prestamosRepository.Update(prestamo);
+                var transacciones = _mapper.Map<Transacciones>(Transacciones);
+
+                await _transaccionesRepository.AddAsync(transacciones);
             }
             catch { }
 
@@ -218,7 +253,7 @@ namespace ItlaBanking.Action
             {
                 prestamo.Monto = prestamo.Monto - ptvm.Monto;
             }
-            else if (prestamo.Monto < ptvm.Monto)
+            else if (prestamo.Monto <= ptvm.Monto)
             {
                 ptvm.Monto = ptvm.Monto - prestamo.Monto;
                 prestamo.Monto = 0;
@@ -227,10 +262,26 @@ namespace ItlaBanking.Action
             }
             try
             {
+                var UsuarioDestinatario = await _usuarioRepository.GetByIdAsync(tarjeta.IdUsuario);
+
+                TransaccionesViewModels Transacciones = new TransaccionesViewModels();
+                Transacciones.NumeroCuenta = tarjeta.NumeroTarjeta;
+                Transacciones.NumeroCuentaDestinatario = prestamo.NumeroPrestamo;
+                Transacciones.Monto = ptvm.Monto;
+                Transacciones.Nombre = UsuarioDestinatario.Nombre;
+                Transacciones.Apellido = UsuarioDestinatario.Apellido;
+                Transacciones.TipoTransaccion = 1;
+                
+                var transacciones = _mapper.Map<Transacciones>(Transacciones);
+
+                await _transaccionesRepository.AddAsync(transacciones);
                 await _tarjetasRepository.Update(tarjeta);
                 await _prestamosRepository.Update(prestamo);
             }
-            catch { }
+            catch
+            {
+                return ptvm;
+            }
 
             return null;
 
