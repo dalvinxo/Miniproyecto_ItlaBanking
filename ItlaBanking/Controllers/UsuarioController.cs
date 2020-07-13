@@ -153,22 +153,22 @@ namespace ItlaBanking.Controllers
                         {
                             var mapeador = _mapper.Map<Usuario>(uvmd);
                             await _usuarioRepository.Update(mapeador);
-                    var user = await _userManager.FindByNameAsync(mapeador.Usuario1);
+                            var user = await _userManager.FindByNameAsync(mapeador.Usuario1);
+                             await _userManager.UpdateAsync(user);
 
-                    await _userManager.UpdateAsync(user);
+                             if (uvmd.TipoUsuario == "Cliente") { 
+                               var cuentaPrincipal = _cuentaRepository.GetCuentaAt(mapeador.IdUsuario);
+                                if (uvmd.Balance == null) {
+                                    uvmd.Balance = 0;
+                                }
 
+                                cuentaPrincipal.Balance = cuentaPrincipal.Balance + uvmd.Balance.Value;
+                                await _cuentaRepository.Update(cuentaPrincipal);
+                             }
 
-                    var cuentaPrincipal = _cuentaRepository.GetCuentaAt(mapeador.IdUsuario);
-                            if (uvmd.Balance == null) {
-                                uvmd.Balance = 0;
-                            }
-
-                            cuentaPrincipal.Balance = cuentaPrincipal.Balance + uvmd.Balance.Value;
-                            await _cuentaRepository.Update(cuentaPrincipal);
-
-
-                            return RedirectToAction("AdministrarUsuario", "Administrador");
+                    return RedirectToAction("AdministrarUsuario", "Administrador");
                         }
+
                         return View(uvmd);
                 
                     }

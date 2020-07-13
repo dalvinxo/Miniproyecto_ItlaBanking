@@ -21,7 +21,7 @@ namespace ItlaBanking.Repository
             var code = _context.Beneficiario.FirstOrDefault(x => x.IdUsuarioBeneficiario == idb && x.CuentaBeneficiario == c);
             return code;
         }
-
+        
         public Beneficiario ValidandoBeneficiarios(int a, int b, int c)
         {
             var code = _context.Beneficiario.FirstOrDefault(x => x.IdUsuarioCliente == a && x.IdUsuarioBeneficiario == b && x.CuentaBeneficiario == c);
