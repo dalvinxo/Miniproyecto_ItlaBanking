@@ -209,14 +209,7 @@ namespace ItlaBanking.Action
                 if (rvm.TipoUsuario == "Cliente")
                 {
                     await _userManager.AddToRoleAsync(user, "Cliente");
-                }
-                else
-                {
-                    await _userManager.AddToRoleAsync(user, "Administrador");
-
-                }
-
-            A:
+                A:
                     Random r = new Random();
                     int codigo = r.Next(100000000, 999999999);
 
@@ -234,6 +227,16 @@ namespace ItlaBanking.Action
 
                     return null;
                 }
+                else
+                {
+                    await _userManager.AddToRoleAsync(user, "Administrador");
+                    return null;
+
+
+                }
+
+
+            }
             AddErrors(result);
 
             return rvm;
