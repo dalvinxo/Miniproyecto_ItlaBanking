@@ -117,12 +117,11 @@
 
                         @if (credito.Deuda == 0)
                         {
-                        <nav class="navbar  navbar-dark">
-                            <a class="text-dark mr-auto h5">Total Monto Limite: <span class="simboloDinero">RD$</span>@credito.MontoLimite </a>
-                            <a class="text-dark mr-auto h5">Total Monto Deuda: <span class="simboloDinero">RD$</span>@credito.Deuda </a>
+                            <nav class="navbar  navbar-dark">
+                                <a class="text-dark mr-auto h5">Total Monto Limite: <span class="simboloDinero">RD$</span>@credito.MontoLimite </a>
 
-                            <a data-toggle="modal" data-target="#borrar-@(credito.NumeroTarjeta)" class="text-white btn btn-danger ml-auto  btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                        </nav>
+                                <a data-toggle="modal" data-target="#borrar-@(credito.NumeroTarjeta)" class="text-white btn btn-danger ml-auto  btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                            </nav>
                         }
                         else
                         {

@@ -231,7 +231,8 @@ namespace ItlaBanking.Action
 
         }
 
-        public async Task<PagosViewModel> PagoPrestamoconTarjeta(PagosViewModel ptvm, TarjetaCredito tarjeta, Prestamos prestamo)
+        public async Task<PagosViewModel> PagoPrestamoconTarjeta(PagosViewModel ptvm, 
+            TarjetaCredito tarjeta, Prestamos prestamo)
         {
            
             
@@ -260,29 +261,7 @@ namespace ItlaBanking.Action
                 tarjeta.Deuda = tarjeta.Deuda - ptvm.Monto;
 
             }
-            try
-            {
-                var UsuarioDestinatario = await _usuarioRepository.GetByIdAsync(tarjeta.IdUsuario);
-
-                TransaccionesViewModels Transacciones = new TransaccionesViewModels();
-                Transacciones.NumeroCuenta = tarjeta.NumeroTarjeta;
-                Transacciones.NumeroCuentaDestinatario = prestamo.NumeroPrestamo;
-                Transacciones.Monto = ptvm.Monto;
-                Transacciones.Nombre = UsuarioDestinatario.Nombre;
-                Transacciones.Apellido = UsuarioDestinatario.Apellido;
-                Transacciones.TipoTransaccion = 1;
-                
-                var transacciones = _mapper.Map<Transacciones>(Transacciones);
-
-                await _transaccionesRepository.AddAsync(transacciones);
-                await _tarjetasRepository.Update(tarjeta);
-                await _prestamosRepository.Update(prestamo);
-            }
-            catch
-            {
-                return ptvm;
-            }
-
+            
             return null;
 
         }

@@ -3,25 +3,19 @@
     Layout = "_LayoutAdministrador";
     string UserNow = ViewBag.user;
 }
-
 <html>
 <body class="bg-light" id="FondoAdministrador">
     <div class="card container bg-warning border border-white rounded shadow-lg p-1 mb-5 bg-white border border-primary">
         <div class="card-header p-1">
-
             <nav class="navbar navbar-light bg-light navbar-dark bg-dark rounded">
                 <a asp-controller="Usuario" asp-action="CrearUsuario" class="btn btn-success ml-auto  btn-block text-white">Agregar Usuario</a>
 
-
             </nav>
-
 
         </div>
         <div class="card-body">
             <h3 class="card-title font-weight-bold">Usuarios registrados</h3>
-
             <table class="table table-hover text-center table-responsive-lg table-borderless">
-
                 <thead>
                     <tr class="table-info">
                         <th scope="col">Nombre</th>
@@ -34,187 +28,156 @@
                         <th></th>
                     </tr>
                 </thead>
-
-
                 <tbody>
-
                     @foreach (var user in Model)
                     {
 
                         if (user.Estado == "Activo")
                         {
-                    <tr class="table-success">
-                        <td>@Html.DisplayFor(ModelItem => user.Nombre)</td>
-                        <td>@Html.DisplayFor(ModelItem => user.Apellido)</td>
-                        <td>@Html.DisplayFor(ModelItem => user.Usuario1)</td>
-                        <td>@Html.DisplayFor(ModelItem => user.TipoUsuario)</td>
-                        <td>@Html.DisplayFor(ModelItem => user.Estado)</td>
-                        @if (user.Usuario1 == UserNow)
-                        {
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <tr class="table-success">
+                                <td>@Html.DisplayFor(ModelItem => user.Nombre)</td>
+                                <td>@Html.DisplayFor(ModelItem => user.Apellido)</td>
+                                <td>@Html.DisplayFor(ModelItem => user.Usuario1)</td>
+                                <td>@Html.DisplayFor(ModelItem => user.TipoUsuario)</td>
+                                <td>@Html.DisplayFor(ModelItem => user.Estado)</td>
+                                @if (user.Usuario1 == UserNow)
+                                {
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
 
-                        }
-                        else
-                        {
-                            <td>
-                                <a asp-controller="Usuario" asp-action="EditUsuario" asp-route-id="@user.IdUsuario" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                            </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <a asp-controller="Usuario" asp-action="EditUsuario" asp-route-id="@user.IdUsuario" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                    </td>
 
-                            <td>
+                                    <td>
+                                        <a data-toggle="modal" data-target="#des-@(user.IdUsuario)" class="btn btn-outline-secondary btn-sm"><i class="fa fa-times-circle" style="font-size:14px; color:red" aria-hidden="true"></i> Desactivar</a>
+                                        <div class="modal fade " id="des-@(user.IdUsuario)" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog modal-sm">
+                                                <div class="modal-content bg-warning shadow-sm p-1 rounded">
+                                                    <div class="modal-header shadow p-1 rounded">
+                                                        <h5 class="modal-title text-white font-weight-bolder" id="staticBackdropLabel" style="font-size:30px;">Advertencía!</h5>
+                                                        <button type="button" class=" btn btn-danger btn-sm text-white font-weight-bolder" data-dismiss="modal" aria-label="Close"><i class="fa fa-times" aria-hidden="true" style="font-size:20px;"></i></button>
+                                                    </div>
 
-                                <a data-toggle="modal" data-target="#des-@(user.IdUsuario)" class="btn btn-outline-secondary btn-sm"><i class="fa fa-times-circle" style="font-size:14px; color:red" aria-hidden="true"></i> Desactivar</a>
+                                                    <div class="modal-body bg-light h6 text-justify">
+                                                        Seguro que desea Desactivar a este usuario?
 
-                                <div class="modal fade " id="des-@(user.IdUsuario)" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog modal-sm">
-                                        <div class="modal-content bg-warning shadow-sm p-1 rounded">
-
-                                            <div class="modal-header shadow p-1 rounded">
-                                                <h5 class="modal-title text-white font-weight-bolder" id="staticBackdropLabel" style="font-size:30px;">Advertencía!</h5>
-                                                <button type="button" class=" btn btn-danger btn-sm text-white font-weight-bolder" data-dismiss="modal" aria-label="Close"><i class="fa fa-times" aria-hidden="true" style="font-size:20px;"></i></button>
-                                            </div>
-
-
-                                            <div class="modal-body bg-light h6 text-justify">
-                                                Seguro que desea Desactivar a este usuario?
-
-                                                <div class="mt-2 d-flex justify-content-center">
-                                                    <a asp-controller="Administrador" asp-action="Activador" asp-route-id="@user.IdUsuario" class="btn btn-outline-secondary btn-sm"><i class="fa fa-times-circle" style="font-size:14px; color:red" aria-hidden="true"></i> Desactivar</a>
-
+                                                        <div class="mt-2 d-flex justify-content-center">
+                                                            <a asp-controller="Administrador" asp-action="Activador" asp-route-id="@user.IdUsuario" class="btn btn-outline-secondary btn-sm"><i class="fa fa-times-circle" style="font-size:14px; color:red" aria-hidden="true"></i> Desactivar</a>
+                                                        </div>
+                                                    </div>
                                                 </div>
-
                                             </div>
-
                                         </div>
-                                    </div>
-                                </div>
 
+                                    </td>
+                                    @if (user.TipoUsuario == "Cliente")
+                                    {
+                                        <td>
+                                            <a asp-controller="Usuario" asp-action="CrearProducto" asp-route-id="@user.IdUsuario" class="btn btn-outline-primary btn-sm"><i class="fa fa-credit-card-alt" aria-hidden="true" style="color:black"></i> Productos</a>
+                                        </td>
 
-                            </td>
-                            @if (user.TipoUsuario == "Cliente")
-                            {
-                                <td>
-                                    <a asp-controller="Usuario" asp-action="CrearProducto" asp-route-id="@user.IdUsuario" class="btn btn-outline-primary btn-sm"><i class="fa fa-credit-card-alt" aria-hidden="true" style="color:black"></i> Productos</a>
-                                </td>
-
-                            }
-                            else
-                            {
-                                <td></td>
-                            }
-                        }
-                    </tr>
+                                    }
+                                    else
+                                    {
+                                        <td></td>
+                                    }
+                                }
+                            </tr>
 
 
                         }
                         else
                         {
-                    <tr class="table-danger">
-                        <td>@Html.DisplayFor(ModelItem => user.Nombre)</td>
-                        <td>@Html.DisplayFor(ModelItem => user.Apellido)</td>
-                        <td>@Html.DisplayFor(ModelItem => user.Usuario1)</td>
-                        <td>@Html.DisplayFor(ModelItem => user.TipoUsuario)</td>
-                        <td>@Html.DisplayFor(ModelItem => user.Estado)</td>
+                            <tr class="table-danger">
+                                <td>@Html.DisplayFor(ModelItem => user.Nombre)</td>
+                                <td>@Html.DisplayFor(ModelItem => user.Apellido)</td>
+                                <td>@Html.DisplayFor(ModelItem => user.Usuario1)</td>
+                                <td>@Html.DisplayFor(ModelItem => user.TipoUsuario)</td>
+                                <td>@Html.DisplayFor(ModelItem => user.Estado)</td>
+                                @if (user.Usuario1 == UserNow)
+                                {
+                                    <td></td>
+                                    <td></td>
 
-                        @if (user.Usuario1 == UserNow)
-                        {
-                            <td></td>
-                            <td></td>
-
-                        }
-                        else
-                        {
-                            <td>
-                                <a asp-controller="Usuario" asp-action="EditUsuario" asp-route-id="@user.IdUsuario" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                            </td>
-
-
-                            <td>
-                                <a data-toggle="modal" data-target="#act-@(user.IdUsuario)" class="btn btn-outline-info btn-sm"><i class="fa fa-check-circle" style="font-size:14px; color:greenyellow" aria-hidden="true"></i> Activar</a>
-
-                                <div class="modal fade " id="act-@(user.IdUsuario)" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog modal-sm">
-                                        <div class="modal-content bg-warning shadow-sm p-1 rounded">
-
-                                            <div class="modal-header shadow p-1 rounded">
-                                                <h5 class="modal-title text-white font-weight-bolder" id="staticBackdropLabel" style="font-size:30px;">Advertencía!</h5>
-                                                <button type="button" class=" btn btn-danger btn-sm text-white font-weight-bolder" data-dismiss="modal" aria-label="Close"><i class="fa fa-times" aria-hidden="true" style="font-size:20px;"></i></button>
-                                            </div>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <a asp-controller="Usuario" asp-action="EditUsuario" asp-route-id="@user.IdUsuario" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                    </td>
 
 
-                                            <div class="modal-body bg-light h6 text-justify">
-                                                Seguro que desea activar a este usuario?
+                                    <td>
+                                        <a data-toggle="modal" data-target="#act-@(user.IdUsuario)" class="btn btn-outline-info btn-sm"><i class="fa fa-check-circle" style="font-size:14px; color:greenyellow" aria-hidden="true"></i> Activar</a>
+                                        <div class="modal fade " id="act-@(user.IdUsuario)" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog modal-sm">
+                                                <div class="modal-content bg-warning shadow-sm p-1 rounded">
+                                                    <div class="modal-header shadow p-1 rounded">
+                                                        <h5 class="modal-title text-white font-weight-bolder" id="staticBackdropLabel" style="font-size:30px;">Advertencía!</h5>
+                                                        <button type="button" class=" btn btn-danger btn-sm text-white font-weight-bolder" data-dismiss="modal" aria-label="Close"><i class="fa fa-times" aria-hidden="true" style="font-size:20px;"></i></button>
+                                                    </div>
 
-                                                <div class="mt-2 d-flex justify-content-center">
-                                                    <a asp-controller="Administrador" asp-action="Activador" asp-route-id="@user.IdUsuario" class="btn btn-outline-info btn-sm"><i class="fa fa-check-circle" style="font-size:14px; color:greenyellow" aria-hidden="true"></i> Activar</a>
+                                                    <div class="modal-body bg-light h6 text-justify">
+                                                        Seguro que desea activar a este usuario?
 
+                                                        <div class="mt-2 d-flex justify-content-center">
+                                                            <a asp-controller="Administrador" asp-action="Activador" asp-route-id="@user.IdUsuario" class="btn btn-outline-info btn-sm"><i class="fa fa-check-circle" style="font-size:14px; color:greenyellow" aria-hidden="true"></i> Activar</a>
+                                                        </div>
+                                                    </div>
                                                 </div>
-
                                             </div>
-
                                         </div>
-                                    </div>
-                                </div>
+                                    </td>
+                                }
+                                @if (user.TipoUsuario == "Cliente")
+                                {
+                                    <td>
+                                        <a data-toggle="modal" data-target="#pampara" class="btn btn-outline-warning btn-sm"><i class="fa fa-credit-card-alt" aria-hidden="true" style="color:black"></i> Productos</a>
+                                    </td>
 
-                            </td>
-                        }
-                        @if (user.TipoUsuario == "Cliente")
-                        {
-                            <td>
-                                <a data-toggle="modal" data-target="#pampara" class="btn btn-outline-warning btn-sm"><i class="fa fa-credit-card-alt" aria-hidden="true" style="color:black"></i> Productos</a>
-                            </td>
+                                }
+                                else
+                                {
+                                    <td></td>
+                                }
+                            </tr>
 
-                        }
-                        else
-                        {
-                            <td></td>
-                        }
 
-                    </tr>
 
-                           
 
-                          
 
                         }
 
 
                     }
-
                 </tbody>
-
 
             </table>
             <div class="modal fade" id="pampara" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog modal-sm">
                     <div class="modal-content bg-warning shadow-sm p-1 rounded">
-
                         <div class="modal-header shadow p-1 rounded">
                             <h5 class="modal-title text-white font-weight-bolder" id="staticBackdropLabel" style="font-size:30px;">Advertencía!</h5>
                             <button type="button" class=" btn btn-danger btn-sm text-white font-weight-bolder" data-dismiss="modal" aria-label="Close"><i class="fa fa-times" aria-hidden="true" style="font-size:20px;"></i></button>
                         </div>
-
 
                         <div class="modal-body bg-light h6 text-justify">
                             Para poder ver los productos perteneciente a este usuario debe usted, activarlo.
 
                             <div class="mt-2 d-flex justify-content-center">
                                 <input type="button" value="ok" style="font-size:30px;" data-dismiss="modal" class="w-50 btn btn-outline-success btn-sm font-weight-bolder  shadow rounded " />
-
                             </div>
-
                         </div>
-
                     </div>
                 </div>
             </div>
-
         </div>
 
-
     </div>
-
 </body>
 </html>
-

@@ -14,7 +14,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ItlaBanking.Controllers
 {
-   [Authorize(Roles = "Cliente")]
+    [Authorize(Roles = "Cliente")]
     public class ClientController : Controller
     {
         private readonly ItlaBankingContext _context;
@@ -310,7 +310,7 @@ namespace ItlaBanking.Controllers
 
 
                 var norepetidos = _beneficiarioRepository.GetBeneficiarios(pbv.IdUsuarioBeneficiario, pbv.CuentaBeneficiario );
-                
+
                 if (norepetidos != null)
                 {
                     ModelState.AddModelError("", "El numero de cuenta " + pbv.CuentaBeneficiario + " ya lo tienes como beneficiario");
@@ -371,21 +371,13 @@ namespace ItlaBanking.Controllers
         public async Task<IActionResult> PagosBeneficiario(BeneficiarioViewModel bvm)
         {
          ViewData["Nombre"] = User.Identity.Name;
-
             CuentasyPagos cp = new CuentasyPagos(_context, _userManager, _cuentaRepository,
                 _tarjetasRepository, _prestamosRepository, _usuarioRepository, _transaccionesRepository, _mapper);
-
             if (ModelState.IsValid) {
                 var cuenta = await _context.Cuenta.FirstOrDefaultAsync(x => x.NumeroCuenta == bvm.NumeroCuenta);
                 var cuenta2 = await _context.Cuenta.FirstOrDefaultAsync(x => x.NumeroCuenta == bvm.NumeroCuentaPagar);
                 if (cuenta  == null || cuenta2 == null) {
                     ModelState.AddModelError("", "Cuenta o cuentas inexistentes");
-
-                    return View(await cp.Beneficiarios(User.Identity.Name));
-                }
-                if (bvm.NumeroCuenta == bvm.NumeroCuentaPagar)
-                {
-                    ModelState.AddModelError("", "No puedes tranferir dinero que ya tienes a la misma cuenta.");
 
                     return View(await cp.Beneficiarios(User.Identity.Name));
                 }
