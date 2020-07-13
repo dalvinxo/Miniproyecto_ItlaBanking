@@ -109,14 +109,14 @@
                                 <td>@pampara.Nombre</td>
                                 <td>@pampara.Apellido</td>
                                 <td>
-                                    <a data-toggle="modal" data-target="#eliminarBeneficiario" class="text-white btn btn-danger ml-auto  btn-sm">
+                                    <a data-toggle="modal" data-target="#eliminarBeneficiario-@(pampara.CuentaBeneficiario)" class="text-white btn btn-danger ml-auto  btn-sm">
                                         <i class="fa fa-trash" aria-hidden="true"></i>
                                     </a>
                                 </td>
                             </tr>
 
                             
-                            <div class="modal fade " id="eliminarBeneficiario" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal fade " id="eliminarBeneficiario-@(pampara.CuentaBeneficiario)" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog">
                                     <div class="modal-content bg-danger shadow-sm p-1 rounded">
 

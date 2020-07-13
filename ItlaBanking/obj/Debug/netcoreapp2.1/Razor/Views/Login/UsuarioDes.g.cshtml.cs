@@ -68,7 +68,7 @@ using ItlaBanking.Models;
 #line default
 #line hidden
             BeginContext(68, 54, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "e08071cd3e8d42679967a2cbe53f08fd", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "59ed6e17f9064abbb380c10aea1a2cd8", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -93,7 +93,7 @@ using ItlaBanking.Models;
 ");
             EndContext();
             BeginContext(1137, 829, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "70a40ea2c26a4ae8a8605f2c3b1ac517", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8ecd2ed4fbea475aaef3e189353fab00", async() => {
                 BeginContext(1222, 626, true);
                 WriteLiteral(@"
     <header class=""container-fluid position-relative shadow p-1 rounded bg-blue"">
@@ -106,7 +106,7 @@ using ItlaBanking.Models;
         <p class=""mb-0"">Si el usuario ya esta activado dirigirse al siguiente enlace: ");
                 EndContext();
                 BeginContext(1848, 93, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "91a0e0adff0843eca3b507297b4e66f4", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2c7252ce4a2140dfbdab3365cf5f4066", async() => {
                     BeginContext(1925, 12, true);
                     WriteLiteral("Volver Atras");
                     EndContext();

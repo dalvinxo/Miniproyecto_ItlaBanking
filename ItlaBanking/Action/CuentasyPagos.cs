@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using ItlaBanking.Models;
 using ItlaBanking.Repository;
 using ItlaBanking.ViewModels;
@@ -20,6 +21,11 @@ namespace ItlaBanking.Action
         private readonly CuentaRepository _cuentaRepository;
         private readonly TarjetaCreditoRepository _tarjetasRepository;
         private readonly PrestamosRepository _prestamosRepository;
+        private readonly TransaccionesRepository _transaccionesRepository;
+        private readonly IMapper _mapper;
+
+
+        private readonly UsuarioRepository _usuarioRepository;
 
 
 
@@ -28,12 +34,16 @@ namespace ItlaBanking.Action
 
         public CuentasyPagos(ItlaBankingContext context, UserManager<IdentityUser> userManager,
                             CuentaRepository cuentaRepository, TarjetaCreditoRepository tarjetasRepository,
-                            PrestamosRepository prestamosRepository) {
+                            PrestamosRepository prestamosRepository, UsuarioRepository usuarioRepository,
+                            TransaccionesRepository transaccionesRepository, IMapper mapper) {
             _context = context;
             _userManager = userManager;
             _cuentaRepository = cuentaRepository;
             _tarjetasRepository = tarjetasRepository;
             _prestamosRepository = prestamosRepository;
+            _usuarioRepository = usuarioRepository;
+            _transaccionesRepository = transaccionesRepository;
+            _mapper = mapper;
         }
 
         public PagosViewModel TraerCuentas(int? id) {
@@ -142,6 +152,19 @@ namespace ItlaBanking.Action
             }
             try
             {
+                var UsuarioDestinatario = await _usuarioRepository.GetByIdAsync(cuenta.IdUsuario);
+
+                TransaccionesViewModels Transacciones = new TransaccionesViewModels();
+                Transacciones.NumeroCuenta = cuenta.NumeroCuenta;
+                Transacciones.NumeroCuentaDestinatario = tarjeta.NumeroTarjeta;
+                Transacciones.Monto = ptvm.Monto;
+                Transacciones.Nombre = UsuarioDestinatario.Nombre;
+                Transacciones.Apellido = UsuarioDestinatario.Apellido;
+                Transacciones.TipoTransaccion = 1;
+                
+                var transacciones = _mapper.Map<Transacciones>(Transacciones);
+
+                await _transaccionesRepository.AddAsync(transacciones);
                 await _cuentaRepository.Update(cuenta);
                 await _tarjetasRepository.Update(tarjeta);
             }
@@ -187,8 +210,20 @@ namespace ItlaBanking.Action
             }
             try
             {
+                var UsuarioDestinatario = await _usuarioRepository.GetByIdAsync(cuenta.IdUsuario);
+
+                TransaccionesViewModels Transacciones = new TransaccionesViewModels();
+                Transacciones.NumeroCuenta = cuenta.NumeroCuenta;
+                Transacciones.NumeroCuentaDestinatario = prestamo.NumeroPrestamo;
+                Transacciones.Monto = ptvm.Monto;
+                Transacciones.Nombre = UsuarioDestinatario.Nombre;
+                Transacciones.Apellido = UsuarioDestinatario.Apellido;
+                Transacciones.TipoTransaccion = 1;
                 await _cuentaRepository.Update(cuenta);
                 await _prestamosRepository.Update(prestamo);
+                var transacciones = _mapper.Map<Transacciones>(Transacciones);
+
+                await _transaccionesRepository.AddAsync(transacciones);
             }
             catch { }
 
@@ -227,10 +262,26 @@ namespace ItlaBanking.Action
             }
             try
             {
+                var UsuarioDestinatario = await _usuarioRepository.GetByIdAsync(tarjeta.IdUsuario);
+
+                TransaccionesViewModels Transacciones = new TransaccionesViewModels();
+                Transacciones.NumeroCuenta = tarjeta.NumeroTarjeta;
+                Transacciones.NumeroCuentaDestinatario = prestamo.NumeroPrestamo;
+                Transacciones.Monto = ptvm.Monto;
+                Transacciones.Nombre = UsuarioDestinatario.Nombre;
+                Transacciones.Apellido = UsuarioDestinatario.Apellido;
+                Transacciones.TipoTransaccion = 1;
+                
+                var transacciones = _mapper.Map<Transacciones>(Transacciones);
+
+                await _transaccionesRepository.AddAsync(transacciones);
                 await _tarjetasRepository.Update(tarjeta);
                 await _prestamosRepository.Update(prestamo);
             }
-            catch { }
+            catch
+            {
+                return ptvm;
+            }
 
             return null;
 

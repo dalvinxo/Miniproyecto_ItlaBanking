@@ -23,7 +23,8 @@ namespace ItlaBanking.Controllers
         private readonly SignInManager<IdentityUser> _signinManager;
 
 
-        //repository
+        //repository        
+
         private readonly UsuarioRepository _usuarioRepository;
         private readonly CuentaRepository _cuentaRepository;
         private readonly PrestamosRepository _prestamosRepository;
@@ -197,7 +198,7 @@ namespace ItlaBanking.Controllers
             {
 
                 CuentasyPagos cp = new CuentasyPagos(_context, _userManager, _cuentaRepository,
-                    _tarjetasRepository, _prestamosRepository);
+                    _tarjetasRepository, _prestamosRepository, _usuarioRepository, _transaccionesRepository, _mapper);
                 return View(cp.TraerCuentas(id));
             }
             return View();
@@ -208,7 +209,7 @@ namespace ItlaBanking.Controllers
         {
             ViewData["Nombre"] = User.Identity.Name;
             CuentasyPagos cp = new CuentasyPagos(_context, _userManager, _cuentaRepository,
-                    _tarjetasRepository, _prestamosRepository);
+                    _tarjetasRepository, _prestamosRepository, _usuarioRepository, _transaccionesRepository, _mapper);
 
             if (ModelState.IsValid)
             {
@@ -240,7 +241,7 @@ namespace ItlaBanking.Controllers
             {
 
                 CuentasyPagos cp = new CuentasyPagos(_context, _userManager, _cuentaRepository,
-                    _tarjetasRepository, _prestamosRepository);
+                    _tarjetasRepository, _prestamosRepository, _usuarioRepository, _transaccionesRepository, _mapper);
                 
                 return View(cp.TraerCuentas(id));
             }
@@ -253,7 +254,7 @@ namespace ItlaBanking.Controllers
         {
             ViewData["Nombre"] = User.Identity.Name;
             CuentasyPagos cp = new CuentasyPagos(_context, _userManager, _cuentaRepository,
-                    _tarjetasRepository, _prestamosRepository);
+                    _tarjetasRepository, _prestamosRepository, _usuarioRepository, _transaccionesRepository, _mapper);
             if (ModelState.IsValid) {
                 PagosViewModel pvm = new PagosViewModel();
                 
@@ -358,7 +359,7 @@ namespace ItlaBanking.Controllers
 
 
             CuentasyPagos cp = new CuentasyPagos(_context, _userManager, _cuentaRepository,
-                _tarjetasRepository, _prestamosRepository);
+                _tarjetasRepository, _prestamosRepository, _usuarioRepository, _transaccionesRepository, _mapper);
 
 
 
@@ -370,7 +371,7 @@ namespace ItlaBanking.Controllers
         {
          ViewData["Nombre"] = User.Identity.Name;
             CuentasyPagos cp = new CuentasyPagos(_context, _userManager, _cuentaRepository,
-                _tarjetasRepository, _prestamosRepository);
+                _tarjetasRepository, _prestamosRepository, _usuarioRepository, _transaccionesRepository, _mapper);
             if (ModelState.IsValid) {
                 var cuenta = await _context.Cuenta.FirstOrDefaultAsync(x => x.NumeroCuenta == bvm.NumeroCuenta);
                 var cuenta2 = await _context.Cuenta.FirstOrDefaultAsync(x => x.NumeroCuenta == bvm.NumeroCuentaPagar);
@@ -470,16 +471,122 @@ namespace ItlaBanking.Controllers
    
        
         //OtrasVista
-        public IActionResult AvanceEfectivo()
+        public async Task<IActionResult> AvanceEfectivo()
         {
-            return View();
+            
+            ViewData["Nombre"] = User.Identity.Name;
+       
+            var cuentaUsuario = await _cuentaRepository.GetCuentaUsuario(await IdUsuarioClienteAsync());
+            var TarjetaUsuario = await _tarjetasRepository.GetCreditoUsuario(await IdUsuarioClienteAsync());
+
+            AvanceEfectivoViewModel avanceCuenta = new AvanceEfectivoViewModel();
+            avanceCuenta.cuenta = cuentaUsuario;
+            avanceCuenta.tarjetas = TarjetaUsuario;
+
+
+            return View(avanceCuenta);
         }
-        
-        public IActionResult Transferencia()
+
+        [HttpPost]
+        public async Task<IActionResult> AvanceEfectivo(AvanceEfectivoViewModel Aev)
         {
-            return View();
+
+            var cuentaUsuario = await _cuentaRepository.GetCuentaUsuario(await IdUsuarioClienteAsync());
+            var TarjetaUsuario = await _tarjetasRepository.GetCreditoUsuario(await IdUsuarioClienteAsync());
+            ViewBag.exists = "";
+            Aev.cuenta = cuentaUsuario;
+            Aev.tarjetas = TarjetaUsuario;
+
+            ViewData["Nombre"] = User.Identity.Name;
+
+            if (ModelState.IsValid)
+            {
+
+                var CuentaTarjetaCredito = await _tarjetasRepository.GetByIdAsync(Aev.NumeroTarjeta.Value);
+                var CuentaAhorroSeleccionada = await _cuentaRepository.GetByIdAsync(Aev.NumeroCuenta.Value);
+
+                double deuda = Convert.ToDouble(CuentaTarjetaCredito.Deuda);
+                double MontoOne = Convert.ToDouble(Aev.Monto);
+                double MontoVerdadero = MontoOne * 0.0625;
+                double deuda1 = Convert.ToDouble(CuentaTarjetaCredito.Deuda);
+                double MontoDeudaTotal = MontoOne + MontoVerdadero +deuda1;
+                decimal result = Convert.ToDecimal(MontoDeudaTotal);
+
+
+                if (result > CuentaTarjetaCredito.MontoLimite)
+                {
+
+                    ModelState.AddModelError("", "El monto del avance de efectivo supera el monto limite de la tarjeta de crédito numero " + CuentaTarjetaCredito.NumeroTarjeta);
+                    return View(Aev);
+                }
+                else
+                {
+                  
+                    CuentaAhorroSeleccionada.Balance = CuentaAhorroSeleccionada.Balance + Aev.Monto;
+                    await _cuentaRepository.Update(CuentaAhorroSeleccionada);
+
+                    CuentaTarjetaCredito.Deuda = result;
+                    await _tarjetasRepository.Update(CuentaTarjetaCredito);
+
+
+                    var transacciones = _mapper.Map<Transacciones>(Aev);
+                    transacciones.NumeroCuentaDestinatario = CuentaTarjetaCredito.NumeroTarjeta;
+                    await _transaccionesRepository.AddAsync(transacciones);
+                    ViewBag.exists = "Avance de efectivo, realizado sastifactoriamente.";
+
+                    return View(Aev);
+                }
+
+
+            }
+
+            return View(Aev);
         }
-        
+
+
+            public async Task<IActionResult> Transferencia()
+            {
+            ViewData["Nombre"] = User.Identity.Name;
+
+            var cuentaUsuario = await _cuentaRepository.GetCuentaUsuario(await IdUsuarioClienteAsync());
+
+            AvanceEfectivoViewModel avanceCuenta = new AvanceEfectivoViewModel();
+            avanceCuenta.cuenta = cuentaUsuario;
+            avanceCuenta.cuentaMismoCliente = cuentaUsuario;
+
+
+            return View(avanceCuenta);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Transferencia(AvanceEfectivoViewModel tf)
+        {
+
+            var cuentaUsuario = await _cuentaRepository.GetCuentaUsuario(await IdUsuarioClienteAsync());
+            tf.cuenta = cuentaUsuario;
+            tf.cuentaMismoCliente = cuentaUsuario;
+
+            ViewData["Nombre"] = User.Identity.Name;
+
+            if (ModelState.IsValid)
+            {
+
+                if (tf.NumeroCuenta == tf.NumeroCuentaDestinatario)
+                { 
+
+                    ModelState.AddModelError("","La cuenta destinataria es igual a la cuenta de origen, transferencia invalida");
+                    return View(tf);
+                }
+
+             
+
+
+            }
+
+
+                return View(tf);
+        }
+
 
 
     }
