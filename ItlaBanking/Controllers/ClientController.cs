@@ -139,10 +139,7 @@ namespace ItlaBanking.Controllers
             return View();
         }
 
-        public IActionResult ConfirmPagosBeneficiario() {
-
-            return View();
-        }
+       
 
         public async Task<IActionResult> PagosTarjeta()
         {
@@ -323,22 +320,31 @@ namespace ItlaBanking.Controllers
         public async Task<IActionResult> PagosBeneficiario(BeneficiarioViewModel bvm)
         {
          ViewData["Nombre"] = User.Identity.Name;
+            CuentasyPagos cp = new CuentasyPagos(_context, _userManager, _cuentaRepository,
+                _tarjetasRepository, _prestamosRepository);
             if (ModelState.IsValid) {
                 var cuenta = await _context.Cuenta.FirstOrDefaultAsync(x => x.NumeroCuenta == bvm.NumeroCuenta);
                 var cuenta2 = await _context.Cuenta.FirstOrDefaultAsync(x => x.NumeroCuenta == bvm.NumeroCuentaPagar);
                 if (cuenta  == null || cuenta2 == null) {
-                    return RedirectToAction("Transferencia");
+                    ModelState.AddModelError("", "Cuenta o cuentas inexistentes");
+
+                    return View(await cp.Beneficiarios(User.Identity.Name));
                 }
                 if (cuenta.Balance< bvm.Monto) {
                     ModelState.AddModelError("", "No tiene suficiente balance");
-                    return RedirectToAction("Transferencia");
+                    return View(await cp.Beneficiarios(User.Identity.Name));
                 }
                 cuenta.Balance = cuenta.Balance - bvm.Monto;
                 cuenta2.Balance = cuenta2.Balance + bvm.Monto;
                 try
                 {
-                    await _cuentaRepository.Update(cuenta);
-                    await _cuentaRepository.Update(cuenta2);
+                    ConfirmViewModel cvm = new ConfirmViewModel();
+                    cvm.cuenta = cuenta;
+                    cvm.cuenta2 = cuenta2;
+                    return RedirectToAction("ConfirmPagosBeneficiario","Client", cvm);
+
+                    //await _cuentaRepository.Update(cuenta);
+                    //await _cuentaRepository.Update(cuenta2);
                 }
                 catch { }
 
@@ -346,8 +352,14 @@ namespace ItlaBanking.Controllers
 
 
             }
-            return View(bvm);
-}
+            return View(await cp.Beneficiarios(User.Identity.Name));
+        }
+
+        public IActionResult ConfirmPagosBeneficiario(ConfirmViewModel cm)
+        {
+
+            return View(cm);
+        }
 
         public async Task<IActionResult> AgregarBeneficiario(BeneficiarioViewModel agg)
         {
