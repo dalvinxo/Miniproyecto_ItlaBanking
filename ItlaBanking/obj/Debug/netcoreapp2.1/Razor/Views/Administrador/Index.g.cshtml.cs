@@ -61,7 +61,7 @@ using ItlaBanking.Models;
             WriteLiteral("\r\n<html>\r\n");
             EndContext();
             BeginContext(120, 3001, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d60376c8a3524c1a9010f698f10dbff1", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8a0357f45d8b4ec0846c14ae78ae5552", async() => {
                 BeginContext(167, 269, true);
                 WriteLiteral(@"
     <div class=""card container bg-white border border-white rounded shadow-lg p-1 mb-5"">

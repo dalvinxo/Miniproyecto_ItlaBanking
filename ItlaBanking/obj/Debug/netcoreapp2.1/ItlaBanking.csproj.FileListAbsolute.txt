@@ -61,7 +61,6 @@ C:\Users\Liam\Desktop\ShitBull\Programacion 3\Miniproyecto_ItlaBanking\ItlaBanki
 C:\Users\Liam\Desktop\ShitBull\Programacion 3\Miniproyecto_ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\Razor\Views\Client\AddBeneficiario.g.cshtml.cs
 C:\Users\Liam\Desktop\ShitBull\Programacion 3\Miniproyecto_ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\Razor\Views\Client\AvanceEfectivo.g.cshtml.cs
 C:\Users\Liam\Desktop\ShitBull\Programacion 3\Miniproyecto_ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\Razor\Views\Client\Beneficiario.g.cshtml.cs
-C:\Users\Liam\Desktop\ShitBull\Programacion 3\Miniproyecto_ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\Razor\Views\Client\ConfirmPagosBeneficiario.g.cshtml.cs
 C:\Users\Liam\Desktop\ShitBull\Programacion 3\Miniproyecto_ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\Razor\Views\Client\ConfirmPagosExpreso.g.cshtml.cs
 C:\Users\Liam\Desktop\ShitBull\Programacion 3\Miniproyecto_ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\Razor\Views\Client\CrearUsuario.g.cshtml.cs
 C:\Users\Liam\Desktop\ShitBull\Programacion 3\Miniproyecto_ItlaBanking\ItlaBanking\obj\Debug\netcoreapp2.1\Razor\Views\Client\Index.g.cshtml.cs

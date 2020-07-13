@@ -139,7 +139,10 @@ namespace ItlaBanking.Controllers
             return View();
         }
 
-       
+        public IActionResult ConfirmPagosBeneficiario() {
+
+            return View();
+        }
 
         public async Task<IActionResult> PagosTarjeta()
         {
@@ -338,13 +341,8 @@ namespace ItlaBanking.Controllers
                 cuenta2.Balance = cuenta2.Balance + bvm.Monto;
                 try
                 {
-                    ConfirmViewModel cvm = new ConfirmViewModel();
-                    cvm.cuenta = cuenta;
-                    cvm.cuenta2 = cuenta2;
-                    return RedirectToAction("ConfirmPagosBeneficiario","Client", cvm);
-
-                    //await _cuentaRepository.Update(cuenta);
-                    //await _cuentaRepository.Update(cuenta2);
+                    await _cuentaRepository.Update(cuenta);
+                    await _cuentaRepository.Update(cuenta2);
                 }
                 catch { }
 
@@ -352,14 +350,8 @@ namespace ItlaBanking.Controllers
 
 
             }
-            return View(await cp.Beneficiarios(User.Identity.Name));
-        }
-
-        public IActionResult ConfirmPagosBeneficiario(ConfirmViewModel cm)
-        {
-
-            return View(cm);
-        }
+            return View(bvm);
+}
 
         public async Task<IActionResult> AgregarBeneficiario(BeneficiarioViewModel agg)
         {

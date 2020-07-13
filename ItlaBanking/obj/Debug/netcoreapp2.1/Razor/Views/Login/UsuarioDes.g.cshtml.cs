@@ -65,7 +65,7 @@ using ItlaBanking.Models;
 #line default
 #line hidden
             BeginContext(68, 54, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "5f76a23e7bf14bdf83504dd1c0ef03f3", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "1d24a534e6014e16abb7e2410a0cef46", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -93,7 +93,7 @@ using ItlaBanking.Models;
             WriteLiteral("class=\"alert alert-danger\" role=\"alert\">\r\n    <h1>Su Usuario ha sido desactivado, Comuniquese con un Administrador para activarlo otra vez</h1>\r\n    ");
             EndContext();
             BeginContext(1295, 55, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa0c449e116e43d8be2a752fed0c6a7b", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "256de8d2f8e0420b90295c5e0bf90014", async() => {
                 BeginContext(1340, 6, true);
                 WriteLiteral("Volver");
                 EndContext();
