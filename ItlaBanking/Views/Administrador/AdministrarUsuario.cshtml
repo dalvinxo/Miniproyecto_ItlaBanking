@@ -1,4 +1,4 @@
-﻿@model IEnumerable< ItlaBanking.Models.Usuario>
+﻿@model IEnumerable<ItlaBanking.Models.Usuario>
 @{
     Layout = "_LayoutAdministrador";
     string UserNow = ViewBag.user;
@@ -12,7 +12,7 @@
             <nav class="navbar navbar-light bg-light navbar-dark bg-dark rounded">
                 <a asp-controller="Usuario" asp-action="CrearUsuario" class="btn btn-success ml-auto  btn-block text-white">Agregar Usuario</a>
 
-            
+
             </nav>
 
 
@@ -37,7 +37,6 @@
 
                 <tbody>
 
-                    @*CLIENTE*@
                     @foreach (var user in Model)
                     {
 
@@ -77,7 +76,7 @@
 
 
                                             <div class="modal-body bg-light h6 text-justify">
-                                                Para poder ver los productos perteneciente a este usuario debe usted, activarlo.
+                                                Seguro que desea Desactivar a este usuario?
 
                                                 <div class="mt-2 d-flex justify-content-center">
                                                     <a asp-controller="Administrador" asp-action="Activador" asp-route-id="@user.IdUsuario" class="btn btn-outline-secondary btn-sm"><i class="fa fa-times-circle" style="font-size:14px; color:red" aria-hidden="true"></i> Desactivar</a>
@@ -92,22 +91,10 @@
 
 
                             </td>
-                        }
-
-                        @if (user.TipoUsuario == "Cliente")
-                        {
-                            <td>
-                                <a asp-controller="Usuario" asp-action="CrearProducto" asp-route-id="@user.IdUsuario" class="btn btn-outline-primary btn-sm"><i class="fa fa-credit-card-alt" aria-hidden="true" style="color:black"></i> Productos</a>
-                            </td>
-
-                        }
-                        else
-                        {
-                            <td></td>
-                        }
+                            }
+                        </tr>
 
 
-                    </tr>
                         }
                         else
                         {
@@ -145,7 +132,7 @@
 
 
                                             <div class="modal-body bg-light h6 text-justify">
-                                                Para poder ver los productos perteneciente a este usuario debe usted, activarlo.
+                                                Seguro que desea activar a este usuario?
 
                                                 <div class="mt-2 d-flex justify-content-center">
                                                     <a asp-controller="Administrador" asp-action="Activador" asp-route-id="@user.IdUsuario" class="btn btn-outline-info btn-sm"><i class="fa fa-check-circle" style="font-size:14px; color:greenyellow" aria-hidden="true"></i> Activar</a>
@@ -174,6 +161,9 @@
 
                     </tr>
 
+                           
+
+                          
 
                         }
 
@@ -184,7 +174,7 @@
 
 
             </table>
-            <div class="modal fade " id="pampara" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal fade" id="pampara" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog modal-sm">
                     <div class="modal-content bg-warning shadow-sm p-1 rounded">
 

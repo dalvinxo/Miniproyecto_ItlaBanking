@@ -26,6 +26,7 @@ namespace ItlaBanking.ViewModels
         [Required(ErrorMessage = "El monto no debe estar vacio.")]
         public decimal? Monto { get; set; }
 
+        public int TipoTransaccion { get; set; }
 
         public IEnumerable<Prestamos> prestamos;
 

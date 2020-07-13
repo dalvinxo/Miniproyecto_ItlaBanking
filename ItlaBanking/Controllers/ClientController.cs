@@ -255,6 +255,7 @@ namespace ItlaBanking.Controllers
             ViewData["Nombre"] = User.Identity.Name;
             CuentasyPagos cp = new CuentasyPagos(_context, _userManager, _cuentaRepository,
                     _tarjetasRepository, _prestamosRepository, _usuarioRepository, _transaccionesRepository, _mapper);
+
             if (ModelState.IsValid) {
                 PagosViewModel pvm = new PagosViewModel();
                 
@@ -550,41 +551,60 @@ namespace ItlaBanking.Controllers
 
             var cuentaUsuario = await _cuentaRepository.GetCuentaUsuario(await IdUsuarioClienteAsync());
 
-            AvanceEfectivoViewModel avanceCuenta = new AvanceEfectivoViewModel();
-            avanceCuenta.cuenta = cuentaUsuario;
-            avanceCuenta.cuentaMismoCliente = cuentaUsuario;
+            TransferenciaViewModel tranferir = new TransferenciaViewModel();
+            tranferir.cuenta = cuentaUsuario;
+            tranferir.cuentaMismoCliente = cuentaUsuario;
 
 
-            return View(avanceCuenta);
+            return View(tranferir);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Transferencia(AvanceEfectivoViewModel tf)
+        public async Task<IActionResult> Transferencia(TransferenciaViewModel tf)
         {
 
             var cuentaUsuario = await _cuentaRepository.GetCuentaUsuario(await IdUsuarioClienteAsync());
             tf.cuenta = cuentaUsuario;
             tf.cuentaMismoCliente = cuentaUsuario;
-
+            ViewBag.exists = "";
             ViewData["Nombre"] = User.Identity.Name;
 
             if (ModelState.IsValid)
             {
-
+               
                 if (tf.NumeroCuenta == tf.NumeroCuentaDestinatario)
                 { 
 
                     ModelState.AddModelError("","La cuenta destinataria es igual a la cuenta de origen, transferencia invalida");
                     return View(tf);
                 }
+                var cuentaOrigen = await _cuentaRepository.GetByIdAsync(tf.NumeroCuenta.Value);
+                var cuentaDestinada = await _cuentaRepository.GetByIdAsync(tf.NumeroCuentaDestinatario.Value);
 
-             
+                if (tf.Monto > cuentaOrigen.Balance)
+                {
 
+                    ModelState.AddModelError("", "La cuenta de ahorro de origen no cuenta con ese monto.");
+                    return View(tf);
+                }
+                else {
+                    cuentaOrigen.Balance = cuentaOrigen.Balance - tf.Monto;
+                    cuentaDestinada.Balance = cuentaDestinada.Balance + tf.Monto;
+
+                    await _cuentaRepository.Update(cuentaOrigen);
+                    await _cuentaRepository.Update(cuentaDestinada);
+
+                    var transacciones = _mapper.Map<Transacciones>(tf);                  
+                    await _transaccionesRepository.AddAsync(transacciones);
+                    ViewBag.exists = "Transferencia realizada sastifactoriamente.";
+                    return View(tf);
+                }
 
             }
 
+            ModelState.AddModelError("", "Revisa esta pasando un error");
 
-                return View(tf);
+            return View(tf);
         }
 
 
