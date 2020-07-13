@@ -14,6 +14,8 @@ namespace ItlaBanking.ViewModels
         public int NumeroCuenta { get; set; }
         public int TipoTransaccion { get; set; }
 
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
 
     }
 }

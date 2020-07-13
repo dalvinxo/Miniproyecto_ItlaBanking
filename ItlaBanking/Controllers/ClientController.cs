@@ -29,13 +29,16 @@ namespace ItlaBanking.Controllers
         private readonly PrestamosRepository _prestamosRepository;
         private readonly TarjetaCreditoRepository _tarjetasRepository;
         private readonly BeneficiarioRepository _beneficiarioRepository;
+        private readonly TransaccionesRepository _transaccionesRepository;
 
 
 
 
         public ClientController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager,
             ItlaBankingContext context, IMapper mapper, UsuarioRepository usuarioRepository, CuentaRepository cuentaRepository,
-            TarjetaCreditoRepository tarjetasRepository, PrestamosRepository prestamosRepository, BeneficiarioRepository beneficiarioRepository)
+            TarjetaCreditoRepository tarjetasRepository, PrestamosRepository prestamosRepository, BeneficiarioRepository beneficiarioRepository,
+            TransaccionesRepository transaccionesRepository
+            )
         {
             _userManager = userManager;
             _signinManager = signInManager;
@@ -49,6 +52,7 @@ namespace ItlaBanking.Controllers
             _prestamosRepository = prestamosRepository;
             _tarjetasRepository = tarjetasRepository;
             _beneficiarioRepository = beneficiarioRepository;
+            _transaccionesRepository = transaccionesRepository;
 
 
 
@@ -107,29 +111,90 @@ namespace ItlaBanking.Controllers
         [HttpPost]
         public async Task<IActionResult> PagosExpreso(PagosViewModel pevm)
         {
+            var cuentaUsuario = await _cuentaRepository.GetCuentaUsuario(await IdUsuarioClienteAsync());
+            PagosViewModel cuentas = new PagosViewModel();
+            cuentas.cuenta = cuentaUsuario;
             ViewData["Nombre"] = User.Identity.Name;
             if (ModelState.IsValid)
             {
-                PagosViewModel pvm = new PagosViewModel();
-                CuentasyPagos cp = new CuentasyPagos(_context, _userManager, _cuentaRepository,
-                    _tarjetasRepository, _prestamosRepository);
-                pvm = await cp.PagoExpreso(pevm);
-                if (pvm == null)
+                
+                var CuentaDestinatario = await _cuentaRepository.GetByIdAsync(pevm.NumeroCuentaPagar.Value);
+
+                if (CuentaDestinatario != null)
                 {
-                    return RedirectToAction("Index");
-                } else {
-                    return View(pvm);
+                    var CuentaAhorroSeleccionada = await _cuentaRepository.GetByIdAsync(pevm.NumeroCuenta.Value);
+
+                    if (CuentaAhorroSeleccionada.Balance < pevm.Monto)
+                    {
+                        ModelState.AddModelError("", "Tu cuenta de Ahorro, no tiene suficiente balance para transferir "+pevm.Monto+"");
+                        return View(cuentas);
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Tu cuenta si tiene dinero");
+                        var UsuarioDestinatario = await _usuarioRepository.GetByIdAsync(CuentaDestinatario.IdUsuario);
+                        TransaccionesViewModels Transacciones = new TransaccionesViewModels();
+                        Transacciones.NumeroCuenta = CuentaAhorroSeleccionada.NumeroCuenta;
+                        Transacciones.NumeroCuentaDestinatario = pevm.NumeroCuentaPagar;
+                        Transacciones.Monto = pevm.Monto;
+                        Transacciones.Nombre = UsuarioDestinatario.Nombre;
+                        Transacciones.Apellido = UsuarioDestinatario.Apellido;
+                        Transacciones.TipoTransaccion = 2;
+                                                                       
+                        return RedirectToAction("ConfirmPagosExpreso", "Client",Transacciones);
+                    }
+                    
                 }
+                else
+                {
+                    ModelState.AddModelError("", "La cuenta que digito no existe, por favor intente con otra");
+                    return View(cuentas);
+                }
+
+
+                //if (pvm == null)
+                //{
+                //    return RedirectToAction("Index");
+                //} else {
+                //    return View(cuentas);
+                //}
             }
-            return View(pevm);
+            return View(cuentas);
 
         }
 
-
-        public IActionResult ConfirmPagosExpreso(PagosViewModel ptv)
+        
+        public IActionResult ConfirmPagosExpreso(TransaccionesViewModels Transacciones)
         {
-           
-            return View();
+            return View(Transacciones);
+        }
+         
+        [HttpPost]
+        public async Task<IActionResult> TransferenciaPagoExpreso(TransaccionesViewModels Tr)
+        {
+
+            if (Tr != null) {
+
+
+                var cuentaPrincipalUsuario = await _cuentaRepository.GetByIdAsync(Tr.NumeroCuenta);
+                var cuentaDestinatario = await _cuentaRepository.GetByIdAsync(Tr.NumeroCuentaDestinatario.Value);
+
+                decimal resta = Convert.ToDecimal(cuentaPrincipalUsuario.Balance - Tr.Monto);
+                decimal suma = Convert.ToDecimal(cuentaDestinatario.Balance + Tr.Monto);
+
+                cuentaPrincipalUsuario.Balance = resta;
+                cuentaDestinatario.Balance = suma;
+
+                await _cuentaRepository.Update(cuentaPrincipalUsuario);
+                await _cuentaRepository.Update(cuentaDestinatario);
+
+                var transacciones = _mapper.Map<Transacciones>(Tr);
+                await _transaccionesRepository.AddAsync(transacciones);
+
+                return RedirectToAction("PagosExpreso");
+             }
+
+            return RedirectToAction("Index");
         }
 
         public IActionResult ConfirmPagosBeneficiario() {
@@ -157,12 +222,13 @@ namespace ItlaBanking.Controllers
         public async Task<IActionResult> PagosTarjeta(PagosViewModel ptvm)
         {
             ViewData["Nombre"] = User.Identity.Name;
+            CuentasyPagos cp = new CuentasyPagos(_context, _userManager, _cuentaRepository,
+                    _tarjetasRepository, _prestamosRepository);
 
             if (ModelState.IsValid)
             {
                 PagosViewModel pvm = new PagosViewModel();
-                CuentasyPagos cp = new CuentasyPagos(_context, _userManager, _cuentaRepository, 
-                    _tarjetasRepository, _prestamosRepository);
+                
                 pvm = await cp.PagoTarjeta(ptvm);
                 if (pvm == null)
                 {
@@ -170,12 +236,12 @@ namespace ItlaBanking.Controllers
                 }
                 else
                 {
-                    return View(pvm);
+                    return View(cp.TraerCuentas(await IdUsuarioClienteAsync()));
                 }
 
-                
+
             }
-            return View(ptvm);
+            return View(cp.TraerCuentas(await IdUsuarioClienteAsync()));
         }
 
 
@@ -201,11 +267,11 @@ namespace ItlaBanking.Controllers
         public async Task<IActionResult> PagosPrestamo(PagosViewModel ppvm)
         {
             ViewData["Nombre"] = User.Identity.Name;
-
+            CuentasyPagos cp = new CuentasyPagos(_context, _userManager, _cuentaRepository,
+                    _tarjetasRepository, _prestamosRepository);
             if (ModelState.IsValid) {
                 PagosViewModel pvm = new PagosViewModel();
-                CuentasyPagos cp = new CuentasyPagos(_context, _userManager, _cuentaRepository,
-                    _tarjetasRepository, _prestamosRepository);
+                
                 pvm = await cp.PagoPrestamo(ppvm);
                 if (pvm == null)
                 {
@@ -213,13 +279,13 @@ namespace ItlaBanking.Controllers
                 }
                 else
                 {
-                    return View(pvm);
+                    return View(cp.TraerCuentas(await IdUsuarioClienteAsync()));
                 }
 
 
 
             }
-            return View(ppvm);
+            return View(cp.TraerCuentas(await IdUsuarioClienteAsync()));
         }
 
         public async Task<IActionResult> Beneficiario()

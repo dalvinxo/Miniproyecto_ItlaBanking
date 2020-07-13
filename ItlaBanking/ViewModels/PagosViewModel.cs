@@ -11,7 +11,7 @@ namespace ItlaBanking.ViewModels
     {
         //public int IdUsuario;
 
-        //[Required]
+        [Required(ErrorMessage = "El numero de cuenta no debe estar vacio")]
         public int? NumeroCuenta { get; set; }
 
     
@@ -20,7 +20,10 @@ namespace ItlaBanking.ViewModels
         [Required(ErrorMessage = "Debes Enviar un numero de cuenta.")]
         public int? NumeroCuentaPagar { get; set; }
 
-        [Required]
+
+        [RegularExpression(@"^[0-9]+(\.[0-9]{1,2})?$", ErrorMessage = "Por favor agregar numeros validos")]
+        [Range(0, 99999999999.99, ErrorMessage = "la cantidad de dinero no pueder ser mayor a ser 13 digitos")]
+        [Required(ErrorMessage = "El monto no debe estar vacio.")]
         public decimal? Monto { get; set; }
 
 
