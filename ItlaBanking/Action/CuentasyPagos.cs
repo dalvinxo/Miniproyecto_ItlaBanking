@@ -92,34 +92,7 @@ namespace ItlaBanking.Action
 
 
 
-        //public async Task<PagosViewModel> PagoExpreso(PagosViewModel ptvm)
-        //{
-        //    var cuenta = await _context.Cuenta.FirstOrDefaultAsync(x => x.NumeroCuenta == ptvm.NumeroCuenta);
-        //    var cuenta2 = await _context.Cuenta.FirstOrDefaultAsync(x => x.NumeroCuenta == ptvm.NumeroCuentaPagar);
-        //    if (cuenta == null || cuenta2 == null)
-        //    {
-        //        ModelState.AddModelError("", "Cuenta Inexistente");
-
-        //        return ptvm;
-        //    }
-        //    if (cuenta.Balance <= ptvm.Monto)
-        //    {
-        //        ModelState.AddModelError("", "No tiene suficiente balance");
-        //        return ptvm;
-
-        //    }
-        //    cuenta.Balance = cuenta.Balance - ptvm.Monto;
-        //    cuenta2.Balance = cuenta2.Balance + ptvm.Monto;
-        //    try
-        //    {
-        //        await _cuentaRepository.Update(cuenta);
-        //        await _cuentaRepository.Update(cuenta2);
-        //    }
-        //    catch { }
-
-        //    return null;
-
-        //}
+       
 
         public async Task<PagosViewModel> PagoTarjeta(PagosViewModel ptvm)
         {
@@ -259,9 +232,11 @@ namespace ItlaBanking.Action
                 ptvm.Monto = ptvm.Monto - prestamo.Monto;
                 prestamo.Monto = 0;
                 tarjeta.Deuda = tarjeta.Deuda - ptvm.Monto;
-
+                
             }
-            
+            await _tarjetasRepository.Update(tarjeta);
+            await _prestamosRepository.Update(prestamo);
+
             return null;
 
         }

@@ -168,7 +168,8 @@ namespace ItlaBanking.Controllers
                         }
                     }
                     catch {
-
+                        ModelState.AddModelError("", "Este usuario ya existe intenta con otro");
+                        return View(uvmd);
                     }
 
 
