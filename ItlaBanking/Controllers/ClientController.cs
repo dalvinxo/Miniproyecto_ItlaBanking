@@ -381,6 +381,12 @@ namespace ItlaBanking.Controllers
 
                     return View(await cp.Beneficiarios(User.Identity.Name));
                 }
+                if (bvm.NumeroCuenta == bvm.NumeroCuentaPagar)
+                {
+                    ModelState.AddModelError("", "No puedes tranferirte el dinero que ya tienes por favor verifique la cuenta desitinataria.");
+
+                    return View(await cp.Beneficiarios(User.Identity.Name));
+                }
                 if (cuenta.Balance< bvm.Monto) {
                     ModelState.AddModelError("", "No tiene suficiente balance");
                     return View(await cp.Beneficiarios(User.Identity.Name));
